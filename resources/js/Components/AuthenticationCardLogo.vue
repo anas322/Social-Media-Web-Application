@@ -16,6 +16,7 @@ import { Link } from "@inertiajs/inertia-vue3";
             viewBox="0 0 100 100"
             enable-background="new 0 0 100 100"
             xml:space="preserve"
+            class="fill-blue-500"
         >
             <path
                 d="M90.326,30.746c-9.825,0.285-21.688-7.424-26.286-10.327c-0.426-0.27-0.861-0.518-1.301-0.742
