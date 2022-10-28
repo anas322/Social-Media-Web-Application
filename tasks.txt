@@ -1,0 +1,1 @@
+create a profile controler to render the user profile and add 
