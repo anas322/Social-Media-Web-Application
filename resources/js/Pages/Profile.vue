@@ -23,10 +23,12 @@
             <!-- header section -->
             <div class="grid grid-cols-12 ">
 
-                <div class="col-span-3">
-                    <img class="w-6/12 h-auto mx-auto" style="border-radius:50%"
-                        src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt="image profile"
-                        loading="lazy">
+                <div class="col-span-3  place-self-center">
+                    <div class="overflow-hidden w-48 h-auto" style="border-radius:50%">
+                        <img  
+                            src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt="image profile"
+                            loading="lazy">
+                    </div>
                 </div>
 
                 <div class="col-span-9 ">
@@ -51,11 +53,11 @@
                     </div>
 
                     <div>
-                        <p><strong>{{props.profile.title}}</strong></p>
-                        <p class="text-sm">{{props.profile.description}}</p>
+                        <p><strong>{{props.profile.title ?? ''}}</strong></p>
+                        <p class="text-sm">{{props.profile.description ?? ''}}</p>
 
 
-                        <Link :href="props.profile.profile_url" class="underline-none hover:underline text-blue-500">freecodecamp.org</Link>
+                        <Link :href="props.profile.profile_url ?? '#'" class="underline-none hover:underline text-blue-500">{{props.profile.title ?? ''}}</Link>
                     </div>
 
                 </div>
