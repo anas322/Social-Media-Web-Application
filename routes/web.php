@@ -18,6 +18,8 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/profile/{user}',[ProfileController::class,'index'])->name('prof.index');
+Route::get('/profile/{user}/edit',[ProfileController::class,'edit'])->name('prof.edit');
+Route::post('/profile/{user}',[ProfileController::class,'update'])->name('prof.update');
 
 Route::get('/p/create',[PostController::class,'create'])->name('post.create');
 Route::post('/p',[PostController::class,'store'])->name('post.store');

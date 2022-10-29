@@ -1,18 +1,18 @@
 <script setup>
     import AppLayout from '@/Layouts/AppLayout.vue';
-    import ProfileImageModelVue from '../Components/Profile/ProfileImageModel.vue';
+    import ProfileImageModelVue from '@/Components/Profile/ProfileImageModel.vue';
     import {
         ref
     } from 'vue';
     import {
-        Head,
         Link
     } from "@inertiajs/inertia-vue3";
 
     const props = defineProps({
         profile: Object,
         posts: Object
-    });
+    }); 
+
 
     let show = ref(false);
     let postInfo = ref({});
@@ -41,7 +41,12 @@
 
                     <div class="mb-6 flex justify-between">
                         <div>
-                            <h1 class="font-bold text-2xl pb-2 capitalize">{{$page.props.user.name}}</h1>
+                            <div class="flex space-x-8 ">
+                                <h1 class="font-bold text-2xl pb-2 capitalize">{{$page.props.user.name}}</h1>
+                                <div>
+                                    <Link :href="route('prof.edit',$page.props.user)" class="px-4 py-1 text-gray-900 font-semibold ring-1 ring-slate-600  transition rounded-lg">Edit</Link>
+                                </div>
+                            </div>
 
                             <div class="space-x-5">
                                 <span>
@@ -71,8 +76,8 @@
                         <p class="text-sm">{{props.profile.description ?? ''}}</p>
 
 
-                        <Link :href="props.profile.profile_url ?? '#'"
-                            class="underline-none hover:underline text-blue-500">{{props.profile.title ?? ''}}</Link>
+                        <a :href="props.profile.url ?? '#'" target="_blank"
+                            class="underline-none hover:underline text-blue-500"> {{props.profile.url_text ?? ''}}</a>
                     </div>
 
                 </div>
