@@ -10,7 +10,8 @@
 
     const props = defineProps({
         profile: Object,
-        posts: Object
+        posts: Object,
+        userPhotoUrl:String,
     }); 
 
 
@@ -31,9 +32,9 @@
             <div class="md:grid md:grid-cols-12 flex flex-col">
 
                 <div class="col-span-3  place-self-center">
-                    <div class="overflow-hidden w-48 h-auto" style="border-radius:50%">
-                        <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt="image profile"
-                            loading="lazy">
+                    <div class="w-full mx-auto">
+                        <img :src="props.userPhotoUrl" alt="image profile"
+                            loading="lazy" style="clip-path:circle()" class="max-h-44">
                     </div>
                 </div>
 

@@ -14,12 +14,14 @@ class ProfileController extends Controller
  public function index(User $user){
 
     $posts = Post::orderBy('created_at','desc')->get();
+    $userPhotoUrl = $user->profile_photo_path ? asset('storage/'. $user->profile_photo_path) : asset('storage/default/default.png');
 
         return Inertia::render('UserProfile/Profile', [ 
             'profile' => $user->profile ,
-            'posts' => $posts
+            'posts' => $posts,
+            'userPhotoUrl' => $userPhotoUrl 
          ]);     
-    }   
+        }   
     
     public function edit(User $user){
         $url = route("prof.update", $user);
