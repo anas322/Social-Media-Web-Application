@@ -52,6 +52,10 @@ const logout = () => {
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
+
+                                <NavLink :href="route('prof.index',$page.props.user)" :active="route().current('prof.index')">
+                                    Profile
+                                </NavLink>
                             </div>
                         </div>
 
@@ -156,7 +160,7 @@ const logout = () => {
                                         </div>
 
                                         <DropdownLink :href="route('profile.show')">
-                                            Settings
+                                            Profile Settings
                                         </DropdownLink>
 
                                         <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
@@ -231,8 +235,12 @@ const logout = () => {
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')">
+                            <ResponsiveNavLink :href="route('prof.index',$page.props.user)" :active="route().current('prof.index')">
                                 Profile
+                            </ResponsiveNavLink>
+
+                            <ResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')">
+                                Profile Settings
                             </ResponsiveNavLink>
 
                             <ResponsiveNavLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')" :active="route().current('api-tokens.index')">

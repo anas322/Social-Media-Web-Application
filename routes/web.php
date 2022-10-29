@@ -17,7 +17,7 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/profile/{user}',[ProfileController::class,'index'])->name('profile.index');
+Route::get('/profile/{user}',[ProfileController::class,'index'])->name('prof.index');
 
 Route::get('/p',[PostController::class,'create'])->name('post.create');
 Route::post('/p',[PostController::class,'store'])->name('post.store');

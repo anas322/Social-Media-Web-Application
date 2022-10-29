@@ -27,6 +27,6 @@ class PostController extends Controller
             'image' => $path
         ]);
 
-        return redirect()->route('profile.index',auth()->id());
+        return redirect()->route('prof.index',auth()->id());
     }
 }
