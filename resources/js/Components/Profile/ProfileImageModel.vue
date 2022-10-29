@@ -1,6 +1,7 @@
 <script setup>
     import { ref } from "vue";
     import { Link } from "@inertiajs/inertia-vue3";
+    import { Inertia } from "@inertiajs/inertia";
     const props = defineProps({
         post:Object,
     })
@@ -13,6 +14,11 @@
             emit('cancelPreview')
         }
     }       
+
+    const deletePost = ()=>{
+        Inertia.delete(route('post.delete',props.post.id))
+        emit('cancelPreview')
+    }
 
 </script>
 
@@ -34,6 +40,9 @@
                     class="px-8 py-2 text-white font-semibold bg-blue-500 hover:bg-blue-600 rounded-full">
                 Edit</Link>
 
+                  <button @click="deletePost"
+                    class="px-8 py-2 text-white font-semibold bg-red-500 hover:bg-red-600 rounded-full">
+                Delete Post</button>
             </div>
         </div>
     </div>

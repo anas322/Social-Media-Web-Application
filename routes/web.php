@@ -25,6 +25,7 @@ Route::get('/p/create',[PostController::class,'create'])->name('post.create');
 Route::post('/p',[PostController::class,'store'])->name('post.store');
 Route::get('/p/{post}/edit',[PostController::class,'edit'])->name('post.edit');
 Route::post('/p/{post}',[PostController::class,'update'])->name('post.update');
+Route::delete('/p/{post}/delete',[PostController::class,'delete'])->name('post.delete');
 
 Route::middleware([
     'auth:sanctum',

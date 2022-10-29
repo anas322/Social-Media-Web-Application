@@ -65,5 +65,12 @@ class PostController extends Controller
       return redirect()->route('prof.index',auth()->id());
     }
 
+    public function delete(Post $post){
+        $post->delete();
+        
+        Storage::disk('public')->delete($post->image);
+
+        return redirect()->route('prof.index',auth()->id());
+    }
 
 }
