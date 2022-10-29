@@ -11,7 +11,9 @@
     const props = defineProps({
         profile: Object,
         posts: Object,
+        user:Object,
         userPhotoUrl:String,
+        canEditProfile:Boolean,
     }); 
 
 
@@ -43,10 +45,12 @@
                     <div class="mb-6 flex justify-between">
                         <div>
                             <div class="flex space-x-8 ">
-                                <h1 class="font-bold text-2xl pb-2 capitalize">{{$page.props.user.name}}</h1>
-                                <div>
-                                    <Link :href="route('prof.edit',$page.props.user)" class="px-4 py-1 text-gray-900 font-semibold ring-1 ring-slate-600  transition rounded-lg">Edit</Link>
+                                <h1 class="font-bold text-2xl pb-2 capitalize">{{props.user.name}}</h1>
+                            
+                                <div v-if="props.canEditProfile">
+                                    <Link :href="route('prof.edit',props.user)" class="px-4 py-1 text-gray-900 font-semibold ring-1 ring-slate-600  transition rounded-lg">Edit</Link>
                                 </div>
+                        
                             </div>
 
                             <div class="space-x-5">
@@ -64,7 +68,7 @@
                             </div>
 
                         </div>
-                        <div class="whitespace-nowrap hidden sm:block">
+                        <div v-if="props.canEditProfile" class="whitespace-nowrap hidden sm:block">
                             <Link :href="route('post.create')"
                                 class="px-8 py-2 text-white font-semibold bg-blue-500 hover:bg-blue-600 rounded-full">
                             Create Post </Link>

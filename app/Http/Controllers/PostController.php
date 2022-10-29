@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Profile;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\Post;
@@ -14,7 +15,7 @@ class PostController extends Controller
         return Inertia::render('Posts/Create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request){   
        //validate incomming post data 
        $data =  $request->validate([
             'caption' => 'required|string|max:65000',
@@ -46,6 +47,8 @@ class PostController extends Controller
     }
 
      public function update(Request $request ,Post $post){
+        $this->authorize('update',$post);
+
         //validate incomming post data 
        $data =  $request->validate([
             'caption' => 'required|string|max:65000',
@@ -66,8 +69,10 @@ class PostController extends Controller
     }
 
     public function delete(Post $post){
+        $this->authorize('delete',$post);
+
         $post->delete();
-        
+
         Storage::disk('public')->delete($post->image);
 
         return redirect()->route('prof.index',auth()->id());

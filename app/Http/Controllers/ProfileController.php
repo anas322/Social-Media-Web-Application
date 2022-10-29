@@ -13,19 +13,25 @@ class ProfileController extends Controller
     
  public function index(User $user){
 
-    $posts = Post::orderBy('created_at','desc')->get();
+    $posts = Post::where('user_id',$user->id)->orderBy('created_at','desc')->get();
+
     $userPhotoUrl = $user->profile_photo_path ? asset('storage/'. $user->profile_photo_path) : asset('storage/default/default.png');
+    
+    
 
         return Inertia::render('UserProfile/Profile', [ 
-            'profile' => $user->profile ,
+            'profile' => $user->profile ?? [] ,
+            'user' => $user,
             'posts' => $posts,
-            'userPhotoUrl' => $userPhotoUrl 
+            'userPhotoUrl' => $userPhotoUrl,
+            'canEditProfile' => auth()->user()->can('update',$user->profile) ,
          ]);     
         }   
     
     public function edit(User $user){
         $url = route("prof.update", $user);
         $profile = $user->profile ;
+
         return Inertia::render('UserProfile/Edit',[
             'url' =>$url,
             'profile' => $profile
@@ -33,6 +39,9 @@ class ProfileController extends Controller
     }
 
     public function update(Request $request){
+
+        $this->authorize('update',auth()->user()->profile);
+
       $validated =  $request->validate([
             'title' => 'nullable|string|max:65000',
             'description' => 'nullable|string|max:65000',
