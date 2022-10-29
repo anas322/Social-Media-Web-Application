@@ -5,14 +5,22 @@
     import {ref } from 'vue'
     import AppLayout from '@/Layouts/AppLayout.vue';
 
+    const props = defineProps({
+        post:Object,
+        imageUrl:String,
+        editUrl:String,
+    })
+  
     const url = ref(null)
+    
+    url.value = props.imageUrl;
 
-    const form = useForm('createUser', {
-        caption: '',
+    const form = useForm('UpdatePost', {
+        caption: props.post.caption,
         image: null
     })
-
-    const previewImage = (e)=>{
+    console.log(props.errors, form);
+      const previewImage = (e)=>{
         const file = e.target.files[0];
         url.value = URL.createObjectURL(file);
     }
@@ -27,17 +35,17 @@
             <span
                 class="after:content-[''] after:block after:mx-auto after:bg-cyan-500 after:w-28 after:rounded-lg after:h-1 after:mt-2 ">
                 <span class="capitalize text-center text-4xl font-bold block">
-                    add new post
+                    Edit post
                 </span>
             </span>
 
             <div class="flex justify-center ">
 
-                <form class="mt-16 space-y-4" @submit.prevent="form.post('/p',form)">
+                <form class="mt-16 space-y-4" @submit.prevent="form.post(props.editUrl,form)">
                     <div class=" md:block">
-                        <textarea
-                            class=" w-full md:w-12/12  border-gray-300  rounded-md bg-gray-50 text-lg resize-none focus-within:border-none"
-                            cols="60" rows="3" v-model="form.caption" placeholder="Caption..."></textarea>
+                        <textarea 
+                            class="w-full md:w-12/12  border-gray-300  rounded-md bg-gray-50 text-lg resize-none focus-within:border-none" cols="60" rows="3"
+                             v-model="form.caption" placeholder="Caption..."></textarea>
                         <span v-if="form.errors.caption" class="text-sm text-red-600 block p-1 ">{{form.errors.caption}}
                         </span>
                     </div>
@@ -56,7 +64,7 @@
                     <div class="float-right">
                         <button type="submit"
                             class="px-8 py-2 text-white font-semibold bg-blue-500 hover:bg-blue-600 rounded-full disabled:bg-gray-400"
-                            :disabled="form.processing">Post</button>
+                            :disabled="form.processing">Edit</button>
                     </div>
                 </form>
 
