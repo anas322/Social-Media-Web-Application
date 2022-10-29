@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,10 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/profile/{user}',[ProfileController::class,'index']);
+Route::get('/profile/{user}',[ProfileController::class,'index'])->name('profile.index');
+
+Route::get('/p',[PostController::class,'create'])->name('post.create');
+Route::post('/p',[PostController::class,'store'])->name('post.store');
 
 Route::middleware([
     'auth:sanctum',
