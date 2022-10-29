@@ -59,7 +59,7 @@
 
                         </div>
                         <div class="whitespace-nowrap hidden sm:block">
-                            <Link href="/p"
+                            <Link :href="route('post.create')"
                                 class="px-8 py-2 text-white font-semibold bg-blue-500 hover:bg-blue-600 rounded-full">
                             Create Post </Link>
                         </div>
