@@ -1,6 +1,9 @@
 <script setup>
     import AppLayout from '@/Layouts/AppLayout.vue';
-
+    import ProfileImageModelVue from '../Components/Profile/ProfileImageModel.vue';
+    import {
+        ref
+    } from 'vue';
     import {
         Head,
         Link
@@ -8,8 +11,16 @@
 
     const props = defineProps({
         profile: Object,
-        posts:Object
+        posts: Object
     });
+
+    let show = ref(false);
+    let postInfo = ref({});
+    const previewImage = (post) => {
+        postInfo.value = post;
+        show.value = true;
+    }
+
 </script>
 
 <template>
@@ -80,15 +91,22 @@
                 </span>
             </div>
             <div class='grid grid-cols-1 md:grid-cols-3 gap-3 '>
-                
+
                 <div v-for="post in posts" :key="post.id" class="max-w-full overflow-hidden">
                     <img class="w-full h-80 object-cover object-center rounded transition duration-150 ease-in-out hover:scale-110 hover:cursor-pointer -0.5"
-                        :src="'/storage/'+ post.image" loading="lazy">
+                        :src="'/storage/'+ post.image" loading="lazy" @click="previewImage(post)">
                 </div>
 
             </div>
         </div>
     </AppLayout>
+
+
+    <div v-if="show">
+        <Teleport to="body">
+            <ProfileImageModelVue :post="postInfo" @cancel-preview="show = !show" />
+        </Teleport>
+    </div>
 
 </template>
 
