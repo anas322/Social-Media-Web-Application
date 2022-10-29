@@ -16,16 +16,17 @@ class ProfileController extends Controller
     $posts = Post::orderBy('created_at','desc')->get();
 
         return Inertia::render('UserProfile/Profile', [ 
-            'profile' => $user->profile ? $user->profile : [] ,
+            'profile' => $user->profile ,
             'posts' => $posts
          ]);     
     }   
     
     public function edit(User $user){
         $url = route("prof.update", $user);
-
-        return Inertia::render('UserProfile/Update',[
-            'url' =>$url
+        $profile = $user->profile ;
+        return Inertia::render('UserProfile/Edit',[
+            'url' =>$url,
+            'profile' => $profile
         ]); 
     }
 
@@ -40,7 +41,7 @@ class ProfileController extends Controller
         //if the user has a profile info it'll be updated otherwise it'll be created
         $method = (Profile::where('user_id',auth()->id())->get())->isEmpty() ? 'create' : 'update';
         
-        
+
             auth()->user()->profile()->{$method}([
              'title' => $request->title,
             'description' => $request->description,

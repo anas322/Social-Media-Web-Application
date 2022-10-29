@@ -7,13 +7,14 @@
 
     const props  = defineProps({
         url:String,
-    })
+        profile:Object
+    })  
 
     const form = useForm('EditUser', {
-        title:"",
-        description:"",
-        url:"",
-        url_text:""
+        title:props.profile.title,
+        description:props.profile.description,
+        url:props.profile.url,
+        url_text:props.profile.url_text
     })
 
 

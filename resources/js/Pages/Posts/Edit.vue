@@ -19,7 +19,7 @@
         caption: props.post.caption,
         image: null
     })
-    console.log(props.errors, form);
+   
       const previewImage = (e)=>{
         const file = e.target.files[0];
         url.value = URL.createObjectURL(file);
