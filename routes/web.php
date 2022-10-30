@@ -33,6 +33,10 @@ Route::middleware('auth')->group(function () {
 });
 
 
+Route::get('/redirect',function () {
+    return redirect()->route('prof.index',Auth::id()); 
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

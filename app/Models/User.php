@@ -66,4 +66,11 @@ class User extends Authenticatable
     public function posts(){
        return $this->hasMany(Post::class);
     }
+
+
+    public static function booted(){
+        static::created(function ($user){
+            $user->profile()->create([]);
+        });
+    }
 }
