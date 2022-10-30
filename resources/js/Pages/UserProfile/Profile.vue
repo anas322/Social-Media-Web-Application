@@ -16,7 +16,9 @@
         user:Object,
         userPhotoUrl:String,
         canEditProfile:Boolean,
-        isFollow:Boolean
+        isFollow:Boolean,
+        followingCount:Number,
+        followersCount:Number
     }); 
 
 
@@ -64,11 +66,11 @@
                                 </span>
 
                                 <span>
-                                    <strong>135</strong> followers
+                                    <strong>{{props.followersCount}}</strong> followers
                                 </span>
 
                                 <span>
-                                    <strong>135</strong> following
+                                    <strong>{{props.followingCount}}</strong> following
                                 </span>
                             </div>
 

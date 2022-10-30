@@ -19,13 +19,18 @@ class ProfileController extends Controller
     
     $isFollow = auth()->user()->following->contains($user->profile);
 
+    $followingCount = $user->following->count(); 
+    $followersCount = $user->profile->followers->count();
+
         return Inertia::render('UserProfile/Profile', [ 
             'profile' => $user->profile ?? [] ,
             'user' => $user,
             'posts' => $posts,
             'userPhotoUrl' => $userPhotoUrl,
             'canEditProfile' => auth()->user()->can('update',$user->profile) ,
-            'isFollow' =>$isFollow
+            'isFollow' =>$isFollow,
+            'followingCount' => $followingCount,
+            'followersCount' => $followersCount,
          ]);     
         }   
     
