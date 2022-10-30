@@ -4,6 +4,7 @@
     import { Inertia } from "@inertiajs/inertia";
     const props = defineProps({
         post:Object,
+        canEditProfile:Boolean
     })
 
     const emit = defineEmits(['cancelPreview'])
@@ -35,7 +36,7 @@
                     <p class="text-sm mt-4">{{post.caption}}</p>
             </div>
 
-             <div class="mt-8 flex flex-wrap gap-4">
+             <div v-if="props.canEditProfile" class="mt-8 flex flex-wrap gap-4">
                 <Link :href="route('post.edit',post)"
                     class="px-8 py-2 text-white font-semibold bg-blue-500 hover:bg-blue-600 rounded-full">
                 Edit</Link>

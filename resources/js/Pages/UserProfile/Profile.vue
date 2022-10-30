@@ -114,7 +114,7 @@
 
     <div v-if="show">
         <Teleport to="body">
-            <ProfileImageModelVue :post="postInfo" @cancel-preview="show = !show" />
+            <ProfileImageModelVue :post="postInfo" :can="canEditProfile" @cancel-preview="show = !show" />
         </Teleport>
     </div>
 
