@@ -17,7 +17,7 @@ class ProfileController extends Controller
 
     $userPhotoUrl = $user->profile_photo_path ? asset('storage/'. $user->profile_photo_path) : asset('storage/default/default.png');
     
-    
+    $isFollow = auth()->user()->following->contains($user->profile);
 
         return Inertia::render('UserProfile/Profile', [ 
             'profile' => $user->profile ?? [] ,
@@ -25,6 +25,7 @@ class ProfileController extends Controller
             'posts' => $posts,
             'userPhotoUrl' => $userPhotoUrl,
             'canEditProfile' => auth()->user()->can('update',$user->profile) ,
+            'isFollow' =>$isFollow
          ]);     
         }   
     

@@ -1,6 +1,8 @@
 <script setup>
     import AppLayout from '@/Layouts/AppLayout.vue';
     import ProfileImageModelVue from '@/Components/Profile/ProfileImageModel.vue';
+    import FollowButton from "@/Components/Profile/FollowButton.vue";
+
     import {
         ref
     } from 'vue';
@@ -14,6 +16,7 @@
         user:Object,
         userPhotoUrl:String,
         canEditProfile:Boolean,
+        isFollow:Boolean
     }); 
 
 
@@ -50,7 +53,9 @@
                                 <div v-if="props.canEditProfile">
                                     <Link :href="route('prof.edit',props.user)" class="px-4 py-1 text-gray-900 font-semibold ring-1 ring-slate-600  transition rounded-lg">Edit</Link>
                                 </div>
-                        
+                                <template v-if="!canEditProfile">
+                                    <FollowButton :user="props.user" :isFollow="isFollow" />
+                                </template>
                             </div>
 
                             <div class="space-x-5">
@@ -114,7 +119,7 @@
 
     <div v-if="show">
         <Teleport to="body">
-            <ProfileImageModelVue :post="postInfo" :can="canEditProfile" @cancel-preview="show = !show" />
+            <h1 :post="postInfo" :can="canEditProfile" @cancel-preview="show = !show" />
         </Teleport>
     </div>
 

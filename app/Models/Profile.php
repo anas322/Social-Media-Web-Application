@@ -21,4 +21,8 @@ class Profile extends Model
     public function user(){
         return $this->belongsTo(App\Models\User::class);
     }
+
+     public function followers(){
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
 }
