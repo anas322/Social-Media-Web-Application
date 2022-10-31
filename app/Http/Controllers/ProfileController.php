@@ -24,7 +24,7 @@ class ProfileController extends Controller
 
         return Inertia::render('UserProfile/Profile', [ 
             'profile' => $user->profile ?? [] ,
-            'user' => $user,
+            'userObject' => $user,
             'posts' => $posts,
             'userPhotoUrl' => $userPhotoUrl,
             'canEditProfile' => auth()->user()->can('update',$user->profile) ,

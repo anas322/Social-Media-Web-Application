@@ -13,14 +13,13 @@
     const props = defineProps({
         profile: Object,
         posts: Object,
-        user:Object,
+        userObject:Object,
         userPhotoUrl:String,
         canEditProfile:Boolean,
         isFollow:Boolean,
         followingCount:Number,
         followersCount:Number
     }); 
-
 
     let show = ref(false);
     let postInfo = ref({});
@@ -50,13 +49,13 @@
                     <div class="mb-6 flex justify-between">
                         <div>
                             <div class="flex space-x-8 ">
-                                <h1 class="font-bold text-2xl pb-2 capitalize">{{props.user.name}}</h1>
+                                <h1 class="font-bold text-2xl pb-2 capitalize">{{props.userObject.name}}</h1>
                             
                                 <div v-if="props.canEditProfile">
-                                    <Link :href="route('prof.edit',props.user)" class="px-4 py-1 text-gray-900 font-semibold ring-1 ring-slate-600  transition rounded-lg">Edit</Link>
+                                    <Link :href="route('prof.edit',props.userObject)" class="px-4 py-1 text-gray-900 font-semibold ring-1 ring-slate-600  transition rounded-lg">Edit</Link>
                                 </div>
                                 <template v-if="!canEditProfile">
-                                    <FollowButton :user="props.user" :isFollow="isFollow" />
+                                    <FollowButton :userObject="props.userObject" :isFollow="isFollow" />
                                 </template>
                             </div>
 

@@ -10,7 +10,7 @@ import { computed } from '@vue/reactivity';
 import { Inertia } from '@inertiajs/inertia';
 
 const props = defineProps({
-    user:Object,
+    userObject:Object,
     isFollow:Boolean
 })
 
@@ -23,6 +23,6 @@ const buttonText = computed(()=>{
 })
 
 const handleRequest  = () =>{
-    Inertia.post('/follow/'+ props.user.id);
+    Inertia.post('/follow/'+ props.userObject.id);
 }
 </script>

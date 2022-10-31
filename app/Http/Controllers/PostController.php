@@ -6,18 +6,25 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Profile;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 
 class PostController extends Controller
 {
     public function index(){
-        $users = auth()->user()->following->pluck('user_id');
+        $usersId = auth()->user()->following->pluck('user_id');
 
-        $posts = Post::whereIn('user_id',$users)->latest()->get();
-         
+        $users = User::whereIn('id',$usersId)->get();
+
+        $storagePath = asset('storage');
+
+        $posts = Post::whereIn('user_id',$usersId)->latest()->paginate(6);
+
         return Inertia::render('Posts/Index',[
             'posts' => $posts,
+            'storagePath'=> $storagePath,
+            'users' => $users,
         ]);
     }
 
