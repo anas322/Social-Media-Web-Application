@@ -5,12 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Profile;
+use App\Models\Post;
 use Illuminate\Support\Facades\Storage;
 
-use App\Models\Post;
 
 class PostController extends Controller
 {
+    public function index(){
+        $users = auth()->user()->following->pluck('user_id');
+
+        $posts = Post::whereIn('user_id',$users)->latest()->get();
+         
+        return Inertia::render('Posts/Index',[
+            'posts' => $posts,
+        ]);
+    }
+
+
     public function create(){
         return Inertia::render('Posts/Create');
     }

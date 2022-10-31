@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/follow/{user}',[FollowsController::class,'store'])->name('follow.store');
 
     
+    Route::get('/p',[PostController::class,'index'])->name('post.index');
     Route::get('/p/create',[PostController::class,'create'])->name('post.create');
     Route::post('/p',[PostController::class,'store'])->name('post.store');
     Route::get('/p/{post}/edit',[PostController::class,'edit'])->name('post.edit');
@@ -38,6 +39,10 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/redirect',function () {
     return redirect()->route('prof.index',Auth::id()); 
+});
+
+Route::get('/',function (){
+    return 'lougout';
 });
 
 Route::middleware([
