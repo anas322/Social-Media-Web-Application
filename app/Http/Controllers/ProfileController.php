@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Post;
 use App\Models\Profile;
 
+use Illuminate\Support\Facades\Cache;
+
 class ProfileController extends Controller
 {
     
@@ -19,9 +21,27 @@ class ProfileController extends Controller
     
     $isFollow = auth()->user()->following->contains($user->profile);
 
-    $followingCount = $user->following->count(); 
-    $followersCount = $user->profile->followers->count();
-
+    $postsCount = Cache::remember(
+        'count.posts.'.$user->id,
+        now()->addSeconds(20),
+        function() use ($user){
+        return $user->posts->count();
+    });
+        
+    $followingCount = Cache::remember(
+        'count.following.'.$user->id,
+        now()->addSeconds(20),
+        function() use ($user){
+       return $user->following->count();
+    });
+    
+     $followersCount = Cache::remember(
+        'count.followers.'.$user->id,
+        now()->addSeconds(20),
+        function() use ($user){
+        return $user->profile->followers->count();
+    });
+    
         return Inertia::render('UserProfile/Profile', [ 
             'profile' => $user->profile ?? [] ,
             'userObject' => $user,
@@ -31,6 +51,7 @@ class ProfileController extends Controller
             'isFollow' =>$isFollow,
             'followingCount' => $followingCount,
             'followersCount' => $followersCount,
+            'postsCount'     => $postsCount
          ]);     
         }   
     

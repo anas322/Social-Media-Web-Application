@@ -17,4 +17,16 @@ class Post extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+
+
+    //re-cache the count after createing new post or delete new one 
+    protected static function booted(){
+        static::created(function ($post){
+            cache()->forget('count.posts.' . $post->user->id);
+        });
+
+        static::deleted(function ($post){
+            cache()->forget('count.posts.' . $post->user->id);
+        });
+    }
 }

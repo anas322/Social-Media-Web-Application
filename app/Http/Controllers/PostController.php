@@ -15,7 +15,7 @@ class PostController extends Controller
     public function index(){
         $usersId = auth()->user()->following->pluck('user_id');
 
-        $posts = Post::whereIn('user_id',$usersId)->latest()->paginate(4);
+        $posts = Post::whereIn('user_id',$usersId)->with('user')->latest()->paginate(4);
         
         
         $userProfilePic = asset('storage') . '/';

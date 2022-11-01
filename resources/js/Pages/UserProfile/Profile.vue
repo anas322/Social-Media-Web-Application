@@ -18,8 +18,11 @@
         canEditProfile:Boolean,
         isFollow:Boolean,
         followingCount:Number,
-        followersCount:Number
+        followersCount:Number,
+        postsCount:Number
     }); 
+
+    console.log(props.canEditProfile);
 
     let show = ref(false);
     let postInfo = ref({});
@@ -61,7 +64,7 @@
 
                             <div class="space-x-5">
                                 <span>
-                                    <strong>{{props.posts.length}}</strong> posts
+                                    <strong>{{props.postsCount}}</strong> posts
                                 </span>
 
                                 <span>
