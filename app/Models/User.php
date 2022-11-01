@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewUserWelcomeMail;
 
 class User extends Authenticatable
 {
@@ -72,9 +74,12 @@ class User extends Authenticatable
     }
 
 
+    //auto make a profile when the user registered and send a welcome mail
     public static function booted(){
         static::created(function ($user){
             $user->profile()->create([]);
+
+            Mail::to($user->email)->send(new NewUserWelcomeMail($user));
         });
     }
 }

@@ -53,9 +53,3 @@ Route::middleware([
     })->name('dashboard');
 });
 
-
-Route::get('/test',function ($id){
-    $user = User::find($id);
-
-    return $user;
-});
