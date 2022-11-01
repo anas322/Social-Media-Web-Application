@@ -68,7 +68,7 @@ class User extends Authenticatable
     }
 
     public function following(){
-        return $this->belongsToMany(Profile::class)->withTimestamps();
+        return $this->belongsToMany(Profile::class)->using(Profile_User::class)->withTimestamps();
     }
 
 
