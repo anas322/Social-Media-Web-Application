@@ -15,7 +15,7 @@ const props = defineProps({
 })
 
 const classes = computed(()=>{
-    return buttonText.value == "Follow" ? "px-4 py-1 text-white font-bold bg-blue-500 rounded-md" : "px-4 py-1 text-blue-500 font-bold ring-1 ring-blue-500 rounded-md hover:bg-blue-500 hover:text-white transition "
+    return buttonText.value == "Follow" ? "px-4 py-1 text-white font-bold bg-blue-500 rounded-md" : "px-4 py-1 text-red-500 font-bold ring-1 ring-red-500 rounded-md hover:bg-red-500 hover:text-white transition "
 })
 
 const buttonText = computed(()=>{
