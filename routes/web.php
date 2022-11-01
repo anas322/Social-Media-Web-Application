@@ -41,9 +41,7 @@ Route::get('/redirect',function () {
     return redirect()->route('prof.index',Auth::id()); 
 });
 
-Route::get('/',function (){
-    return 'lougout';
-});
+Route::redirect('/','/p');
 
 Route::middleware([
     'auth:sanctum',

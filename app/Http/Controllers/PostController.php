@@ -15,16 +15,15 @@ class PostController extends Controller
     public function index(){
         $usersId = auth()->user()->following->pluck('user_id');
 
-        $users = User::whereIn('id',$usersId)->get();
+        $posts = Post::whereIn('user_id',$usersId)->latest()->paginate(4);
+        
+        
+        $userProfilePic = asset('storage') . '/';
+        $userProfilePic .=  auth()->user()->profile_photo_path ? auth()->user()->profile_photo_path : 'default/default.png';
 
-        $storagePath = asset('storage');
-
-        $posts = Post::whereIn('user_id',$usersId)->latest()->paginate(6);
-
-        return Inertia::render('Posts/Index',[
+        return view('posts.index',[
             'posts' => $posts,
-            'storagePath'=> $storagePath,
-            'users' => $users,
+            'userProfilePic' =>$userProfilePic,
         ]);
     }
 
