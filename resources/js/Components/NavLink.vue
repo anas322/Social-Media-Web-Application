@@ -5,8 +5,8 @@ import { Link } from '@inertiajs/inertia-vue3';
 const props = defineProps({
     href: String,
     active: Boolean,
+    blade:Boolean,
 });
-
 const classes = computed(() => {
     return props.active
         ? 'inline-flex items-center px-1 pt-1 border-b-2 border-indigo-400 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition'
@@ -15,7 +15,11 @@ const classes = computed(() => {
 </script>
 
 <template>
-    <Link :href="href" :class="classes">
+    <Link v-if="!blade" :href="href" :class="classes">
         <slot />
     </Link>
+    
+     <a v-if="blade" :href="href" :class="classes">
+        <slot />
+    </a>
 </template>

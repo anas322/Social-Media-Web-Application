@@ -27,7 +27,7 @@
                 <a href="{{route('post.create')}}" class="h-auto text-white bg-indigo-600 rounded-full text-lg px-8 py-2 ">create</a>
                 <div>
                     <a href="{{route('prof.index',auth()->user()->id)}}">
-                        <img src="http://127.0.0.1:8000/storage/profile-photos/QsjwdgslRZs3GHyvDWfjrnOAcJZ2lGeOarBhzdzF.jpg" style="clip-path:circle()" class="w-9">
+                        <img src="{{$userProfilePic}}" style="clip-path:circle()" class="w-9">
                     </a>
                 </div>
             </div>

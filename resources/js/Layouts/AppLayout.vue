@@ -53,6 +53,10 @@ const logout = () => {
                                     Dashboard
                                 </NavLink>
 
+                                <NavLink :href="route('post.index')" blade :active="route().current('post.index')">
+                                    Home
+                                </NavLink>
+                                
                                 <NavLink :href="route('prof.index',$page.props.user)" :active="route().current('prof.index')">
                                     Profile
                                 </NavLink>
