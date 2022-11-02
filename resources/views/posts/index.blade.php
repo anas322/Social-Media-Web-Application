@@ -36,26 +36,26 @@
         
      <section class="grid grid-cols-12 gap-x-6 my-2 auto-rows-min">
             <!-- side left -->
-            <aside class=" bg-white col-span-3 row-span-2  rounded-2xl">
-                <div class='flex flex-col gap-x-4'>
+            <aside class="  col-span-3 row-span-2  ">
 
-            
-                        <div class='flex items-center space-x-10 py-6 pl-4 '> 
-                            <div><img src="{{$userProfilePic}}" style='clip-path : circle()' class='block h-12 w-10'></div>
-                            <div>
-                                <p><strong>{{auth()->user()->name}}</strong></p>
-                                <p class='text-gray-400'>{{auth()->user()->email}}</p>
-                            </div>
-                        </div>
-             
+                <div class='flex items-center space-x-10 py-6 pl-4 rounded-2xl mb-4 bg-white'> 
+                    <div><img src="{{$userProfilePic}}" style='clip-path : circle()' class='block h-12 w-10'></div>
+                    <div>
+                        <p><strong>{{auth()->user()->name}}</strong></p>
+                        <p class='text-gray-400'>{{auth()->user()->email}}</p>
+                    </div>
+                </div>
 
-                        <div class='flex items-center space-x-10 py-6 pl-4  bg-gray-100 '>
+                    
+                <div class='flex flex-col gap-x-4 bg-white rounded-2xl overflow-hidden'>
+
+                        <div @class(["bg-gray-100 border-l-8 border-blue-600" => Route::has('post.index'),'flex items-center space-x-10 py-6 pl-4'])   >
                             <div>
                                 <object data="{{asset('images/home-icon.svg')}}" class="block h-8 w-auto" ></object>
                             </div>
-                            <strong class='capitalize'>home</strong>
+                            <strong @class(["text-blue-600" => Route::has('post.index'),'capitalize'])>home</strong>
                         </div>
-
+                        
                         <div class='flex items-center space-x-10 py-6 pl-4 '>
                             <div>
                                 <object data="{{asset('images/explore.svg')}}" class="block h-8 w-auto" ></object>
