@@ -17,7 +17,6 @@ class PostController extends Controller
 
         $posts = Post::whereIn('user_id',$usersId)->with('user')->latest()->paginate(4);
         
-        
         $userProfilePic = asset('storage') . '/';
         $userProfilePic .=  auth()->user()->profile_photo_path ? auth()->user()->profile_photo_path : 'default/default.png';
 
