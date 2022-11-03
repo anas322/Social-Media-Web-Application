@@ -39,6 +39,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/like',[likeController::class,'store'])->name('like.store');
     Route::post('/unlike',[likeController::class,'delete'])->name('like.delete');
+    
+    Route::post('/comment',[CommentController::class,'store'])->name('comment.store');
+    Route::post('/uncomment',[CommentController::class,'delete'])->name('comment.delete');
 });
 
 

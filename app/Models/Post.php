@@ -22,6 +22,10 @@ class Post extends Model
         return $this->hasMany(Like::class);
     }
 
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+
 
     //re-cache the count after createing new post or delete new one 
     protected static function booted(){

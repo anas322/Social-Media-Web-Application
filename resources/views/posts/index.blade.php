@@ -5,7 +5,6 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <title> Posts - social </title>
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         @vite(['resources/css/app.css'])
@@ -182,11 +181,11 @@
                                         
                                         <!-- renader the like button based on wheather he liked the post or not -->
                                         @if($post->likes->contains('user_id',auth()->id()))
-                                        <button type="submit" class='submit-btn'>
+                                        <button type="submit" class='submit-like'>
                                             <x-svg.heart type='unlike' />
                                        </button>
                                         @else
-                                        <button type="submit" class='submit-btn'>
+                                        <button type="submit" class='submit-like'>
                                             <x-svg.heart type='like' />
                                         </button>
                                         @endif
@@ -195,7 +194,13 @@
                                 </div>
 
                                 <div>
-                                    <object data="{{asset('images/comments.svg')}}" class="block h-8 w-auto"></object>
+                                    <form>
+                                        <input type="hidden" name="postId" value="{{$post->id}}">
+                                        
+                                        <button type="submit" class="submit-comment hover:cursor-pointer transition-all duration-300 hover:scale-125">
+                                            <img src="{{asset('images/comments.svg')}}" class="block h-8 w-auto"></img>
+                                        </button>
+                                    </form>
                                 </div>
 
                                 <div>
@@ -286,7 +291,7 @@
                 });
 
                 //get the form data as array of name and value contains url of the route 
-                $(".submit-btn").click(function (e) {
+                $(".submit-like").click(function (e) {
                     e.preventDefault();
                     const postdata = $(this).parent().serializeArray();
 
@@ -307,6 +312,15 @@
                             
                         }
                     });
+
+                });
+
+                 //get the form data as array of name and value contains url of the route 
+                $(".submit-comment").click(function (e) {
+                    e.preventDefault();
+                    const postdata = $(this).parent().serializeArray();
+
+                    console.log(postdata);
 
                 });
             });
