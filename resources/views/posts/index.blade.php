@@ -197,7 +197,7 @@
                                     <form>
                                         <input type="hidden" name="postId" value="{{$post->id}}">
                                         
-                                        <button type="submit" class="submit-comment hover:cursor-pointer transition-all duration-300 hover:scale-125">
+                                        <button type="submit" class="hover:cursor-pointer transition-all duration-300 hover:scale-125">
                                             <img src="{{asset('images/comments.svg')}}" class="block h-8 w-auto"></img>
                                         </button>
                                     </form>
@@ -238,6 +238,21 @@
 
                             <p class='text-lg'>liked by <strong>emlia achiever</strong> and <strong>2,357
                                     others</strong> </p>
+                        </div>
+
+
+                        <!-- comment section  -->
+
+                        <div>
+                            <hr>
+                            <form >
+                                <div class='flex items-center justify-between form' >
+                                    <input type="hidden" name="postId" value="{{$post->id}}">
+                                    <input type="text" name='comment_text' class='border-none focus:ring-0' placeholder="Add a comment...😊">
+                                    <input type="submit"  class=' submit-comment text-blue-500 hover:cursor-pointer' value="Post"/>
+                                </div>
+                                <span class='error text-red-600 text-sm'></span>
+                            </form>
                         </div>
 
                     </article>
@@ -312,33 +327,47 @@
                             
                         }
                     });
-
+                    
                 });
+
+                function replaceLikeSVG(src) {
+                    let newSrc, url;
+                    if(src.search("-like") != -1){
+                         newSrc = src.replace('-like', '-unlike')
+                         url = "{{ route('like.store') }}";
+                    }  else{
+                      newSrc =  src.replace('-unlike', '-like');
+                         url = "{{ route('like.delete') }}";
+                    } 
+    
+                    return {newSrc,url}
+    
+                }
 
                  //get the form data as array of name and value contains url of the route 
                 $(".submit-comment").click(function (e) {
                     e.preventDefault();
-                    const postdata = $(this).parent().serializeArray();
+                    $(this).parents('form').children('span').text("")
 
-                    console.log(postdata);
+                    const postdata = $(this).parents('form').serializeArray();
+
+                    $.ajax({
+                        type: "POST",
+                        url:"{{route('comment.store')}}" ,
+                        data:{postId:postdata[0].value,comment_text:postdata[1].value},
+                        success: (result) => {
+                            console.log(result.success);
+                        },
+                        error:(result) =>{
+                            $(this).parents('form').children('span').text(result.responseJSON.message)
+                        }
+                    });
+
 
                 });
             });
 
 
-            function replaceLikeSVG(src) {
-                let newSrc, url;
-                if(src.search("-like") != -1){
-                     newSrc = src.replace('-like', '-unlike')
-                     url = "{{ route('like.store') }}";
-                }  else{
-                  newSrc =  src.replace('-unlike', '-like');
-                     url = "{{ route('like.delete') }}";
-                } 
-
-                return {newSrc,url}
-
-            }
 
         </script>
     </body>
