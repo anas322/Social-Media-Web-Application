@@ -18,6 +18,10 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function likes() {
+        return $this->hasMany(Like::class);
+    }
+
 
     //re-cache the count after createing new post or delete new one 
     protected static function booted(){

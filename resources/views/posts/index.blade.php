@@ -5,9 +5,10 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <title> Posts - social </title>
-
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
+        @vite(['resources/css/app.css'])
     </head>
 
     <body class='bg-gray-100 container mx-auto'>
@@ -154,16 +155,16 @@
 
                         <!-- caption  -->
                         <div>
-                            @if(Str::length($post->caption) <= 150) 
-                                <p class="text-gray-900">
-                                    {{ $post->caption}}    
+                            @if(Str::length($post->caption) <= 150) <p class="text-gray-900">
+                                {{ $post->caption}}
                                 </p>
 
-                            @else 
-                             <p class="text-gray-900">
-                                    {{ Str::substr($post->caption, 0, 150) }} <span class='text-gray-500'>...view more </span>   
+                                @else
+                                <p class="text-gray-900">
+                                    {{ Str::substr($post->caption, 0, 150) }} <span class='text-gray-500'>...view more
+                                    </span>
                                 </p>
-                            @endif 
+                                @endif
                         </div>
 
                         <!-- picture  -->
@@ -176,7 +177,14 @@
                         <div class='flex justify-between'>
                             <div class='flex space-x-4 pl-4'>
                                 <div>
-                                    <object data="{{asset('images/heart.svg')}}" class="block h-8 w-auto"></object>
+                                    <form>
+                                        <input type="hidden" name="url" value="{{ route('like.store',$post->id) }}">
+                                        <button type="submit" class='submit-btn'>
+                                            <img src="{{asset('images/heart.svg')}}"
+                                                class="block h-8 w-auto hover:cursor-pointer"></img>
+                                        </button>
+                                    </form>
+
                                 </div>
 
                                 <div>
@@ -189,7 +197,8 @@
                             </div>
 
                             <div class='pr-2'>
-                                <object data="{{asset('images/bookmarks-black.svg')}}" class="block h-8 w-auto"></object>
+                                <object data="{{asset('images/bookmarks-black.svg')}}"
+                                    class="block h-8 w-auto"></object>
                             </div>
                         </div>
 
@@ -235,20 +244,20 @@
                     </div>
 
                     <div class="flex flex-col space-y-5">
-                        
-                        @forelse (auth()->user()->profile->followers as $follower) 
-                            @if($loop->iteration >= 10)
-                                @break
-                            @endif
-                            <div class='flex items-center space-x-8'>
-                                <div><img
-                                        src="{{ $follower->profile_photo_path ? asset('storage/' . $follower->profile_photo_path) : asset('storage') . '/default/default.png' }}"
-                                        class='block h-11 w-auto rounded-xl'></div>
-                                <span class='text-lg text-slate-700'>{{ $follower->name }}</span>
-                            </div>
 
-                            @empty
-                            <p>No followers 🙄</p>
+                        @forelse (auth()->user()->profile->followers as $follower)
+                        @if($loop->iteration >= 10)
+                        @break
+                        @endif
+                        <div class='flex items-center space-x-8'>
+                            <div><img
+                                    src="{{ $follower->profile_photo_path ? asset('storage/' . $follower->profile_photo_path) : asset('storage') . '/default/default.png' }}"
+                                    class='block h-11 w-auto rounded-xl'></div>
+                            <span class='text-lg text-slate-700'>{{ $follower->name }}</span>
+                        </div>
+
+                        @empty
+                        <p>No followers 🙄</p>
 
                         @endforelse
 
@@ -257,6 +266,33 @@
                 </div>
             </aside>
         </section>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $.ajaxSetup({
+                    headers: {
+                        "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content")
+                    }
+                });
+
+                //get the form data as array of name and value contains url of the route 
+                $(".submit-btn").click(function (e) {
+                    e.preventDefault();
+                    let postdata = $(this).parent().serializeArray();
+                    $.ajax({
+                        type: "POST",
+                        url: postdata[0].value,
+                        success: (result) => {
+                            console.log(result.success);
+                        }
+                    });  
+
+                });
+            });
+
+        </script>
     </body>
 
 </html>

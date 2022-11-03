@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\FollowsController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/p/{post}/edit',[PostController::class,'edit'])->name('post.edit');
     Route::post('/p/{post}',[PostController::class,'update'])->name('post.update');
     Route::delete('/p/{post}/delete',[PostController::class,'delete'])->name('post.delete');
+
+
+    Route::post('/like/{post}',[likeController::class,'store'])->name('like.store');
 });
 
 

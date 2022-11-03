@@ -22,8 +22,6 @@
         postsCount:Number
     }); 
 
-    console.log(props.canEditProfile);
-
     let show = ref(false);
     let postInfo = ref({});
     const previewImage = (post) => {
