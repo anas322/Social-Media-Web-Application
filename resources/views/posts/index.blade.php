@@ -235,55 +235,23 @@
                     </div>
 
                     <div class="flex flex-col space-y-5">
+                        
+                        @forelse (auth()->user()->profile->followers as $follower) 
+                            @if($loop->iteration >= 10)
+                                @break
+                            @endif
+                            <div class='flex items-center space-x-8'>
+                                <div><img
+                                        src="{{ $follower->profile_photo_path ? asset('storage/' . $follower->profile_photo_path) : asset('storage') . '/default/default.png' }}"
+                                        class='block h-11 w-auto rounded-xl'></div>
+                                <span class='text-lg text-slate-700'>{{ $follower->name }}</span>
+                            </div>
 
-                        <div class='flex items-center space-x-8'>
-                            <div><img
-                                    src="https://media.istockphoto.com/photos/studio-portrait-of-a-cheerful-woman-picture-id1368424494?b=1&k=20&m=1368424494&s=170667a&w=0&h=9TCirXa0n8vqrFDP8e8kSHlbMid36F9po15VL7_wOkw="
-                                    class='block h-11 w-auto rounded-xl'></div>
-                            <span class='text-lg text-slate-700'>melissa byron</span>
-                        </div>
+                            @empty
+                            <p>No followers 🙄</p>
 
-                        <div class='flex items-center space-x-8'>
-                            <div><img
-                                    src="https://media.istockphoto.com/photos/studio-portrait-of-a-cheerful-woman-picture-id1368424494?b=1&k=20&m=1368424494&s=170667a&w=0&h=9TCirXa0n8vqrFDP8e8kSHlbMid36F9po15VL7_wOkw="
-                                    class='block h-11 w-auto rounded-xl'></div>
-                            <span class='text-lg text-slate-700'>melissa byron</span>
-                        </div>
+                        @endforelse
 
-                        <div class='flex items-center space-x-8'>
-                            <div><img
-                                    src="https://media.istockphoto.com/photos/studio-portrait-of-a-cheerful-woman-picture-id1368424494?b=1&k=20&m=1368424494&s=170667a&w=0&h=9TCirXa0n8vqrFDP8e8kSHlbMid36F9po15VL7_wOkw="
-                                    class='block h-11 w-auto rounded-xl'></div>
-                            <span class='text-lg text-slate-700'>melissa byron</span>
-                        </div>
-
-                        <div class='flex items-center space-x-8'>
-                            <div><img
-                                    src="https://media.istockphoto.com/photos/studio-portrait-of-a-cheerful-woman-picture-id1368424494?b=1&k=20&m=1368424494&s=170667a&w=0&h=9TCirXa0n8vqrFDP8e8kSHlbMid36F9po15VL7_wOkw="
-                                    class='block h-11 w-auto rounded-xl'></div>
-                            <span class='text-lg text-slate-700'>melissa byron</span>
-                        </div>
-
-                        <div class='flex items-center space-x-8'>
-                            <div><img
-                                    src="https://media.istockphoto.com/photos/studio-portrait-of-a-cheerful-woman-picture-id1368424494?b=1&k=20&m=1368424494&s=170667a&w=0&h=9TCirXa0n8vqrFDP8e8kSHlbMid36F9po15VL7_wOkw="
-                                    class='block h-11 w-auto rounded-xl'></div>
-                            <span class='text-lg text-slate-700'>melissa byron</span>
-                        </div>
-
-                        <div class='flex items-center space-x-8'>
-                            <div><img
-                                    src="https://media.istockphoto.com/photos/studio-portrait-of-a-cheerful-woman-picture-id1368424494?b=1&k=20&m=1368424494&s=170667a&w=0&h=9TCirXa0n8vqrFDP8e8kSHlbMid36F9po15VL7_wOkw="
-                                    class='block h-11 w-auto rounded-xl'></div>
-                            <span class='text-lg text-slate-700'>melissa byron</span>
-                        </div>
-
-                        <div class='flex items-center space-x-8'>
-                            <div><img
-                                    src="https://media.istockphoto.com/photos/studio-portrait-of-a-cheerful-woman-picture-id1368424494?b=1&k=20&m=1368424494&s=170667a&w=0&h=9TCirXa0n8vqrFDP8e8kSHlbMid36F9po15VL7_wOkw="
-                                    class='block h-11 w-auto rounded-xl'></div>
-                            <span class='text-lg text-slate-700'>melissa byron</span>
-                        </div>
                     </div>
 
                 </div>
