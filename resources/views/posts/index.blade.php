@@ -178,11 +178,18 @@
                             <div class='flex space-x-4 pl-4'>
                                 <div>
                                     <form>
-                                        <input type="hidden" name="url" value="{{ route('like.store',$post->id) }}">
+                                        <input type="hidden" name="postId" value="{{$post->id}}">
+                                        
+                                        <!-- renader the like button based on wheather he liked the post or not -->
+                                        @if($post->likes->contains('user_id',auth()->id()))
                                         <button type="submit" class='submit-btn'>
-                                            <img src="{{asset('images/heart.svg')}}"
-                                                class="block h-8 w-auto hover:cursor-pointer"></img>
+                                            <x-svg.heart type='unlike' />
+                                       </button>
+                                        @else
+                                        <button type="submit" class='submit-btn'>
+                                            <x-svg.heart type='like' />
                                         </button>
+                                        @endif
                                     </form>
 
                                 </div>
@@ -269,8 +276,9 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-        <script type="text/javascript">
+        <script>
             $(document).ready(function () {
+                //set the csrf token
                 $.ajaxSetup({
                     headers: {
                         "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content")
@@ -280,17 +288,43 @@
                 //get the form data as array of name and value contains url of the route 
                 $(".submit-btn").click(function (e) {
                     e.preventDefault();
-                    let postdata = $(this).parent().serializeArray();
+                    const postdata = $(this).parent().serializeArray();
+
+                      //toggle the heart icon
+                        const src = $(this).children("img").attr("src")
+                        const data = replaceLikeSVG(src);
+
+                        $(this).children("img").attr("src", data.newSrc)  
+
+                    // send the request
+                    const newUrl = data.url
                     $.ajax({
                         type: "POST",
-                        url: postdata[0].value,
+                        url:newUrl ,
+                        data:{postId:postdata[0].value},
                         success: (result) => {
                             console.log(result.success);
+                            
                         }
-                    });  
+                    });
 
                 });
             });
+
+
+            function replaceLikeSVG(src) {
+                let newSrc, url;
+                if(src.search("-like") != -1){
+                     newSrc = src.replace('-like', '-unlike')
+                     url = "{{ route('like.store') }}";
+                }  else{
+                  newSrc =  src.replace('-unlike', '-like');
+                     url = "{{ route('like.delete') }}";
+                } 
+
+                return {newSrc,url}
+
+            }
 
         </script>
     </body>
