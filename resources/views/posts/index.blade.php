@@ -154,13 +154,13 @@
 
                         <!-- caption  -->
                         <div>
-                            @if(Str::length($post->caption) <= 150) <p class="text-gray-900">
+                                @if(Str::length($post->caption) <= 150) <p class="text-gray-900">
                                 {{ $post->caption}}
                                 </p>
 
                                 @else
-                                <p class="text-gray-900">
-                                    {{ Str::substr($post->caption, 0, 150) }} <span class='text-gray-500'>...view more
+                                <p  class="text-gray-900">
+                                    {{ Str::substr($post->caption, 0, 150) }} <span onclick="expandCaption(event,`{{ $post->caption }}`)"class='text-gray-500 hover:cursor-pointer'>...view more
                                     </span>
                                 </p>
                                 @endif
@@ -404,6 +404,12 @@
                 if (ele.classList.contains('toggle-window')) {
                     $("div").find(`[data-id='${id}']`)[0].classList.toggle('hidden');
                 }
+            }
+
+            function expandCaption(event,caption){
+                let parent = event.target.parentElement;
+                
+                parent.innerHTML = caption;
             }
 
         </script>
