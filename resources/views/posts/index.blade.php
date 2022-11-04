@@ -168,7 +168,8 @@
 
                         <!-- picture  -->
                         <div>
-                            <img onclick="previewPost(event,{{$post->id}})" src="{{ asset('storage') . '/' . $post->image  }}"
+                            <img onclick="previewPost(event,{{$post->id}})"
+                                src="{{ asset('storage') . '/' . $post->image  }}"
                                 class="toggle-window rounded-xl w-full max-h-96 object-cover">
                         </div>
 
@@ -211,34 +212,34 @@
 
                         <!-- love list section  -->
                         <div class='flex items-center space-x-2 '>
-                            <div class='flex pl-5'>
+                            <!-- 3 picture first  -->
+                            <div class='flex items-center pl-5'>
+                                 @foreach($post->likes as $like)
+                                 @if($loop->count >=4) @break @endif
                                 <div class=' -ml-4 p-1'>
-                                    <div> <img
-                                            src="{{ $post->user->profile_photo_path ? asset('storage/' . $post->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
-                                            style="clip-path:circle()" class="w-7"></div>
+                                    <div  style="clip-path:circle()"> 
+                                        <img src="{{ $like->user->profile_photo_path ? asset('storage/' . $like->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
+                                            class="w-7">
+                                    </div>
                                 </div>
-
-                                <div class=' -ml-4  p-1'>
-                                    <div style="clip-path:circle()"> <img
-                                            src="{{ $post->user->profile_photo_path ? asset('storage/' . $post->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
-                                            class="w-7"></div>
-                                </div>
-
-                                <div class=' -ml-4  p-1'>
-                                    <div style="clip-path:circle()"> <img
-                                            src="{{ $post->user->profile_photo_path ? asset('storage/' . $post->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
-                                            class="w-7"></div>
-                                </div>
+                                @endforeach 
                             </div>
 
-                            <p class='text-lg'>liked by <strong>emlia achiever</strong> and <strong>2,357
-                                    others</strong> </p>
+                            <p class='text-lg'>liked by @if( $post->likes->first()->user->name ?? null)
+                                <strong>{{ $post->likes->first()->user->name }}</strong>@endif
+
+                                @if($post->likes->count() >= 2)
+                                and <strong> {{$post->likes->count() - 1}} others </strong>
+                            </p>
+                            @endif
                         </div>
 
                         <!-- view comment section  -->
 
                         <div>
-                            <span onclick="previewPost(event,{{$post->id}})" class='toggle-window text-gray-400 text-sm hover:cursor-pointer'>view all 45 comments</span>
+                            <span onclick="previewPost(event,{{$post->id}})"
+                                class='toggle-window text-gray-400 text-sm hover:cursor-pointer'>view all 45
+                                comments</span>
 
                             <div class="hidden" data-id="{{ $post->id }}">
                                 <x-posts.comments :$post />
@@ -373,7 +374,7 @@
                         },
                         success: (result) => {
                             console.log(result.success);
-                            
+
                             $(`div[data-id=${postdata[0].value}]`).append($(` <div class="flex items-start justify-start space-x-3">
                              <div class="pt-1">
                                  <img src="${result.imagePath}"
@@ -398,9 +399,9 @@
                 });
             });
 
-            function previewPost(event,id){
+            function previewPost(event, id) {
                 let ele = event.target
-                if(ele.classList.contains('toggle-window')){
+                if (ele.classList.contains('toggle-window')) {
                     $("div").find(`[data-id='${id}']`)[0].classList.toggle('hidden');
                 }
             }
