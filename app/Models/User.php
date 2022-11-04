@@ -73,6 +73,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Profile::class)->using(Profile_User::class)->withTimestamps();
     }
 
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
 
     //auto make a profile when the user registered and send a welcome mail
     public static function booted(){

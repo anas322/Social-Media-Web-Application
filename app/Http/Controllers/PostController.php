@@ -50,6 +50,15 @@ class PostController extends Controller
         return redirect()->route('prof.index',auth()->id());
     }
 
+
+    public function show(Request $request,Post $post){   
+
+        $userProfilePic = asset('storage') . '/';
+        $userProfilePic .=  auth()->user()->profile_photo_path ? auth()->user()->profile_photo_path : 'default/default.png';
+
+        return view('posts.show',['post' => $post , 'userProfilePic' =>$userProfilePic,]);
+    }   
+
     public function edit(Post $post){
         $imageUrl = asset('storage/' . $post->image);
 

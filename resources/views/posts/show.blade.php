@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Posts - social </title>
+        <title> Post - social </title>
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         @vite(['resources/css/app.css'])
     </head>
@@ -119,25 +119,8 @@
 
             <!-- main  -->
             <main class="col-span-6 row-span-6">
-                <!-- create post -->
-                <div class="mb-4 px-4 py-3 bg-white rounded-full box-border">
-                    <form>
-                        <div class="flex items-center box-border">
-                            <div>
-                                <img src="{{$userProfilePic}}" style="clip-path:circle()" class="w-12">
-                            </div>
-                            <textarea class="w-full focus:ring-0 resize-none align-center rounded-full border-none h-10"
-                                placeholder="What's in your mind?"></textarea>
-                            <button type="submit"
-                                class="h-auto text-white bg-indigo-600 rounded-full text-lg px-8 py-2">Post</button>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- posts  -->
-                <div class="space-y-4">
-                    @foreach($posts as $post)
-                    <article class="space-y-4 p-4 bg-white rounded-2xl">
+                <!-- post  -->
+                <article class="space-y-4 p-4 bg-white rounded-2xl">
                         <!-- header part  -->
                         <div class="flex space-x-4">
                             <div>
@@ -263,11 +246,7 @@
                             </form>
                         </div>
 
-                    </article>
-                    @endforeach
-                    {{ $posts->links() }}
-                </div>
-
+                    </article>          
             </main>
 
             <!-- side right  -->

@@ -15,12 +15,16 @@ class CommentController extends Controller
 
         $post = Post::find(request()->postId);
 
-        $post->comments()->create([
+      $comment =  $post->comments()->create([
             'user_id' => auth()->user()->id,
             'comment_text' => request()->comment_text
         ]);
 
-        return response()->json(['success'=>'submited with create comment']);
+        $imagePath =  $comment->user->profile_photo_path ? asset('storage/' . $comment->user->profile_photo_path) : asset('storage') . '/default/default.png';
+        $comment_created_at = $comment->created_at->diffForHumans();
+        $comment_user_name = $comment->user->name;
+        $comment_text = $comment->comment_text;
+        return response()->json(['success'=>'submited with create comment','comment_text' => $comment_text,'comment_user_name' => $comment_user_name ,'comment_created_at' => $comment_created_at,'imagePath' => $imagePath]);
     }
 
      public function delete( ){
