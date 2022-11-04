@@ -200,7 +200,20 @@
                                 </div>
 
                                 <div>
-                                    <object data="{{asset('images/share.svg')}}" class="block h-8 w-auto"></object>
+                                    <img  onclick="this.nextElementSibling.classList.toggle('hidden')" src="{{asset('images/share.svg')}}" class="block h-8 w-auto hover:cursor-pointer"></img>
+                                    <!-- share post snippet  -->
+                                    <div onclick="this.classList.toggle('hidden')" class='hidden fixed top-0 right-0 bottom-0 left-0' style=" background: rgba(0, 0, 0,0.2);">
+                                        <div class="w-4/12 h-20 bg-white absolute rounded-lg left-2/4 top-2/4 -translate-y-2/4 -translate-x-2/4">
+                                            <div class="h-full">
+                                                <div class="flex justify-center items-center h-full">
+                                                    <div class="px-2 py-1 shadow space-x-4">
+                                                        <a class="text-sm text-blue-500 hover:underline" href="{{ route('post.show',$post->id) }}">{{ route('post.show',$post->id) }}</a>
+                                                        <button onclick="sharePost('{{ route('post.show',$post->id) }}')" class="text-lg text-blue-600 hover:cursor-pointer">Copy</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -410,6 +423,10 @@
                 let parent = event.target.parentElement;
                 
                 parent.innerHTML = caption;
+            }
+
+            function sharePost(link){
+                navigator.clipboard.writeText(link)
             }
 
         </script>
