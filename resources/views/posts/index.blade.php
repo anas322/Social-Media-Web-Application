@@ -182,11 +182,11 @@
 
                                         <!-- renader the like button based on wheather he liked the post or not -->
                                         @if($post->likes->contains('user_id',auth()->id()))
-                                        <button type="submit" class='submit-like'>
+                                        <button type="submit" class='submit-widget'>
                                             <x-svg.heart type='unlike' />
                                         </button>
                                         @else
-                                        <button type="submit" class='submit-like'>
+                                        <button type="submit" class='submit-widget'>
                                             <x-svg.heart type='like' />
                                         </button>
                                         @endif
@@ -223,11 +223,11 @@
 
                                         <!-- renader the bookmark button based on wheather he bookmarked the post or not -->
                                         @if($post->bookmarks->contains('user_id',auth()->id()))
-                                        <button type="submit" class='submit-bookmark'>
+                                        <button type="submit" class='submit-widget'>
                                             <x-svg.bookmark type='unsave' />
                                         </button>
                                         @else
-                                        <button type="submit" class='submit-bookmark'>
+                                        <button type="submit" class='submit-widget'>
                                             <x-svg.bookmark type='save' />
                                         </button>
                                         @endif
@@ -339,59 +339,14 @@
                         "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content")
                     }
                 });
-
-                //get the form data as array of name and value contains url of the route 
-                $(".submit-like").click(function (e) {
-                    e.preventDefault();
-                    const postdata = $(this).parent().serializeArray();
-
-                    //toggle the heart icon
-                    const src = $(this).children("img").attr("src")
-                    const data = replaceLikeSVG(src);
-
-                    $(this).children("img").attr("src", data.newSrc)
-
-                    // send the request
-                    const newUrl = data.url
-                    $.ajax({
-                        type: "POST",
-                        url: newUrl,
-                        data: {
-                            postId: postdata[0].value
-                        },
-                        success: (result) => {
-                            console.log(result.success);
-
-                        }
-                    });
-
-                });
-
-                function replaceLikeSVG(src) {
-                    let newSrc, url;
-                    if (src.search("-like") != -1) {
-                        newSrc = src.replace('-like', '-unlike')
-                        url = "{{ route('like.store') }}";
-                    } else {
-                        newSrc = src.replace('-unlike', '-like');
-                        url = "{{ route('like.delete') }}";
-                    }
-
-                    return {
-                        newSrc,
-                        url
-                    }
-
-                }
-
-                //get the form data as array of name and value contains url of the route 
-                $(".submit-bookmark").click(function (e) {
-                    e.preventDefault();
+                
+                $(".submit-widget").click(function (e){
+                     e.preventDefault();
                     const postdata = $(this).parent().serializeArray();
 
                     //toggle the bookmark icon
                     const src = $(this).children("img").attr("src")
-                    const data = replaceBookMarkSVG(src);
+                    const data = replaceSVG(src);
                     
                     $(this).children("img").attr("src", data.newSrc)
 
@@ -408,17 +363,24 @@
 
                         }
                     });
+                })
 
-                });
-
-                function replaceBookMarkSVG(src) {
+                
+                function replaceSVG(src) {
                     let newSrc, url;
+                    
                     if (src.search("-save") != -1) {
                         newSrc = src.replace('-save', '-unsave')
                         url = "{{ route('bookmark.store') }}";
-                    } else {
+                    } else if(src.search("-unsave") != -1) {
                         newSrc = src.replace('-unsave', '-save');
                         url = "{{ route('bookmark.delete') }}";
+                    }else if(src.search("-like") != -1){
+                        newSrc = src.replace('-like', '-unlike')
+                        url = "{{ route('like.store') }}";
+                    }else{
+                        newSrc = src.replace('-unlike', '-like');
+                        url = "{{ route('like.delete') }}";
                     }
 
                     return {
