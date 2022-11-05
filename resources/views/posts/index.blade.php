@@ -350,19 +350,21 @@
                     
                     $(this).children("img").attr("src", data.newSrc)
 
-                    // send the request
+                    // send the request if the url is defined
                     const newUrl = data.url
-                    $.ajax({
-                        type: "POST",
-                        url: newUrl,
-                        data: {
-                            postId: postdata[0].value
-                        },
-                        success: (result) => {
-                            console.log(result.success);
-
-                        }
-                    });
+                    if(newUrl != undefined){
+                        $.ajax({
+                            type: "POST",
+                            url: newUrl,
+                            data: {
+                                postId: postdata[0].value
+                            },
+                            success: (result) => {
+                                console.log(result.success);
+    
+                            }
+                        });
+                    }
                 })
 
                 
@@ -378,7 +380,7 @@
                     }else if(src.search("-like") != -1){
                         newSrc = src.replace('-like', '-unlike')
                         url = "{{ route('like.store') }}";
-                    }else{
+                    }else if(src.search("-unlike") != -1){
                         newSrc = src.replace('-unlike', '-like');
                         url = "{{ route('like.delete') }}";
                     }
