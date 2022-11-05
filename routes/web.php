@@ -56,6 +56,12 @@ Route::middleware('auth')->group(function () {
 //     return redirect()->route('prof.index',Auth::id()); 
 // });
 
+Route::get('/test',function () {
+    return view('layouts.layout');
+});
+
+
+
 Route::redirect('/','/p');
 
 Route::middleware([
