@@ -153,6 +153,8 @@
                 </div>
             </aside>
         </section>
+
+        {{ $scripts }}
     </body>
 
 </html>

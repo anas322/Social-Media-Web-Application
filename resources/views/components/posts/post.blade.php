@@ -1,7 +1,6 @@
-@props(['posts'])
+@props(['post'])
 
-<div class="space-y-4">
-    @foreach($posts as $post)
+
     <article class="space-y-4 p-4 bg-white rounded-2xl">
         <!-- header part  -->
         <div class="flex space-x-4">
@@ -163,6 +162,3 @@
         </div>
 
     </article>
-    @endforeach
-    {{ $posts->links() }}
-</div>
