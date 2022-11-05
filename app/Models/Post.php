@@ -26,6 +26,10 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function bookmarks(){
+        return $this->hasMany(BookMark::class);
+    }
+
 
     //re-cache the count after createing new post or delete new one 
     protected static function booted(){

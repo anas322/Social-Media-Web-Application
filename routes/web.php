@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\BookMarkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/like',[likeController::class,'store'])->name('like.store');
     Route::post('/unlike',[likeController::class,'delete'])->name('like.delete');
+
+    Route::post('/bookmark',[BookMarkController::class,'store'])->name('bookmark.store');
+    Route::post('/bookmark/delete',[BookMarkController::class,'delete'])->name('bookmark.delete');
     
     Route::post('/comment',[CommentController::class,'store'])->name('comment.store');
     Route::post('/uncomment',[CommentController::class,'delete'])->name('comment.delete');

@@ -216,10 +216,23 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <div>
+                                    <form>
+                                        <input type="hidden" name="postId" value="{{$post->id}}">
 
-                            <div class='pr-2'>
-                                <object data="{{asset('images/bookmarks-black.svg')}}"
-                                    class="block h-8 w-auto"></object>
+                                        <!-- renader the bookmark button based on wheather he bookmarked the post or not -->
+                                        @if($post->bookmarks->contains('user_id',auth()->id()))
+                                        <button type="submit" class='submit-bookmark'>
+                                            <x-svg.bookmark type='unsave' />
+                                        </button>
+                                        @else
+                                        <button type="submit" class='submit-bookmark'>
+                                            <x-svg.bookmark type='save' />
+                                        </button>
+                                        @endif
+                                    </form>
+
                             </div>
                         </div>
 
@@ -370,6 +383,52 @@
                     }
 
                 }
+
+                //get the form data as array of name and value contains url of the route 
+                $(".submit-bookmark").click(function (e) {
+                    e.preventDefault();
+                    const postdata = $(this).parent().serializeArray();
+
+                    //toggle the bookmark icon
+                    const src = $(this).children("img").attr("src")
+                    const data = replaceBookMarkSVG(src);
+                    
+                    $(this).children("img").attr("src", data.newSrc)
+
+                    // send the request
+                    const newUrl = data.url
+                    $.ajax({
+                        type: "POST",
+                        url: newUrl,
+                        data: {
+                            postId: postdata[0].value
+                        },
+                        success: (result) => {
+                            console.log(result.success);
+
+                        }
+                    });
+
+                });
+
+                function replaceBookMarkSVG(src) {
+                    let newSrc, url;
+                    if (src.search("-save") != -1) {
+                        newSrc = src.replace('-save', '-unsave')
+                        url = "{{ route('bookmark.store') }}";
+                    } else {
+                        newSrc = src.replace('-unsave', '-save');
+                        url = "{{ route('bookmark.delete') }}";
+                    }
+
+                    return {
+                        newSrc,
+                        url
+                    }
+
+                }
+
+
 
                 //get the form data as array of name and value contains url of the route 
                 $(".submit-comment").click(function (e) {
