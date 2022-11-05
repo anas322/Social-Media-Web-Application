@@ -43,8 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/like',[likeController::class,'store'])->name('like.store');
     Route::post('/unlike',[likeController::class,'delete'])->name('like.delete');
 
-    Route::post('/bookmark',[BookMarkController::class,'store'])->name('bookmark.store');
-    Route::post('/bookmark/delete',[BookMarkController::class,'delete'])->name('bookmark.delete');
+    Route::get('/bookmarks',[BookMarkController::class,'index'])->name('bookmark.index');
+    Route::post('/bookmarks',[BookMarkController::class,'store'])->name('bookmark.store');
+    Route::post('/bookmarks/delete',[BookMarkController::class,'delete'])->name('bookmark.delete');
     
     Route::post('/comment',[CommentController::class,'store'])->name('comment.store');
     Route::post('/uncomment',[CommentController::class,'delete'])->name('comment.delete');

@@ -21,7 +21,7 @@
                         <!-- show the caption first  -->
                         @if($post->caption)
                         <div class='flex items-start justify-start space-x-3'>
-                             <div class='pt-1'>
+                             <div class='pt-1 flex-shrink-0'>
                                  <img src="{{ $post->user->profile_photo_path ? asset('storage/' . $post->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
                                      class="w-10" style="clip-path:circle()">
                              </div>
@@ -36,17 +36,20 @@
                         @endif 
                          <!-- list all the comments  -->
                          @forelse($post->comments as $comment)
-                         <div class='flex items-start justify-start space-x-3'>
-                             <div class='pt-1'>
+                         <div class='flex items-start  space-x-3'>
+                             <div class='pt-1 flex-shrink-0' >
                                  <img src="{{ $comment->user->profile_photo_path ? asset('storage/' . $comment->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
                                      class="w-10" style="clip-path:circle()">
                              </div>
 
-                             <div class="flex flex-col space-y-1">
-                                 <p class='text-slate-800'>{{ $comment->user->name }}<span
-                                         class="text-xs pl-4 text-gray-400"> {{ $comment->created_at->diffForHumans() }}
-                                     </span></p>
-                                 <p class="text-md font-serif">{{$comment->comment_text}}</p>
+                             <div>
+                                <div class="flex flex-col space-y-1">
+                                    <p class='text-slate-800'>{{ $comment->user->name }}<span
+                                            class="text-xs pl-4 text-gray-400"> {{ $comment->created_at->diffForHumans() }}
+                                        </span></p>
+                                    <p class="text-md font-serif">{{$comment->comment_text}}</p>
+
+                                </div>
                              </div>
                          </div>
                          @empty
