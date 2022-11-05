@@ -10,14 +10,31 @@
                  <span class="toggle-window absolute right-3 text-lg hover:cursor-pointer">X</span>
                  <div class='flex items-center justify-start space-x-3' style='margin-top:-4px'>
                      <div>
-                         <img src="{{ auth()->user()->profile_photo_path ? asset('storage/' . auth()->user()->profile_photo_path) : asset('storage') . '/default/default.png' }}"
+                         <img src="{{ $post->user->profile_photo_path ? asset('storage/' . $post->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
                              class="w-12" style="clip-path:circle()">
                      </div>
-                     <p class='text-slate-800'>{{ auth()->user()->name }}</p>
+                     <p class='text-slate-800'>{{ $post->user->name }}</p>
                  </div>
                  <hr>
                  <div>
                      <div class=" space-y-5" data-id="{{ $post->id }}">
+                        <!-- show the caption first  -->
+                        @if($post->caption)
+                        <div class='flex items-start justify-start space-x-3'>
+                             <div class='pt-1'>
+                                 <img src="{{ $post->user->profile_photo_path ? asset('storage/' . $post->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
+                                     class="w-10" style="clip-path:circle()">
+                             </div>
+
+                             <div class="flex flex-col space-y-1">
+                                 <p class='text-slate-800'>{{ $post->user->name }}<span
+                                         class="text-xs pl-4 text-gray-400"> {{ $post->created_at->diffForHumans() }}
+                                     </span></p>
+                                 <p class="text-md font-serif">{{$post->caption}}</p>
+                             </div>
+                         </div>
+                        @endif 
+                         <!-- list all the comments  -->
                          @forelse($post->comments as $comment)
                          <div class='flex items-start justify-start space-x-3'>
                              <div class='pt-1'>
