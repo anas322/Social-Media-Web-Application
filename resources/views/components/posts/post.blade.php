@@ -151,11 +151,11 @@
         <div>
             <hr>
             <form>
-                <div class='flex items-center justify-between form'>
+                <div class='flex items-center justify-between pt-2 form'>
                     <input type="hidden" name="postId" value="{{$post->id}}">
-                    <input type="text" name='comment_text' class='w-full border-none focus:ring-0'
+                    <input type="text" name='comment_text' class='w-full border-none focus:ring-0 rounded-full bg-gray-50'
                         placeholder="Add a comment...😊">
-                    <input type="submit" class=' submit-comment text-blue-500 hover:cursor-pointer' value="Post" />
+                    <input type="submit" class=' submit-comment text-blue-500 hover:cursor-pointer font-semibold ml-4' value="Post" />
                 </div>
                 <span class='error text-red-600 text-sm'></span>
             </form>
