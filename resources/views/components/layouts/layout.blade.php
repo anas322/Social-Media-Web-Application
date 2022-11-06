@@ -12,11 +12,16 @@
 
     <body class='bg-gray-100 container mx-auto'>
         <header class='grid grid-cols-12 gap-x-6 px-2 py-3 bg-white rounded-b-lg'>
-            <a href="{{ route('post.index') }}" class="col-span-3">
 
-                <div class='ml-4  flex items-center space-x-1'> <object data="{{asset('images/logo.svg')}}"
-                class="block h-12 w-auto"></object><span class='text-2xl font-bold' style="font-family: 'Sofia', cursive;">memes</span></div>
-            </a>
+            <div class='col-span-3 ml-4'>
+
+                <a href="{{ route('post.index') }}" class="flex items-center space-x-1">
+                    <object data="{{asset('images/logo.svg')}}" class="block h-12 w-auto">
+                    </object><span class='text-2xl font-bold' style="font-family: 'Sofia', cursive;">memes</span>
+
+                </a>
+            </div>
+
 
             <div class='col-span-6'>
                 <form>
@@ -31,9 +36,9 @@
 
             <div class='col-span-3'>
                 <div class="float-right pr-8">
-                        <a href="{{route('prof.index',auth()->user()->id)}}">
-                            <img src="{{$userProfilePic}}" style="clip-path:circle()" class="w-12">
-                        </a>
+                    <a href="{{route('prof.index',auth()->user()->id)}}">
+                        <img src="{{$userProfilePic}}" style="clip-path:circle()" class="w-9">
+                    </a>
                 </div>
             </div>
         </header>
@@ -137,7 +142,8 @@
 
                 <div class="my-4  flex justify-center">
                     <a href="{{route('post.create')}}"
-                        class="h-auto text-white bg-indigo-600 rounded-full text-lg w-full py-2 text-center font-medium hover:bg-indigo-500">create post</a>
+                        class="h-auto text-white bg-indigo-600 rounded-full text-lg w-full py-2 text-center font-medium hover:bg-indigo-500">create
+                        post</a>
                 </div>
             </aside>
 
