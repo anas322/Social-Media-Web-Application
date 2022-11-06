@@ -44,76 +44,87 @@
             <!-- side left -->
             <aside class="  col-span-3 row-span-2  ">
 
-                <div class='flex items-center space-x-10 py-6 pl-4 rounded-2xl mb-4 bg-white'>
-                    <div><img src="{{$userProfilePic}}" style='clip-path : circle()' class='block h-12 w-auto'></div>
+                <div class='flex items-center lg:space-x-10 py-6 pl-4 rounded-2xl mb-4 bg-white'>
+                    <a href="{{ route('prof.index',auth()->id()) }}" class="shrink-0"><img src="{{$userProfilePic}}" style='clip-path : circle()' class='block h-12 w-auto'></a>
                     <div>
-                        <p><strong>{{auth()->user()->name}}</strong></p>
+                        <a href="{{ route('prof.index',auth()->id()) }}">
+                            <strong>{{auth()->user()->name}}</strong>
+                        </a>
                         <p class='text-gray-400'>{{auth()->user()->email}}</p>
                     </div>
                 </div>
 
 
                 <div class='flex flex-col bg-white rounded-2xl overflow-hidden'>
+                    <a href="{{ route('post.index') }}">
 
-                    <div @class(["bg-gray-100 border-l-8 border-blue-600"=> Route::has('post.index'),'flex items-center
-                        space-x-10 py-6 pl-4']) >
-                        <div>
-                            <object data="{{asset('images/home-icon.svg')}}" class="block h-8 w-auto"></object>
+                        <div @class(["bg-gray-100 border-l-4 border-blue-600"=> Route::currentRouteName() == 'post.index','flex items-center
+                            space-x-8 py-6 pl-10 hover:bg-gray-100 hover:border-l-4 hover:border-blue-600 hover:cursor-pointer transition duration-500'])  >
+                            <div>
+                                <object data="{{asset('images/home-icon.svg')}}" class="block  w-6"></object>
+                            </div>
+                            <span @class(["text-blue-600"=> Route::currentRouteName() == 'post.index','capitalize','font-semibold'])>home</span>
                         </div>
-                        <strong @class(["text-blue-600"=> Route::has('post.index'),'capitalize'])>home</strong>
-                    </div>
+                    </a>
 
-                    <div class='flex items-center space-x-10 py-6 pl-4 '>
+                    <!-- <div class='flex items-center space-x-8 py-6 pl-10 '>
                         <div>
-                            <object data="{{asset('images/explore.svg')}}" class="block h-8 w-auto"></object>
+                            <object data="{{asset('images/explore.svg')}}" class="block  w-6"></object>
                         </div>
-                        <strong class='capitalize'>explore</strong>
-                    </div>
+                        <strong class='capitalize font-semibold'>explore</strong>
+                    </div> -->
 
-                    <div class='flex items-center space-x-10 py-6 pl-4 '>
+                    <div class='flex items-center space-x-8 py-6 pl-10 '>
                         <div class='relative'>
-                            <object data="{{asset('images/notify.svg')}}" class="block h-8 w-auto"></object>
+                            <object data="{{asset('images/notify.svg')}}" class="block  w-6"></object>
                             <span class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
                                 <span
                                     class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                                 <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500 "></span>
                             </span>
                         </div>
-                        <strong class='capitalize'>notifications </strong>
+                        <span class='capitalize font-semibold'>notifications </span>
                     </div>
 
-                    <div class='flex items-center space-x-10 py-6 pl-4 '>
+                    <div class='flex items-center space-x-8 py-6 pl-10 '>
                         <div class='relative'>
-                            <object data="{{asset('images/messages.svg')}}" class="block h-8 w-auto"></object>
+                            <object data="{{asset('images/messages.svg')}}" class="block  w-6"></object>
                             <span class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
                                 <span
                                     class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                                 <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500 "></span>
                             </span>
                         </div>
-                        <strong class='capitalize'>messages</strong>
+                        <span class='capitalize font-semibold'>messages</span>
                     </div>
 
-                    <div class='flex items-center space-x-10 py-6 pl-4 '>
-                        <div>
-                            <object data="{{asset('images/bookmarks.svg')}}" class="block h-8 w-auto"></object>
-                        </div>
-                        <strong class='capitalize'><a href="{{ route('bookmark.index') }}">bookmarks</a></strong>
+                    <a href="{{ route('bookmark.index') }}">
+                    <div @class(["bg-gray-100 border-l-4 border-blue-600"=> Route::currentRouteName() == 'bookmark.index','flex items-center
+                                space-x-8 py-6 pl-10 hover:bg-gray-100 hover:border-l-4 hover:border-blue-600 hover:cursor-pointer transition duration-500 ']) >
+                    
+                            <div >
+                                <object data="{{asset('images/bookmarks.svg')}}" class="block  w-6"></object>
+                            </div>
+                            <span @class(["text-blue-600"=> Route::currentRouteName() == 'bookmark.index','capitalize','font-semibold'])>bookmarks</span>
+                       
                     </div>
+                    </a>
 
-                    <div class='flex items-center space-x-10 py-6 pl-4 '>
+                    <!-- <div class='flex items-center space-x-8 py-6 pl-10 '>
                         <div>
-                            <object data="{{asset('images/theme.svg')}}" class="block h-11 w-auto"></object>
+                            <object data="{{asset('images/theme.svg')}}" class="block  w-8"></object>
                         </div>
-                        <strong class='capitalize'>theme</strong>
-                    </div>
-
-                    <div class='flex items-center space-x-10 py-6 pl-4 '>
-                        <div>
-                            <object data="{{asset('images/settings.svg')}}" class="block h-8 w-auto"></object>
+                        <span class='capitalize font-semibold'>theme</span>
+                    </div> -->
+                    <a href="{{ route('profile.show') }}">
+                        <div @class(["bg-gray-100 border-l-4 border-blue-600"=> Route::currentRouteName() == 'profile.show','flex items-center
+                                space-x-8 py-6 pl-10 hover:bg-gray-100 hover:border-l-4 hover:border-blue-600 hover:cursor-pointer transition duration-500 ']) >
+                            <div>
+                                <object data="{{asset('images/settings.svg')}}" class="block  w-6"></object>
+                            </div>
+                            <span @class(["text-blue-600"=> Route::currentRouteName() == 'profile.show','capitalize','font-semibold'])>settings</span>
                         </div>
-                        <strong class='capitalize'>settings</strong>
-                    </div>
+                    </a>
                 </div>
             </aside>
 
