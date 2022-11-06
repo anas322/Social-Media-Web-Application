@@ -9,7 +9,7 @@
                 <textarea class="w-full focus:ring-0 resize-none align-center rounded-full border-none h-10"
                     placeholder="What's in your mind?"></textarea>
                 <button type="submit"
-                    class="h-auto text-white bg-indigo-600 rounded-full text-lg px-8 py-2">Post</button>
+                    class="h-auto text-white bg-indigo-600 rounded-full text-lg px-8 py-2 font-medium hover:text-indigo-600 hover:bg-white hover:ring-1 hover:ring-indigo-600 transition">Post</button>
             </div>
         </form>
     </div>

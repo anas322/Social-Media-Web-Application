@@ -30,21 +30,17 @@
             </div>
 
             <div class='col-span-3'>
-                <div class="flex justify-end items-center space-x-16 pr-8">
-                    <a href="{{route('post.create')}}"
-                        class="h-auto text-white bg-indigo-600 rounded-full text-lg px-8 py-2 ">create</a>
-                    <div class="shrink-0">
+                <div class="float-right pr-8">
                         <a href="{{route('prof.index',auth()->user()->id)}}">
                             <img src="{{$userProfilePic}}" style="clip-path:circle()" class="w-12">
                         </a>
-                    </div>
                 </div>
             </div>
         </header>
 
         <section class="grid grid-cols-12 gap-x-6 my-2 auto-rows-min max-w-screen-2xl mx-auto">
             <!-- side left -->
-            <aside class="  col-span-3 row-span-2  ">
+            <aside class="col-span-3 row-span-2">
 
                 <div class='flex items-center lg:space-x-10 py-4 pl-4 rounded-2xl mb-4 bg-white'>
                     <a href="{{ route('prof.index',auth()->id()) }}" class="shrink-0"><img src="{{$userProfilePic}}"
@@ -138,6 +134,11 @@
                         </div>
                     </a>
                 </div>
+
+                <div class="my-4  flex justify-center">
+                    <a href="{{route('post.create')}}"
+                        class="h-auto text-white bg-indigo-600 rounded-full text-lg w-full py-2 text-center font-medium">create post</a>
+                </div>
             </aside>
 
             <!-- main  -->
@@ -166,7 +167,7 @@
                                         src="{{ $follower->profile_photo_path ? asset('storage/' . $follower->profile_photo_path) : asset('storage') . '/default/default.png' }}"
                                         class='block h-11 w-auto rounded-xl'></div>
 
-                                <span class='text-lg text-slate-700'>{{ $follower->name }}</span>
+                                <span class='text-lg text-slate-700 font-medium'>{{ $follower->name }}</span>
                             </div>
                         </a>
 
