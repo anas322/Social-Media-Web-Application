@@ -308,6 +308,10 @@ const logout = () => {
             <main>
                 <slot />
             </main>
+            <footer class="px-96">
+                <hr>
+                <p class="text-center text-md py-4">Copyright @ <time>{{ new Date().getFullYear() }}</time> Anas. All Rights Reserved ❤️</p>
+            </footer>
         </div>
     </div>
 </template>

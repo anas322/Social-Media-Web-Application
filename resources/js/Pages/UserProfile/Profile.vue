@@ -55,7 +55,7 @@
 
                                 <div v-if="props.canEditProfile">
                                     <Link :href="route('prof.edit',props.userObject)"
-                                        class="px-4 py-1 text-gray-900 font-semibold ring-1 ring-slate-600  transition rounded-lg">
+                                        class="px-8 py-1 text-gray-900 hover:bg-slate-700/5 font-normal ring-1 ring-slate-600  transition rounded-lg">
                                     Edit</Link>
                                 </div>
                                 <template v-if="!canEditProfile">
@@ -80,7 +80,7 @@
                         </div>
                         <div v-if="props.canEditProfile" class="whitespace-nowrap hidden sm:block">
                             <Link :href="route('post.create')"
-                                class="px-8 py-2 text-white font-semibold bg-blue-500 hover:bg-blue-600 rounded-full">
+                                class="px-8 py-2 text-white font-noraml bg-blue-500 hover:bg-blue-600 rounded-md">
                             Create Post </Link>
                         </div>
 

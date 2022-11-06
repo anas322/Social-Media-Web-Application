@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Carbon\Carbon;
 
 class Post extends Model
 {
@@ -41,4 +43,15 @@ class Post extends Model
             cache()->forget('count.posts.' . $post->user->id);
         });
     }
+
+
+
+    protected function createdAt(): Attribute
+      {
+          return Attribute::make(
+              get: fn ($value) => Carbon::create($value)->diffForHumans(),
+          );
+      }
+
+
 }

@@ -188,6 +188,11 @@
             </aside>
         </section>
 
+        <footer class="px-96">
+            <hr>
+            <p class="text-center text-md py-4">Copyright @ <time>{{ date("Y") }}</time> Anas. All Rights Reserved ❤️</p>
+        </footer>
+
         {{ $scripts }}
     </body>
 
