@@ -31,9 +31,9 @@
                 <div class="flex justify-end items-center space-x-16 pr-8">
                     <a href="{{route('post.create')}}"
                         class="h-auto text-white bg-indigo-600 rounded-full text-lg px-8 py-2 ">create</a>
-                    <div>
+                    <div class="shrink-0">
                         <a href="{{route('prof.index',auth()->user()->id)}}">
-                            <img src="{{$userProfilePic}}" style="clip-path:circle()" class="w-9">
+                            <img src="{{$userProfilePic}}" style="clip-path:circle()" class="w-12">
                         </a>
                     </div>
                 </div>
@@ -44,9 +44,9 @@
             <!-- side left -->
             <aside class="  col-span-3 row-span-2  ">
 
-                <div class='flex items-center lg:space-x-10 py-6 pl-4 rounded-2xl mb-4 bg-white'>
+                <div class='flex items-center lg:space-x-10 py-4 pl-4 rounded-2xl mb-4 bg-white'>
                     <a href="{{ route('prof.index',auth()->id()) }}" class="shrink-0"><img src="{{$userProfilePic}}"
-                            style='clip-path : circle()' class='block h-12 w-auto'></a>
+                            style='clip-path : circle()' class='block h-16 w-auto'></a>
                     <div>
                         <a href="{{ route('prof.index',auth()->id()) }}">
                             <strong>{{auth()->user()->name}}</strong>
