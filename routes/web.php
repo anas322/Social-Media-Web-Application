@@ -9,7 +9,6 @@ use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\BookMarkController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,25 +51,9 @@ Route::middleware('auth')->group(function () {
 });
 
 
-// Route::get('/redirect',function () {
-//     return redirect()->route('prof.index',Auth::id()); 
-// });
 
-Route::get('/test',function () {
-    return view('layouts.layout');
-});
+Route::get('/', function () {
+    return Inertia::render('Auth/Login');
+})->middleware('guest');
 
-
-
-Route::redirect('/','/p');
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
-});
 
