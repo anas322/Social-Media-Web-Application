@@ -15,7 +15,7 @@ class ProfileController extends Controller
     
  public function index(User $user){
 
-    $posts = Post::where('user_id',$user->id)->orderBy('created_at','desc')->get();
+    $posts = Post::with(['likes','comments'])->where('user_id',$user->id)->orderBy('created_at','desc')->get();
 
     $userPhotoUrl = $user->profile_photo_path ? asset('storage/'. $user->profile_photo_path) : asset('storage/default/default.png');
     
@@ -41,6 +41,8 @@ class ProfileController extends Controller
         function() use ($user){
         return $user->profile->followers->count();
     });
+
+    $assetUrl = asset('/images/profile');
     
         return Inertia::render('UserProfile/Profile', [ 
             'profile' => $user->profile ?? [] ,
@@ -51,7 +53,8 @@ class ProfileController extends Controller
             'isFollow' =>$isFollow,
             'followingCount' => $followingCount,
             'followersCount' => $followersCount,
-            'postsCount'     => $postsCount
+            'postsCount'     => $postsCount,
+            'assetUrl' => $assetUrl
          ]);     
         }   
     

@@ -13,14 +13,15 @@
     const props = defineProps({
         profile: Object,
         posts: Object,
-        userObject:Object,
-        userPhotoUrl:String,
-        canEditProfile:Boolean,
-        isFollow:Boolean,
-        followingCount:Number,
-        followersCount:Number,
-        postsCount:Number
-    }); 
+        userObject: Object,
+        userPhotoUrl: String,
+        canEditProfile: Boolean,
+        isFollow: Boolean,
+        followingCount: Number,
+        followersCount: Number,
+        postsCount: Number,
+        assetUrl: String
+    });
 
     let show = ref(false);
     let postInfo = ref({});
@@ -40,8 +41,8 @@
 
                 <div class="col-span-3  place-self-center">
                     <div class="w-full mx-auto">
-                        <img :src="props.userPhotoUrl" alt="image profile"
-                            loading="lazy" style="clip-path:circle()" class="max-h-44">
+                        <img :src="props.userPhotoUrl" alt="image profile" loading="lazy" style="clip-path:circle()"
+                            class="max-h-44">
                     </div>
                 </div>
 
@@ -51,9 +52,11 @@
                         <div>
                             <div class="flex space-x-8 ">
                                 <h1 class="font-bold text-2xl pb-2 capitalize">{{props.userObject.name}}</h1>
-                            
+
                                 <div v-if="props.canEditProfile">
-                                    <Link :href="route('prof.edit',props.userObject)" class="px-4 py-1 text-gray-900 font-semibold ring-1 ring-slate-600  transition rounded-lg">Edit</Link>
+                                    <Link :href="route('prof.edit',props.userObject)"
+                                        class="px-4 py-1 text-gray-900 font-semibold ring-1 ring-slate-600  transition rounded-lg">
+                                    Edit</Link>
                                 </div>
                                 <template v-if="!canEditProfile">
                                     <FollowButton :userObject="props.userObject" :isFollow="isFollow" />
@@ -110,8 +113,19 @@
             <div class='grid grid-cols-1 md:grid-cols-3 gap-3 '>
 
                 <div v-for="post in posts" :key="post.id" class="max-w-full overflow-hidden">
-                    <img class="w-full h-80 object-cover object-center rounded transition duration-150 ease-in-out hover:scale-110 hover:cursor-pointer -0.5"
-                        :src="'/storage/'+ post.image" loading="lazy" @click="previewImage(post)">
+                    <div class="relative">
+                        <img class="w-full h-80 object-cover object-center rounded transition duration-150 ease-in-out hover:scale-110 hover:cursor-pointer -0.5"
+                            :src="'/storage/'+ post.image" loading="lazy">
+                        <div class="hover:cursor-pointer absolute hover:bg-gray-900/50  bottom-0 left-0 right-0 top-0 transition-all duration-500"
+                            @click="previewImage(post)">
+                            <div class="flex text-white justify-center items-center h-full space-x-4">
+                                <div class="flex space-x-3"><img :src="props.assetUrl + '/' + 'small-comment.svg'"
+                                        class="w-6" /> <span class="font-semibold"> {{post.comments.length}}</span></div>
+                                <div class="flex space-x-3"><img :src="props.assetUrl + '/' + 'small-heart.svg'"
+                                        class="w-6" /> <span class="font-semibold"> {{post.likes.length}}</span></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>

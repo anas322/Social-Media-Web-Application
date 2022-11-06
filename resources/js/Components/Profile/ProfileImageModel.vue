@@ -7,8 +7,6 @@
         can:Boolean
     })
 
-    console.log(props.can);
-
     const emit = defineEmits(['cancelPreview'])
 
     const fireEmit = (e) =>{
