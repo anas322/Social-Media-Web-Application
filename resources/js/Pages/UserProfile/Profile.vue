@@ -14,13 +14,13 @@
         profile: Object,
         posts: Object,
         userObject: Object,
-        userPhotoUrl: String,
+        assetUrl: String,
         canEditProfile: Boolean,
         isFollow: Boolean,
         followingCount: Number,
         followersCount: Number,
         postsCount: Number,
-        assetUrl: String
+        assetUrlProfile: String
     });
 
     let show = ref(false);
@@ -41,7 +41,7 @@
 
                 <div class="col-span-3  place-self-center">
                     <div class="w-full mx-auto">
-                        <img :src="props.userPhotoUrl" alt="image profile" loading="lazy" style="clip-path:circle()"
+                        <img :src="props.userObject.profile_photo_path ? props.assetUrl + '/' + props.userObject.profile_photo_path : props.assetUrl + '/default/default.png'" alt="image profile" loading="lazy" style="clip-path:circle()"
                             class="max-h-44">
                     </div>
                 </div>
@@ -119,9 +119,9 @@
                         <div class="hover:cursor-pointer absolute hover:bg-gray-900/50  bottom-0 left-0 right-0 top-0 transition-all duration-500"
                             @click="previewImage(post)">
                             <div class="flex text-white justify-center items-center h-full space-x-4">
-                                <div class="flex space-x-3"><img :src="props.assetUrl + '/' + 'small-comment.svg'"
+                                <div class="flex space-x-3"><img :src="props.assetUrlProfile + '/' + 'small-comment.svg'"
                                         class="w-6" /> <span class="font-semibold"> {{post.comments.length}}</span></div>
-                                <div class="flex space-x-3"><img :src="props.assetUrl + '/' + 'small-heart.svg'"
+                                <div class="flex space-x-3"><img :src="props.assetUrlProfile + '/' + 'small-heart.svg'"
                                         class="w-6" /> <span class="font-semibold"> {{post.likes.length}}</span></div>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
 
     <div v-if="show">
         <Teleport to="body">
-            <ProfileImageModelVue :post="postInfo" :can="canEditProfile" @cancel-preview="show = !show" />
+            <ProfileImageModelVue :post="postInfo" :can="canEditProfile" :assetUrl="assetUrl" @cancel-preview="show = !show" />
         </Teleport>
     </div>
 

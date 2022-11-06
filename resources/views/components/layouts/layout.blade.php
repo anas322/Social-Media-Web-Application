@@ -137,7 +137,7 @@
 
                 <div class="my-4  flex justify-center">
                     <a href="{{route('post.create')}}"
-                        class="h-auto text-white bg-indigo-600 rounded-full text-lg w-full py-2 text-center font-medium">create post</a>
+                        class="h-auto text-white bg-indigo-600 rounded-full text-lg w-full py-2 text-center font-medium hover:bg-indigo-500">create post</a>
                 </div>
             </aside>
 

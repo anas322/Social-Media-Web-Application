@@ -7,7 +7,7 @@
              </div>
 
              <div class="col-span-5 p-4 space-y-4 h-full overflow-y-auto relative">
-                 <span class="toggle-window absolute right-3 text-lg hover:cursor-pointer">X</span>
+                 <span class="toggle-window absolute right-3 text-lg hover:cursor-pointer py-1 px-2 rounded-lg transition duration-700 font-bold hover:bg-gray-500/25">X</span>
                  <div class='flex items-center justify-start space-x-3' style='margin-top:-4px'>
                      <div>
                          <img src="{{ $post->user->profile_photo_path ? asset('storage/' . $post->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
