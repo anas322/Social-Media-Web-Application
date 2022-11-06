@@ -12,9 +12,11 @@
 
     <body class='bg-gray-100 container mx-auto'>
         <header class='grid grid-cols-12 gap-x-6 px-2 py-3 bg-white rounded-b-lg'>
+            <a href="{{ route('post.index') }}" class="col-span-3">
 
-            <div class='ml-4 col-span-3 flex items-center space-x-1'> <object data="{{asset('images/logo.svg')}}"
-                    class="block h-12 w-auto"></object><span class='text-2xl font-bold'>memes</span></div>
+                <div class='ml-4  flex items-center space-x-1'> <object data="{{asset('images/logo.svg')}}"
+                class="block h-12 w-auto"></object><span class='text-2xl font-bold' style="font-family: 'Sofia', cursive;">memes</span></div>
+            </a>
 
             <div class='col-span-6'>
                 <form>
