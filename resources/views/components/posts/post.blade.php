@@ -109,6 +109,7 @@
         </div>
 
         <!-- love list section  -->
+        @if($post->likes->count())
         <div class='flex items-center space-x-2 '>
             <!-- 3 picture first  -->
             <div class='flex items-center pl-5'>
@@ -124,7 +125,7 @@
                 </div>
                 @endforeach
             </div>
-
+            
             <p class='text-lg'>liked by @if( $post->likes->first()->user->name ?? null)
                 <strong>{{ $post->likes->first()->user->name }}</strong>@endif
 
@@ -133,14 +134,15 @@
             </p>
             @endif
         </div>
-
+        @endif
+        
         <!-- view comment section  -->
 
         <div>
+            @if($post->comments->count())
             <span onclick="previewPost(event,{{$post->id}})"
-                class='toggle-window text-gray-400 text-sm hover:cursor-pointer'>view all 45
-                comments</span>
-
+                class='toggle-window text-gray-400 text-sm hover:cursor-pointer'>view {{ $post->comments->count() }} {{Str::plural('comment', $post->comments->count() )}} </span>
+            @endif
             <div class="hidden" data-id="{{ $post->id }}">
                 <x-posts.comments :$post />
             </div>
