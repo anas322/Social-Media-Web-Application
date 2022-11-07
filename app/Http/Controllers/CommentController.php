@@ -21,10 +21,10 @@ class CommentController extends Controller
         ]);
 
         $imagePath =  $comment->user->profile_photo_path ? asset('storage/' . $comment->user->profile_photo_path) : asset('storage') . '/default/default.png';
-        $comment_created_at = $comment->created_at->diffForHumans();
+
         $comment_user_name = $comment->user->name;
         $comment_text = $comment->comment_text;
-        return response()->json(['success'=>'submited with create comment','comment_text' => $comment_text,'comment_user_name' => $comment_user_name ,'comment_created_at' => $comment_created_at,'imagePath' => $imagePath]);
+        return response()->json(['success'=>'submited with create comment','comment_text' => $comment_text,'comment_user_name' => $comment_user_name ,'comment_created_at' => $comment->created_at,'imagePath' => $imagePath]);
     }
 
      public function delete( ){
