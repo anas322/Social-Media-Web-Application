@@ -35,12 +35,12 @@
     <div class="toggle-window fixed z-50 w-full right-0 top-0 left-0 bottom-0 " style=" background: rgba(0, 0, 0,0.2);" @click="fireEmit">
         <span class="toggle-window absolute right-4 top-2 text-2xl hover:cursor-pointer py-1 px-2 rounded-lg transition duration-700 font-bold hover:bg-gray-500/25" @click="fireEmit">X</span>
         <div class="w-7/12 h-5/6 bg-white absolute rounded-lg left-2/4 top-2/4 -translate-y-2/4 -translate-x-2/4 shadow-md">
-            <div class="grid grid-cols-12 h-full">
-                <div class="col-span-7 overflow-y-auto">
+            <div class="grid grid-cols-12 grid-rows-6 auto-rows-min h-full">
+                <div class="col-span-7 row-span-6">
                     <img :src="assetUrl + '/' + post.image" class="rounded-xl w-full h-full object-cover">
                 </div>
 
-                <div class="col-span-5 p-4 space-y-4 h-full overflow-y-auto ">
+                <div class="col-span-5 row-span-6 p-4 space-y-4 h-full">
                     <div class='flex items-center justify-start space-x-3' >
                         <div>
                                 <img :src="post.user.profile_photo_path ? assetUrl +'/' + post.user.profile_photo_path :assetUrl + '/default/default.png'"
@@ -49,24 +49,8 @@
                         <p class='text-slate-800 font-semibold'>{{ post.user.name }}</p>
                     </div>
                     <hr>
-                    <div>
-                        <div class=" space-y-5 mb-4">
-                            <!-- show the caption first  -->
-
-                            <div class='flex items-start justify-start space-x-3'>
-                                <div class='pt-1 flex-shrink-0'>
-                                    <img :src="post.user.profile_photo_path ? assetUrl +'/' + post.user.profile_photo_path :assetUrl + '/default/default.png'"
-                                        class="w-10" style="clip-path:circle()">
-                                </div>
-
-                                <div class="flex flex-col space-y-1">
-                                    <p class='text-slate-800 font-semibold'>{{post.user.name}}<span
-                                            class="text-xs pl-4 text-gray-400 font-normal">
-                                        {{post.created_at}}</span></p>
-                                    <p class="text-md font-serif">{{post.caption}}</p>
-                                </div>
-                            </div>
-
+                    <div class="h-full">
+                        <div class=" space-y-5 mb-4 overflow-y-auto h-3/4">
                             <!-- list all the comments  -->
 
                             <div v-for="comment in post.comments" :key="comment.id" class='flex items-start  space-x-3'>
@@ -90,7 +74,7 @@
 
                             <span v-if="post.comments.length <= 0" class="text-gray-500 text-center block">No Comments
                                 😪</span>
-
+                         
                         </div>
 
                         <div>
