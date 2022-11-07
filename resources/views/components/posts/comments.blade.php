@@ -13,8 +13,11 @@
 
                  <div class='flex items-center justify-start space-x-3' style='margin-top:-4px'>
                      <div>
-                         <img src="{{ $post->user->profile_photo_path ? asset('storage/' . $post->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
-                             class="w-12" style="clip-path:circle()">
+                        <a href="{{route('prof.index',$post->user->id)}}">
+
+                            <img src="{{ $post->user->profile_photo_path ? asset('storage/' . $post->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
+                            class="w-12" style="clip-path:circle()">
+                        </a>
                      </div>
                      <p class='text-slate-800 font-semibold'>{{ $post->user->name }}</p>
                  </div>
@@ -41,8 +44,10 @@
                          @forelse($post->comments as $comment)
                          <div class='flex items-start  space-x-3'>
                              <div class='pt-1 flex-shrink-0'>
-                                 <img src="{{ $comment->user->profile_photo_path ? asset('storage/' . $comment->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
-                                     class="w-10" style="clip-path:circle()">
+                                <a href="{{ route('prof.index',$comment->user->id) }}">
+                                    <img src="{{ $comment->user->profile_photo_path ? asset('storage/' . $comment->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
+                                    class="w-10" style="clip-path:circle()">
+                                </a>
                              </div>
 
                              <div>

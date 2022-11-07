@@ -41,9 +41,9 @@
                 </div>
 
                 <div class="col-span-5 p-4 space-y-4 h-full overflow-y-auto ">
-                    <div class='flex items-center justify-start space-x-3' style='margin-top:4px'>
+                    <div class='flex items-center justify-start space-x-3' >
                         <div>
-                            <img :src="post.user.profile_photo_path ? assetUrl +'/' + post.user.profile_photo_path :assetUrl + '/default/default.png'"
+                                <img :src="post.user.profile_photo_path ? assetUrl +'/' + post.user.profile_photo_path :assetUrl + '/default/default.png'"
                                 class="w-12" style="clip-path:circle()">
                         </div>
                         <p class='text-slate-800 font-semibold'>{{ post.user.name }}</p>
@@ -71,8 +71,10 @@
 
                             <div v-for="comment in post.comments" :key="comment.id" class='flex items-start  space-x-3'>
                                 <div class='pt-1 flex-shrink-0'>
-                                    <img :src="comment.user.profile_photo_path ? assetUrl + '/' + comment.user.profile_photo_path : assetUrl + '/default/default.png'"
+                                    <Link  :href="route('prof.index',comment.user)">
+                                        <img :src="comment.user.profile_photo_path ? assetUrl + '/' + comment.user.profile_photo_path : assetUrl + '/default/default.png'"
                                         class="w-10" style="clip-path:circle()">
+                                    </Link>
                                 </div>
 
                                 <div>

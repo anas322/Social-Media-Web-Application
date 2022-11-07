@@ -5,8 +5,10 @@
         <!-- header part  -->
         <div class="flex space-x-4">
             <div>
-                <img src="{{ $post->user->profile_photo_path ? asset('storage/' . $post->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
+                <a href="{{route('prof.index',$post->user)}}">
+                    <img src="{{ $post->user->profile_photo_path ? asset('storage/' . $post->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
                     style="clip-path:circle()" class="w-12">
+                </a>
             </div>
 
             <div>
