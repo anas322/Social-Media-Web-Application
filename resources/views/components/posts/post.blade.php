@@ -157,7 +157,7 @@
                     <input type="hidden" name="postId" value="{{$post->id}}">
                     <input type="text" name='comment_text' class='w-full border-none focus:ring-0 rounded-full bg-gray-50'
                         placeholder="Add a comment...😊">
-                    <input type="submit" class=' submit-comment text-blue-500 hover:cursor-pointer font-semibold ml-2 ring-1 ring-blue-500 hover:bg-blue-500/10 py-2 px-4 rounded-full transition duration-500' value="Post" />
+                    <input type="submit" class=' submit-comment  text-white bg-indigo-600 rounded-full text-lg px-4 py-2 ml-2 font-medium hover:cursor-pointer hover:text-indigo-600 hover:bg-white hover:ring-1 hover:ring-indigo-600 transition' value="Post" />
                 </div>
                 <span class='error text-red-600 text-sm'></span>
             </form>

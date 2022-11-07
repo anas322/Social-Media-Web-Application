@@ -19,7 +19,7 @@
                 </div>
 
                 <input type="submit" name="upload"
-                    class="h-auto text-white bg-indigo-600 rounded-full text-lg px-8 py-2 font-medium hover:cursor-pointer hover:text-indigo-600 hover:bg-white hover:ring-1 hover:ring-indigo-600 transition"
+                    class="h-auto text-white bg-indigo-600 rounded-full text-lg px-6 py-1.5 font-medium hover:cursor-pointer hover:text-indigo-600 hover:bg-white hover:ring-1 hover:ring-indigo-600 transition"
                     value="Post" />
 
             </div>
