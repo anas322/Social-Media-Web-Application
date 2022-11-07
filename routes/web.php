@@ -9,6 +9,7 @@ use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\BookMarkController;
+use App\Http\Controllers\SearchUsersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/{user}',[ProfileController::class,'index'])->name('prof.index');
     Route::get('/profile/{user}/edit',[ProfileController::class,'edit'])->name('prof.edit');
     Route::post('/profile/{user}',[ProfileController::class,'update'])->name('prof.update');
+
+    Route::post('/users',[SearchUsersController::class,'getUsers'])->name('users.search');
 
     Route::post('/follow/{user}',[FollowsController::class,'store'])->name('follow.store');
 

@@ -24,14 +24,19 @@
 
 
             <div class='col-span-6'>
-                <form>
-                    <div class="bg-gray-100 rounded-full flex items-center w-full">
-                        <object data="{{asset('images/search.svg')}}"
-                            class="block h-6 w-auto p-3 box-content "></object>
-                        <input type="text" class="border-none bg-gray-100 w-full rounded-full focus:ring-0"
-                            placeholder='Search for creators ❤️'>
+
+                <div class="bg-gray-100 rounded-lg flex items-center w-full relative">
+                    <object data="{{asset('images/search.svg')}}"
+                        class="block h-6 w-auto p-3 box-content "></object>
+                    <input type="text" id="search-creators" class="border-none bg-gray-100 w-full rounded-full focus:ring-0"
+                        placeholder='Search for creators ❤️'>
+
+                    <!-- searched users -->
+                    <div id="searched-users" class="absolute top-10 left-0 right-0 bg-gray-100 z-50 rounded-lg max-h-60 overflow-y-auto">
                     </div>
-                </form>
+                 
+                </div>
+
             </div>
 
             <div class='col-span-3'>
@@ -193,7 +198,53 @@
             <p class="text-center text-md py-4">Copyright @ <time>{{ date("Y") }}</time> Anas. All Rights Reserved ❤️</p>
         </footer>
 
-        {{ $scripts }}
+        {{ $scripts }}  
+        <script>
+
+            $(document).ready(function () {
+                //set the csrf token
+                $.ajaxSetup({
+                    headers: {
+                        "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content")
+                    }
+                });
+
+                $('#search-creators').keyup( function (e) {
+                    //reset users
+                    $('#searched-users').html(null)
+
+                    let name = $(this).val();
+
+                    if(name.trim()){
+                        
+                           $.ajax({
+                            type: "POST",
+                            url: "{{route('users.search')}}",
+                            data: {name},
+                            success:(result)=>{
+                                // get the user and the insert them as html 
+                                result.users.forEach(user => {
+                                        $('#searched-users').append(`
+                                            <a href="{{ url('/profile') }}/${user.id}">
+                                            <div class="flex items-center space-x-4 p-3 hover:bg-gray-200 rounded-lg">
+                                                <div>
+                                                    <img src="{{ asset('storage')}}/${user.profile_photo_path? user.profile_photo_path : 'default/default.png'}" class="w-8" style="clip-path:circle()" >
+                                                </div>
+                                                <span class="font-medium">${user.name}</span>
+                                            </div>
+                                        </a>
+                                    `)
+                                });
+                             
+                            }
+                        });
+                    }
+                });
+
+
+            })
+            
+        </script>
     </body>
 
 </html>
