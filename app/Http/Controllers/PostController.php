@@ -47,7 +47,7 @@ class PostController extends Controller
             'image' => $path
         ]);
 
-        return redirect()->route('prof.index',auth()->id());
+        return redirect()->route('prof.index',auth()->id())->with('success','Your post has been created');
     }
 
 

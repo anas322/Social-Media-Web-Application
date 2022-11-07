@@ -1,17 +1,35 @@
 <x-layouts.layout :$userProfilePic>
     <!-- create post -->
-    <div class="mb-4 px-4 py-3 bg-white rounded-full box-border">
-        <form>
-            <div class="flex items-center box-border">
+    <div class="flex flex-col space-y-3 mb-4 px-4 py-3 bg-white rounded-lg box-border max-h-96  transition-all duration-1000 ">
+        <form id="create-post" >
+            <div class="flex items-center box-border space-x-2">
                 <div>
                     <img src="{{$userProfilePic}}" style="clip-path:circle()" class="w-12">
                 </div>
+
                 <textarea class="w-full focus:ring-0 resize-none align-center rounded-full border-none h-10"
-                    placeholder="What's in your mind?"></textarea>
-                <button type="submit"
-                    class="h-auto text-white bg-indigo-600 rounded-full text-lg px-8 py-2 font-medium hover:text-indigo-600 hover:bg-white hover:ring-1 hover:ring-indigo-600 transition">Post</button>
+                    name="caption" placeholder="What's in your mind?" id="caption"></textarea>
+
+                <div>
+                    <label for="file-upload" class="custom-file-upload">
+                        <img src="{{ asset('images/upload-image.svg') }}" class="w-12 hover:cursor-pointer">
+                    </label>
+                    <input  type="file" id="file-upload" name="image"
+                        class="absolute w-px h-px p-0 -m-px overflow-hidden border-0" style="clip:rect(0,0,0,0)" />
+                </div>
+
+                <input type="submit" name="upload"
+                    class="h-auto text-white bg-indigo-600 rounded-full text-lg px-8 py-2 font-medium hover:cursor-pointer hover:text-indigo-600 hover:bg-white hover:ring-1 hover:ring-indigo-600 transition"
+                    value="Post" />
+
             </div>
         </form>
+
+        <div class="relative hidden" id="temporaryImageWrapper">
+            <img  id="temporaryImage"  src=""
+            class="rounded-md  object-cover w-full max-h-72 "><span id="deleteTemporaryImage" class="absolute right-4 top-2 text-lg hover:cursor-pointer py-1 px-2 rounded-lg transition duration-700 font-bold text-white bg-gray-500/70 ">X</span></img>
+        </div>
+            
     </div>
 
     <!-- posts  -->
@@ -35,6 +53,47 @@
                         "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content")
                     }
                 });
+                
+                //create the post reqest
+                
+                $('#create-post').on('submit', function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: "POST",
+                        url: "{{route('post.store')}}",
+                        data: new FormData(this),
+                        dataType:'JSON',
+                        processData: false,
+                        cache:false,
+                        contentType: false,
+                        complete:(xhr)=>{
+                            if(xhr.status == 200 && xhr.statusText == 'OK'){
+                                temporaryImage();
+                                $("#caption").val("");
+                            }else{
+                                console.log("somthing wrong occured"); //error handle
+                            }
+                        }
+                    });
+
+                });
+
+                $("#file-upload").on('change',function (e){
+                    const file = e.target.files[0];
+                    document.querySelector("#temporaryImage").src = URL.createObjectURL(file)
+                     $("#temporaryImageWrapper").removeClass('hidden');
+                })
+
+                $("#deleteTemporaryImage").click(()=>{
+                   temporaryImage();
+                })
+
+                const  temporaryImage = () =>{
+                    //delete the temporary file upload and hide the empty element
+                    $("#file-upload").val(null);
+                    document.querySelector("#temporaryImage").src = "";
+                    $("#temporaryImageWrapper").addClass('hidden');
+                }
 
                 $(".submit-widget").click(function (e) {
                     e.preventDefault();
@@ -150,6 +209,6 @@
 
         </script>
 
-    </x-slot>
+        </x-slot>
 
 </x-layouts.layout>
