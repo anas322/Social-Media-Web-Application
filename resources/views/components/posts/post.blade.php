@@ -152,7 +152,7 @@
 
         <!-- add comment section  -->
 
-        <div>
+        <div id="comment-section">
             <hr>
             <form>
                 <div class='flex items-center justify-between pt-2 form'>

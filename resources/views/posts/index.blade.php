@@ -185,20 +185,27 @@
                         },
                         success: (result) => {
                             console.log(result.success);
+                            
+                            //empty the input field
+                            $('input[name=comment_text]').val("")
+                            
+                            //add the new field to the comments section
+                            const element = ` <div class="flex items-start justify-start space-x-3">
+                                            <div class="pt-1">
+                                                <img src="${result.imagePath}"
+                                                    class="w-10" style="clip-path:circle()">
+                                            </div>
 
-                            $(`div[data-id=${postdata[0].value}]`).append($(` <div class="flex items-start justify-start space-x-3">
-                            <div class="pt-1">
-                                <img src="${result.imagePath}"
-                                    class="w-10" style="clip-path:circle()">
-                            </div>
+                                            <div class="flex flex-col space-y-1">
+                                                <p class="text-slate-800">${result.comment_user_name}<span
+                                                        class="text-xs pl-4 text-gray-400"> ${result.comment_created_at}
+                                                    </span></p>
+                                                <p class="text-md font-serif">${result.comment_text}</p>
+                                            </div>
+                                            </div>`
 
-                            <div class="flex flex-col space-y-1">
-                                <p class="text-slate-800">${result.comment_user_name}<span
-                                        class="text-xs pl-4 text-gray-400"> ${result.comment_created_at}
-                                    </span></p>
-                                <p class="text-md font-serif">${result.comment_text}</p>
-                            </div>
-                        </div>`))
+                            $(`div[data-id=${postdata[0].value}]`).append(element)
+                            $(this).parents("#comment-section").prepend(element)
                         },
                         error:(xhr, status) =>{
                             if(status == 'error'){
