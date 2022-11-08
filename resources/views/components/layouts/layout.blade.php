@@ -10,7 +10,7 @@
         @vite(['resources/css/app.css'])
     </head>
 
-    <body class='bg-gray-100 container mx-auto'>
+    <body class='bg-gray-100 container mx-auto w-full overflow-x-hidden'>
         <header class='grid grid-cols-12 gap-x-6 px-2 py-3 bg-white rounded-b-lg'>
 
             <div class='col-span-3 ml-4'>
@@ -147,7 +147,7 @@
 
                 <div class="my-4  flex justify-center">
                     <a href="{{route('post.create')}}"
-                        class="h-auto text-white bg-indigo-600 rounded-full text-lg w-full py-2 text-center font-medium hover:bg-indigo-500">create
+                        class="h-auto text-white bg-indigo-600 rounded-full text-lg w-full py-2 text-center font-medium hover:cursor-pointer hover:text-indigo-600 hover:bg-white hover:ring-1 hover:ring-indigo-600 transition">create
                         post</a>
                 </div>
             </aside>
