@@ -11,6 +11,9 @@
     </head>
 
     <body class='bg-gray-100 container mx-auto w-full overflow-x-hidden'>
+
+        <div id="errors-area" class="fixed top-10 left-0 z-50 flex flex-col gap-y-1 max-h-72 overflow-y-auto"></div>
+
         <header class='grid grid-cols-12 gap-x-6 px-2 py-3 bg-white rounded-b-lg'>
 
             <div class='col-span-3 ml-4'>
@@ -245,6 +248,7 @@
             })
             
         </script>
+        <script src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.js"></script>
     </body>
 
 </html>

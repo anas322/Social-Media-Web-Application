@@ -25,3 +25,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #1768d3; 
 }
+
+#errors-area::-webkit-scrollbar{
+display: none;
+}

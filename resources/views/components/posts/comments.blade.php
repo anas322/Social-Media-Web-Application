@@ -1,5 +1,5 @@
  <div onclick="previewPost(event,{{ $post->id }})"
-     class="toggle-window fixed z-50 w-full right-0 top-0 left-0 bottom-0 " style=" background: rgba(0, 0, 0,0.2);">
+     class="toggle-window fixed z-40 w-full right-0 top-0 left-0 bottom-0 " style=" background: rgba(0, 0, 0,0.2);">
      <span
          class="toggle-window absolute right-4 top-2 text-lg hover:cursor-pointer py-1 px-2 rounded-lg transition duration-700 font-bold hover:bg-gray-500/25">X</span>
      <div
