@@ -19,7 +19,7 @@
                             class="w-12" style="clip-path:circle()">
                         </a>
                     </div>
-                    <p class='text-slate-800 font-semibold'>{{ $post->user->name }}</p>
+                    <p class='text-darkText-200 font-semibold'>{{ $post->user->name }}</p>
                 </div>
                 <hr>
                 <div class="h-full">
@@ -36,10 +36,10 @@
 
                             <div>
                                 <div class="flex flex-col space-y-1">
-                                    <p class='text-slate-800 font-semibold'>{{ $comment->user->name }}<span
+                                    <p class='text-darkText-200 font-semibold'>{{ $comment->user->name }}<span
                                             class="text-xs pl-4 text-gray-400 font-normal"> {{ $comment->created_at }}
                                         </span></p>
-                                    <p class="text-md font-serif">{{$comment->comment_text}}</p>
+                                    <p class="text-md font-serif text-darkText-100">{{$comment->comment_text}}</p>
 
                                 </div>
                             </div>
@@ -130,7 +130,7 @@
                                 class='w-full border-none focus:ring-0 rounded-full bg-gray-50 '
                                 placeholder="Add a comment...😊">
                             <input type="submit"
-                                class=' submit-comment text-blue-500 hover:cursor-pointer font-semibold ml-2 ring-1 ring-blue-500 hover:bg-blue-500/10 py-2 px-4 rounded-full transition duration-500'
+                                class=' submit-comment text-white hover:cursor-pointer font-semibold ml-2 ring-1 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br py-2 px-4 rounded-full transition duration-500'
                                 value="Post" />
                         </div>
                         <span class='error text-red-600 text-sm'></span>

@@ -20,7 +20,7 @@
 
                 <a href="{{ route('post.index') }}" class="flex items-center space-x-1">
                     <object data="{{asset('images/logo.svg')}}" class="block h-12 w-auto">
-                    </object><span class='text-2xl font-bold' style="font-family: 'Sofia', cursive;">memes</span>
+                    </object><span class='text-2xl font-bold text-darkText-200' style="font-family: 'Sofia', cursive;">memes</span>
 
                 </a>
             </div>
@@ -60,7 +60,7 @@
                             style='clip-path : circle()' class='block h-16 w-auto'></a>
                     <div>
                         <a href="{{ route('prof.index',auth()->id()) }}">
-                            <strong>{{auth()->user()->name}}</strong>
+                            <strong class="text-darkText-200">{{auth()->user()->name}}</strong>
                         </a>
                         <p class='text-gray-400'>{{auth()->user()->email}}</p>
                     </div>
@@ -70,15 +70,15 @@
                 <div class='flex flex-col bg-white rounded-2xl overflow-hidden'>
                     <a href="{{ route('post.index') }}">
 
-                        <div @class(["bg-gray-100 border-l-4 border-blue-600"=> Route::currentRouteName() ==
+                        <div @class(["bg-gray-200 border-l-4 border-blue-600"=> Route::currentRouteName() ==
                             'post.index','flex items-center
-                            space-x-8 py-6 pl-10 hover:bg-gray-100 hover:border-l-4 hover:border-blue-600
+                            space-x-8 py-6 pl-10 hover:bg-gray-200 hover:border-l-4 hover:border-blue-600
                             hover:cursor-pointer transition duration-500']) >
                             <div>
                                 <object data="{{asset('images/home-icon.svg')}}" class="block  w-6"></object>
                             </div>
                             <span @class(["text-blue-600"=> Route::currentRouteName() ==
-                                'post.index','capitalize','font-semibold'])>home</span>
+                                'post.index','capitalize','text-darkText-100','font-semibold'])>home</span>
                         </div>
                     </a>
 
@@ -86,7 +86,7 @@
                         <div>
                             <object data="{{asset('images/explore.svg')}}" class="block  w-6"></object>
                         </div>
-                        <strong class='capitalize font-semibold'>explore</strong>
+                        <strong class='capitalize ,'text-darkText-100',ont-semibold'>explore</strong>
                     </div> -->
 
                     <div class='flex items-center space-x-8 py-6 pl-10 '>
@@ -98,7 +98,7 @@
                                 <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500 "></span>
                             </span>
                         </div>
-                        <span class='capitalize font-semibold'>notifications </span>
+                        <span class='capitalize text-darkText-100 font-semibold '>notifications </span>
                     </div>
 
                     <div class='flex items-center space-x-8 py-6 pl-10 '>
@@ -110,20 +110,20 @@
                                 <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500 "></span>
                             </span>
                         </div>
-                        <span class='capitalize font-semibold'>messages</span>
+                        <span class='capitalize text-darkText-100 font-semibold'>messages</span>
                     </div>
 
                     <a href="{{ route('bookmark.index') }}">
-                        <div @class(["bg-gray-100 border-l-4 border-blue-600"=> Route::currentRouteName() ==
+                        <div @class(["bg-gray-200 border-l-4 border-blue-600"=> Route::currentRouteName() ==
                             'bookmark.index','flex items-center
-                            space-x-8 py-6 pl-10 hover:bg-gray-100 hover:border-l-4 hover:border-blue-600
+                            space-x-8 py-6 pl-10 hover:bg-gray-200 hover:border-l-4 hover:border-blue-600
                             hover:cursor-pointer transition duration-500 ']) >
 
                             <div>
                                 <object data="{{asset('images/bookmarks.svg')}}" class="block  w-6"></object>
                             </div>
                             <span @class(["text-blue-600"=> Route::currentRouteName() ==
-                                'bookmark.index','capitalize','font-semibold'])>bookmarks</span>
+                                'bookmark.index','capitalize','text-darkText-100','font-semibold'])>bookmarks</span>
 
                         </div>
                     </a>
@@ -132,25 +132,25 @@
                         <div>
                             <object data="{{asset('images/theme.svg')}}" class="block  w-8"></object>
                         </div>
-                        <span class='capitalize font-semibold'>theme</span>
+                        <span class='capitalize ,'text-darkText-100',ont-semibold'>theme</span>
                     </div> -->
                     <a href="{{ route('profile.show') }}">
-                        <div @class(["bg-gray-100 border-l-4 border-blue-600"=> Route::currentRouteName() ==
+                        <div @class(["bg-gray-200 border-l-4 border-blue-600"=> Route::currentRouteName() ==
                             'profile.show','flex items-center
-                            space-x-8 py-6 pl-10 hover:bg-gray-100 hover:border-l-4 hover:border-blue-600
+                            space-x-8 py-6 pl-10 hover:bg-gray-200 hover:border-l-4 hover:border-blue-600
                             hover:cursor-pointer transition duration-500 ']) >
                             <div>
                                 <object data="{{asset('images/settings.svg')}}" class="block  w-6"></object>
                             </div>
                             <span @class(["text-blue-600"=> Route::currentRouteName() ==
-                                'profile.show','capitalize','font-semibold'])>settings</span>
+                                'profile.show','capitalize','text-darkText-100','font-semibold'])>settings</span>
                         </div>
                     </a>
                 </div>
 
                 <div class="my-4  flex justify-center">
                     <a href="{{route('post.create')}}"
-                        class="h-auto text-white bg-indigo-600 rounded-full text-lg w-full py-2 text-center font-medium hover:cursor-pointer hover:text-indigo-600 hover:bg-white hover:ring-1 hover:ring-indigo-600 transition">create
+                        class="h-auto text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br rounded-full text-lg w-full py-2 text-center font-medium hover:cursor-pointer  hover:bg-white hover:ring-1 hover:ring-indigo-600 transition">create
                         post</a>
                 </div>
             </aside>
@@ -164,7 +164,7 @@
             <aside class=" col-span-3 row-span-2 rounded-2xl">
                 <div class='flex flex-col space-y-5 p-4 bg-white rounded-2xl overflow-hidden'>
                     <div>
-                        <span class='capitalize text-lg'>latest followers</span>
+                        <span class='capitalize text-darkText-100 text-lg'>latest followers</span>
                         <hr>
                     </div>
 
@@ -181,7 +181,7 @@
                                         src="{{ $follower->profile_photo_path ? asset('storage/' . $follower->profile_photo_path) : asset('storage') . '/default/default.png' }}"
                                         class='block h-11 w-auto rounded-xl'></div>
 
-                                <span class='text-lg text-slate-700 font-medium'>{{ $follower->name }}</span>
+                                <span class='text-lg text-darkText-200 font-medium'>{{ $follower->name }}</span>
                             </div>
                         </a>
 

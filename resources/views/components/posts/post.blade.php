@@ -12,14 +12,14 @@
             </div>
 
             <div>
-                <p><strong class='text-lg'>{{$post->user->name}}</strong></p>
+                <p><strong class='text-lg text-darkText-200'>{{$post->user->name}}</strong></p>
                 <small class="text-gray-500 font-semibold">{{$post->created_at}}</small>
             </div>
         </div>
 
         <!-- caption  -->
         <div>
-            @if(Str::length($post->caption) <= 150) <p class="text-gray-900">
+            @if(Str::length($post->caption) <= 150) <p class="text-darkText-100">
                 {{ $post->caption}}
                 </p>
 
@@ -126,11 +126,11 @@
                 @endforeach
             </div>
             
-            <p class='text-lg'>liked by @if( $post->likes->first()->user->name ?? null)
-                <strong>{{ $post->likes->first()->user->name }}</strong>@endif
+            <p class='text-lg text-darkText-100'>liked by @if( $post->likes->first()->user->name ?? null)
+                <strong class="text-darkText-200">{{ $post->likes->first()->user->name }}</strong>@endif
 
                 @if($post->likes->count() >= 2)
-                and <strong> {{$post->likes->count() - 1}} others </strong>
+                and <strong class="text-darkText-200"> {{$post->likes->count() - 1}} others </strong>
             </p>
             @endif
         </div>
@@ -159,7 +159,7 @@
                     <input type="hidden" name="postId" value="{{$post->id}}">
                     <input type="text" name='comment_text' class='w-full border-none focus:ring-0 rounded-full bg-gray-50'
                         placeholder="Add a comment...😊">
-                    <input type="submit" class=' submit-comment  text-white bg-indigo-600 rounded-full text-lg px-4 py-2 ml-2 font-medium hover:cursor-pointer hover:text-indigo-600 hover:bg-white hover:ring-1 hover:ring-indigo-600 transition' value="Post" />
+                    <input type="submit" class=' submit-comment  text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br rounded-full text-lg px-4 py-2 ml-2 font-medium hover:cursor-pointer  hover:bg-white hover:ring-1 hover:ring-indigo-600 transition' value="Post" />
                 </div>
                 <span class='error text-red-600 text-sm'></span>
             </form>

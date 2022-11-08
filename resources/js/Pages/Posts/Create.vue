@@ -69,7 +69,7 @@
                     <div class="float-right">
                         
                         <button type="submit"
-                            class="px-8 py-2 text-white font-semibold bg-blue-500 hover:bg-blue-600 rounded-full disabled:bg-gray-400"
+                            class="px-8 py-2 text-white font-semibold bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br hover:bg-blue-600 rounded-full disabled:bg-gray-400"
                             :disabled="form.processing">Post</button>
                     </div>
                 </form>

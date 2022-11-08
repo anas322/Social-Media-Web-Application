@@ -14,6 +14,12 @@ module.exports = {
             fontFamily: {
                 sans: [ 'Montserrat' , ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+             darkText:{
+                100:"#49607e",
+                200:"#1d3a5f"
+             }
+            },
         },
     },
 

@@ -51,11 +51,11 @@
                     <div class="mb-6 flex justify-between">
                         <div>
                             <div class="flex space-x-8 ">
-                                <h1 class="font-bold text-2xl pb-2 capitalize">{{props.userObject.name}}</h1>
+                                <h1 class="font-bold text-2xl pb-2 capitalize text-darkText-200">{{props.userObject.name}}</h1>
 
                                 <div v-if="props.canEditProfile">
                                     <Link :href="route('prof.edit',props.userObject)"
-                                        class="px-8 py-1 text-gray-900 hover:bg-slate-700/5 font-normal ring-1 ring-slate-600  transition rounded-lg">
+                                        class="px-8 py-1 text-blue-900 hover:bg-blue-700/5 font-normal ring-1 ring-blue-500  transition rounded-lg">
                                     Edit</Link>
                                 </div>
                                 <template v-if="!canEditProfile">
@@ -65,30 +65,30 @@
 
                             <div class="space-x-5">
                                 <span>
-                                    <strong>{{props.postsCount}}</strong> posts
+                                    <strong class="text-darkText-200">{{props.postsCount}}</strong> posts
                                 </span>
 
                                 <span>
-                                    <strong>{{props.followersCount}}</strong> followers
+                                    <strong class="text-darkText-200">{{props.followersCount}}</strong> followers
                                 </span>
 
                                 <span>
-                                    <strong>{{props.followingCount}}</strong> following
+                                    <strong class="text-darkText-200">{{props.followingCount}}</strong> following
                                 </span>
                             </div>
 
                         </div>
                         <div v-if="props.canEditProfile" class="whitespace-nowrap hidden sm:block">
                             <Link :href="route('post.create')"
-                                class="px-8 py-2 text-white font-noraml bg-blue-500 hover:bg-blue-600 rounded-md">
+                                class="px-8 py-2 text-white font-noraml bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br hover:bg-blue-600 rounded-md">
                             Create Post </Link>
                         </div>
 
                     </div>
 
                     <div>
-                        <p><strong>{{props.profile.title ?? ''}}</strong></p>
-                        <p class="text-sm">{{props.profile.description ?? ''}}</p>
+                        <p><strong class="text-darkText-200">{{props.profile.title ?? ''}}</strong></p>
+                        <p class="text-sm text-darkText-100">{{props.profile.description ?? ''}}</p>
 
 
                         <a :href="props.profile.url ?? '#'" target="_blank"
@@ -106,7 +106,7 @@
             <!-- gallery section  -->
             <div class="text-center text-4xl mb-8 ">
                 <span
-                    class="after:content-[''] after:block after:mx-auto after:bg-cyan-500 after:w-28 after:rounded-lg after:h-1 after:mt-2 ">
+                    class="after:content-[''] after:block after:mx-auto text-darkText-200 after:bg-cyan-500 after:w-28 after:rounded-lg after:h-1 after:mt-2 ">
                     Profile Posts
                 </span>
             </div>
