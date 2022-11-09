@@ -41,7 +41,7 @@
                     <div class="bg-gray-100 dark:bg-gray-500 rounded-lg flex items-center w-full relative">
                         <object data="{{asset('images/search.svg')}}"
                             class="block h-6 w-auto p-3 box-content "></object>
-                        <input type="text" id="search-creators" class="border-none bg-gray-100 dark:bg-gray-500 dark:placeholder:text-white dark:text-white w-full rounded-full focus:ring-0 transition duration-500"
+                        <input type="text" autocomplete="off" id="search-creators" class="border-none bg-gray-100 dark:bg-gray-500 dark:placeholder:text-white dark:text-white w-full rounded-full focus:ring-0 transition duration-500"
                             placeholder='Search for creators ❤️'>
 
                         <!-- searched users -->

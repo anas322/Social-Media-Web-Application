@@ -126,7 +126,7 @@
                     <form>
                         <div class='flex items-center justify-between form mt-4'>
                             <input type="hidden" name="postId" value="{{$post->id}}">
-                            <input type="text" name='comment_text'
+                            <input type="text" autocomplete="off" name='comment_text'
                                 class='w-full border-none focus:ring-0 rounded-full dark:text-white bg-gray-50 dark:bg-gray-500 dark:placeholder:text-white '
                                 placeholder="Add a comment...😊">
                             <input type="submit"

@@ -174,7 +174,7 @@
             <form>
                 <div class='flex items-center justify-between pt-2 form'>
                     <input type="hidden" name="postId" value="{{$post->id}}">
-                    <input type="text" name='comment_text' class='w-full border-none focus:ring-0 rounded-full bg-gray-50 dark:text-white dark:placeholder:text-white dark:bg-gray-500'
+                    <input type="text" autocomplete="off" name='comment_text' class='w-full border-none focus:ring-0 rounded-full bg-gray-50 dark:text-white dark:placeholder:text-white dark:bg-gray-500'
                         placeholder="Add a comment...😊">
                     <input type="submit" class=' submit-comment  text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br rounded-full text-lg px-4 py-2 ml-2 font-medium hover:cursor-pointer  hover:bg-white hover:ring-1 hover:ring-indigo-600 transition' value="Post" />
                 </div>

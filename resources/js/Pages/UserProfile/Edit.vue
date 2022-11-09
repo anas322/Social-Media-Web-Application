@@ -39,28 +39,28 @@
                     <form class="mt-16 space-y-4" @submit.prevent="  form.post(props.url,form)">
                         <div class="space-y-2">
                             <span class="block capitalize font-semibold text-lg">title :</span>
-                           <input type="text" v-model="form.title" class="rounded-md w-full border-none" placeholder="title..." >
+                           <input type="text" autocomplete="off"  v-model="form.title" class="rounded-md w-full border-none" placeholder="title..." >
                            <span v-if="form.errors.title" class="text-sm text-red-600 block p-1 ">{{form.errors.title}}
                         </span>
                         </div>
     
                         <div class="space-y-2">
                             <span class="block capitalize font-semibold text-lg">description :</span>
-                           <input type="text" v-model="form.description" class="rounded-md w-full border-none" placeholder="description..." >
+                           <input type="text" autocomplete="off" v-model="form.description" class="rounded-md w-full border-none" placeholder="description..." >
                             <span v-if="form.errors.description" class="text-sm text-red-600 block p-1 ">{{form.errors.description}}
                         </span>
                         </div>
 
                         <div class="space-y-2">
                             <span class="block capitalize font-semibold text-lg">URL Text :</span>
-                           <input type="text" v-model="form.url_text" class="rounded-md w-full border-none" placeholder="URL text..." >
+                           <input type="text" autocomplete="off" v-model="form.url_text" class="rounded-md w-full border-none" placeholder="URL text..." >
                             <span v-if="form.errors.url_text" class="text-sm text-red-600 block p-1 ">{{form.errors.url_text}}
                         </span>
                         </div>
                         
                         <div class="space-y-2">
                             <span class="block capitalize font-semibold text-lg">URL :</span>
-                           <input type="text" v-model="form.url" class="rounded-md w-full border-none" placeholder="URL..." >
+                           <input type="text" autocomplete="off" v-model="form.url" class="rounded-md w-full border-none" placeholder="URL..." >
                             <span v-if="form.errors.url" class="text-sm text-red-600 block p-1 ">{{form.errors.url}}
                         </span>
                         </div>
