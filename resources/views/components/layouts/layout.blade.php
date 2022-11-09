@@ -18,7 +18,7 @@
 </script>
     </head>
 
-    <body class='bg-gray-100 dark:bg-slate-800 container mx-auto w-full overflow-x-hidden transition duration-500'>
+    <body class='bg-gray-100 dark:bg-slate-800 px- md:px-8 lg:container mx-auto w-full overflow-x-hidden transition duration-500'>
         <x-utilities.loading />
         
         <div id='loading-page-toggle' class="hidden">
@@ -38,10 +38,10 @@
 
                 <div class='col-span-6'>
 
-                    <div class="bg-gray-100 dark:bg-gray-500 rounded-lg flex items-center w-full relative">
+                    <div class=" bg-gray-100 dark:bg-gray-500 rounded-lg flex items-center w-11/12 mx-auto  md:w-full relative">
                         <object data="{{asset('images/search.svg')}}"
                             class="block h-6 w-auto p-3 box-content "></object>
-                        <input type="text" autocomplete="off" id="search-creators" class="border-none bg-gray-100 dark:bg-gray-500 dark:placeholder:text-white dark:text-white w-full rounded-full focus:ring-0 transition duration-500"
+                        <input type="text" autocomplete="off" id="search-creators" class="text-sm lg:text-normal border-none bg-gray-100 dark:bg-gray-500 dark:placeholder:text-white dark:text-white w-full rounded-full focus:ring-0 transition duration-500"
                             placeholder='Search for creators ❤️'>
 
                         <!-- searched users -->
@@ -61,9 +61,11 @@
                     
                     </div>
 
+    
+
                 </div>
 
-                <div  class="flex  items-center space-x-4 col-span-3 justify-self-center">
+                <div  class="flex  items-center space-x-2 -ml-8 md:ml-0 md:space-x-4 col-span-3 justify-self-center">
                     
                         <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 ">
                             <svg id="theme-toggle-dark-icon" class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
@@ -71,7 +73,7 @@
                         </button>
                 
 
-                    <div>
+                    <div class="shrink-0">
                         <div class="pl-8">
                             <a href="{{route('prof.index',auth()->user()->id)}}">
                                 <img src="{{$userProfilePic}}" style="clip-path:circle()" class="w-9">
@@ -84,12 +86,12 @@
 
             <section class="grid grid-cols-12 gap-x-6 my-2 auto-rows-min max-w-screen-2xl mx-auto">
                 <!-- side left -->
-                <aside class="col-span-3 row-span-2">
+                <aside class="lg:col-span-3 col-span-2 row-span-2">
 
-                    <div class='flex items-center lg:space-x-10 py-4 pl-4 rounded-2xl mb-4 bg-white dark:bg-slate-700 transition duration-500'>
+                    <div class='flex items-center justify-center lg:justify-start lg:space-x-5 py-4 lg:pl-4 rounded-2xl mb-4 bg-white dark:bg-slate-700 transition duration-500'>
                         <a href="{{ route('prof.index',auth()->id()) }}" class="shrink-0"><img src="{{$userProfilePic}}"
                                 style='clip-path : circle()' class='block h-16 w-auto'></a>
-                        <div>
+                        <div class="hidden lg:inline-block">
                             <a href="{{ route('prof.index',auth()->id()) }}">
                                 <strong class="text-darkText-200 dark:text-white">{{auth()->user()->name}}</strong>
                             </a>
@@ -103,96 +105,96 @@
 
                             <div @class(["bg-gray-200 dark:bg-slate-600 border-l-4 border-blue-600"=> Route::currentRouteName() ==
                                 'post.index','flex items-center
-                                space-x-8 py-6 pl-10 hover:bg-gray-200 dark:hover:bg-slate-600 hover:border-l-4 hover:border-blue-600
+                                space-x-3 lg:space-x-8 justify-center lg:justify-start py-6 pl-2 lg:pl-10  hover:bg-gray-200 dark:hover:bg-slate-600 hover:border-l-4 hover:border-blue-600
                                 hover:cursor-pointer transition duration-500']) >
                                 <div>
-                                    <object data="{{asset('images/home-icon.svg')}}" class="block w-6"></object>
+                                    <img src="{{asset('images/home-icon.svg')}}" class="block w-9 lg:w-6" />
                                 </div>
                                 <span @class(["text-blue-600"=> Route::currentRouteName() ==
-                                    'post.index','capitalize','text-darkText-100','font-semibold','dark:text-white'])>home</span>
+                                    'post.index','capitalize','text-darkText-100','font-semibold','dark:text-white','lg:inline-block','hidden'])>home</span>
                             </div>
                         </a>
 
-                        <!-- <div class='flex items-center space-x-8 py-6 pl-10 '>
+                        <!-- <div class='flex items-center space-x-3 lg:space-x-8 py-6 pl-2 lg:pl-10  '>
                             <div>
-                                <object data="{{asset('images/explore.svg')}}" class="block  w-6"></object>
+                                <img src="{{asset('images/explore.svg')}}" class="block w-9 lg:w-6" />
                             </div>
                             <strong class='capitalize ,'text-darkText-100',ont-semibold'>explore</strong>
                         </div> -->
 
-                        <div class='flex items-center space-x-8 py-6 pl-10 '>
+                        <div class='flex items-center space-x-3 lg:space-x-8 py-6 pl-2 lg:pl-10  justify-center lg:justify-start'>
                             <div class='relative'>
-                                <object data="{{asset('images/notify.svg')}}" class="block  w-6"></object>
+                                <img src="{{asset('images/notify.svg')}}" class="block w-9 lg:w-6" />
                                 <span class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
                                     <span
                                         class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                                     <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500 "></span>
                                 </span>
                             </div>
-                            <span class='capitalize text-darkText-100 font-semibold dark:text-white '>notifications </span>
+                            <span class='capitalize text-darkText-100 font-semibold dark:text-white lg:inline-block hidden'>notifications </span>
                         </div>
 
-                        <div class='flex items-center space-x-8 py-6 pl-10 '>
+                        <div class='flex items-center space-x-3 lg:space-x-8 py-6 pl-2 lg:pl-10  justify-center lg:justify-start'>
                             <div class='relative'>
-                                <object data="{{asset('images/messages.svg')}}" class="block  w-6"></object>
+                                <img src="{{asset('images/messages.svg')}}" class="block w-9 lg:w-6" />
                                 <span class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
                                     <span
                                         class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                                     <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500 "></span>
                                 </span>
                             </div>
-                            <span class='capitalize text-darkText-100 font-semibold dark:text-white'>messages</span>
+                            <span class='capitalize text-darkText-100 font-semibold dark:text-white lg:inline-block hidden'>messages</span>
                         </div>
 
                         <a href="{{ route('bookmark.index') }}">
                             <div @class(["bg-gray-200 dark:bg-slate-600 border-l-4 border-blue-600"=> Route::currentRouteName() ==
                                 'bookmark.index','flex items-center
-                                space-x-8 py-6 pl-10 hover:bg-gray-200 dark:hover:bg-slate-600 hover:border-l-4 hover:border-blue-600
+                                space-x-3 lg:space-x-8 justify-center lg:justify-start py-6 pl-2 lg:pl-10  hover:bg-gray-200 dark:hover:bg-slate-600 hover:border-l-4 hover:border-blue-600
                                 hover:cursor-pointer transition duration-500 ']) >
 
                                 <div>
-                                    <object data="{{asset('images/bookmarks.svg')}}" class="block  w-6"></object>
+                                    <img src="{{asset('images/bookmarks.svg')}}" class="block w-9 lg:w-6" />
                                 </div>
                                 <span @class(["text-blue-600"=> Route::currentRouteName() ==
-                                    'bookmark.index','capitalize','text-darkText-100','font-semibold' ,'dark:text-white'])>bookmarks</span>
+                                    'bookmark.index','capitalize','text-darkText-100','font-semibold' ,'dark:text-white','lg:inline-block','hidden'])>bookmarks</span>
 
                             </div>
                         </a>
 
-                        <!-- <div class='flex items-center space-x-8 py-6 pl-10 '>
+                        <!-- <div class='flex items-center space-x-3 lg:space-x-8 py-6 pl-2 lg:pl-10  '>
                             <div>
-                                <object data="{{asset('images/theme.svg')}}" class="block  w-8"></object>
+                                <img src="{{asset('images/theme.svg')}}" class="block  w-8" />
                             </div>
                             <span class='capitalize ,'text-darkText-100',ont-semibold'>theme</span>
                         </div> -->
                         <a href="{{ route('profile.show') }}">
                             <div @class(["bg-gray-200 dark:bg-slate-600 border-l-4 border-blue-600"=> Route::currentRouteName() ==
                                 'profile.show','flex items-center
-                                space-x-8 py-6 pl-10 hover:bg-gray-200 dark:hover:bg-slate-600 hover:border-l-4 hover:border-blue-600
+                                space-x-3 lg:space-x-8 justify-center lg:justify-start py-6 pl-2 lg:pl-10  hover:bg-gray-200 dark:hover:bg-slate-600 hover:border-l-4 hover:border-blue-600
                                 hover:cursor-pointer transition duration-500 ']) >
                                 <div>
-                                    <object data="{{asset('images/settings.svg')}}" class="block  w-6"></object>
+                                    <img src="{{asset('images/settings.svg')}}" class="block w-9 lg:w-6" />
                                 </div>
                                 <span @class(["text-blue-600"=> Route::currentRouteName() ==
-                                    'profile.show','capitalize','text-darkText-100','font-semibold','dark:text-white'])>settings</span>
+                                    'profile.show','capitalize','text-darkText-100','font-semibold','dark:text-white','lg:inline-block','hidden'])>settings</span>
                             </div>
                         </a>
                     </div>
 
                     <div class="my-4  flex justify-center">
                         <a href="{{route('post.create')}}"
-                            class="h-auto text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br rounded-full text-lg w-full py-2 text-center font-medium hover:cursor-pointer  hover:bg-white hover:ring-1 hover:ring-indigo-600 transition">create
+                            class="hidden lg:inline-block h-auto text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br rounded-full text-lg w-full py-2 text-center font-medium hover:cursor-pointer  hover:bg-white hover:ring-1 hover:ring-indigo-600 transition">create
                             post</a>
                     </div>
                 </aside>
 
                 <!-- main  -->
-                <main class="col-span-6 row-span-6">
+                <main class="lg:col-span-6 lg:row-span-6 col-span-10 row-span-9">
                     {{ $slot }}
                 </main>
 
                 <!-- side right  -->
-                <aside class=" col-span-3 row-span-2 rounded-2xl">
+                <aside class=" lg:col-span-3 lg:row-span-2 col-span-4 row-span-2 lg:rounded-2xl lg:inline-block hidden">
                     <div class='flex flex-col space-y-5 p-4 bg-white dark:bg-slate-700 rounded-2xl overflow-hidden transition duration-500'>
                         <div>
                             <span class='capitalize text-darkText-100 dark:text-white text-lg'>latest followers</span>

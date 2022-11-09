@@ -7,7 +7,7 @@
                     <img src="{{$userProfilePic}}" style="clip-path:circle()" class="w-12">
                 </div>
 
-                <textarea class="w-full focus:ring-0 dark:text-white dark:bg-gray-500 dark:placeholder:text-white resize-none align-center rounded-full border-none h-10"
+                <textarea class="w-full text-sm lg:text-normal focus:ring-0 dark:text-white dark:bg-gray-500 dark:placeholder:text-white resize-none align-center rounded-full border-none h-10"
                     name="caption" placeholder="What's in your mind?"  id="caption"></textarea>
 
                 <div>
