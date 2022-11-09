@@ -28,6 +28,8 @@
         emit('cancelPreview')
     }
 
+    const toggleDropDown = ref(true);
+
 </script>
 
 
@@ -41,12 +43,31 @@
                 </div>
 
                 <div class="col-span-5 row-span-6 p-4 space-y-4 h-full">
-                    <div class='flex items-center justify-start space-x-3' >
-                        <div>
+                    <div class='flex items-center justify-between' >
+                        <div class="flex items-center justify-start space-x-3">
+
+                            <div>
                                 <img :src="post.user.profile_photo_path ? assetUrl +'/' + post.user.profile_photo_path :assetUrl + '/default/default.png'"
                                 class="w-12" style="clip-path:circle()">
+                            </div>
+                            <p class='text-slate-800 font-semibold'>{{ post.user.name }}</p>
                         </div>
-                        <p class='text-slate-800 font-semibold'>{{ post.user.name }}</p>
+
+                         <div class="relative" v-if="props.can">
+                            <button  @click="toggleDropDown = !toggleDropDown" class="text-gray-600 dark:text-white  focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"><svg class="w-6 h-6 fill-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg></button>
+
+                            <!-- Dropdown menu -->
+                            <div :class="{'hidden':toggleDropDown}" class="absolute -left-8 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 ">
+                                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
+                                    <li>
+                                        <button @click="deletePost" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 text-red-600 capitalize hover:underline hover:underline-offset-2">delete post</button>
+                                    </li>
+                                    <li>
+                                        <Link :href="route('post.edit',post)" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600  capitalize text-blue-500 hover:underline hover:underline-offset-2">Edit Post</Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <hr>
                     <div class="h-full">
@@ -91,15 +112,6 @@
                             </form>
                         </div>
 
-                        <div v-if="props.can" class="mt-8 flex justify-betweeen flex-wrap gap-4">
-                            <Link :href="route('post.edit',post)"
-                                class=" text-blue-500 hover:underline hover:underline-offset-2 rounded-full">
-                            Edit</Link>
-
-                            <button @click="deletePost"
-                                class=" text-red-500 hover:underline hover:underline-offset-2 rounded-full">
-                                Delete Post</button>
-                        </div>
                     </div>
 
                 </div>

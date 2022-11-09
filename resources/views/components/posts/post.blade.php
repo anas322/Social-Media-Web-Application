@@ -3,18 +3,35 @@
 
     <article class="space-y-4 p-4 bg-white dark:bg-slate-700 rounded-2xl transition duration-500">
         <!-- header part  -->
-        <div class="flex space-x-4">
-            <div>
-                <a href="{{route('prof.index',$post->user)}}">
-                    <img src="{{ $post->user->profile_photo_path ? asset('storage/' . $post->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
-                    style="clip-path:circle()" class="w-12">
-                </a>
+        <div class="flex justify-between">
+            <div class="flex space-x-4">
+                <div>
+                    <a href="{{route('prof.index',$post->user)}}">
+                        <img src="{{ $post->user->profile_photo_path ? asset('storage/' . $post->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
+                        style="clip-path:circle()" class="w-12">
+                    </a>
+                </div>
+                
+                <div>
+                    <p><strong class='text-lg text-darkText-200 dark:text-white'>{{$post->user->name}}</strong></p>
+                    <small class="text-gray-500 dark:text-gray-100 font-normal text-xs">{{$post->created_at}}</small>
+                </div>
             </div>
+            
+            @can('delete',$post)
+            <div>
+                <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="text-gray-600 dark:text-white  focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"><svg class="w-6 h-6 fill-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg></button>
 
-            <div>
-                <p><strong class='text-lg text-darkText-200 dark:text-white'>{{$post->user->name}}</strong></p>
-                <small class="text-gray-500 dark:text-gray-100 font-normal text-xs">{{$post->created_at}}</small>
+                <!-- Dropdown menu -->
+                <div id="dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 410px);">
+                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
+                        <li>
+                            <a href="{{ route('post.delete',$post) }}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 text-red-600 capitalize">delete post</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
+            @endcan
         </div>
 
         <!-- caption  -->
@@ -24,10 +41,10 @@
                 </p>
 
                 @else
-                <p class="text-gray-900">
+                <p class="text-gray-900 dark:text-gray-50">
                     {{ Str::substr($post->caption, 0, 150) }} <span
                         onclick="expandCaption(event,`{{ $post->caption }}`)"
-                        class='text-gray-500 dark:text-gray-50 0hover:cursor-pointer'>...view more
+                        class='text-gray-500 dark:text-gray-500 0hover:cursor-pointer hover:cursor-pointer'>...view more
                     </span>
                 </p>
                 @endif
