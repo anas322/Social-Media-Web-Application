@@ -18,7 +18,7 @@
 </script>
     </head>
 
-    <body class='bg-gray-100 dark:bg-slate-800 px-8 lg:container mx-auto w-full overflow-x-hidden transition duration-500'>
+    <body class='bg-gray-100 dark:bg-slate-800 px-8 lg:container mx-auto w-full overflow-x-hidden transition duration-500 pb-[75px] md:pb-0'>
         <x-utilities.loading />
         
         <div id='loading-page-toggle' class="hidden">
@@ -86,7 +86,7 @@
 
             <section class="grid grid-cols-12 gap-x-6 my-2 auto-rows-min max-w-screen-2xl mx-auto">
                 <!-- side left -->
-                <aside class="lg:col-span-3 col-span-2 row-span-2 fixed md:static bottom-0 left-2/4 -translate-x-2/4 md:translate-x-0 md:block w-full md:w-auto">
+                <aside class="lg:col-span-3 col-span-2 row-span-2 fixed md:static bottom-0 left-2/4 -translate-x-2/4 md:translate-x-0 md:block w-full md:w-auto z-50 md:z-10">
 
                     <div class='hidden md:flex items-center justify-center lg:justify-start lg:space-x-5 py-4 lg:pl-4 rounded-2xl mb-4 bg-white dark:bg-slate-700 transition duration-500'>
                         <a href="{{ route('prof.index',auth()->id()) }}" class="shrink-0"><img src="{{$userProfilePic}}"
@@ -229,7 +229,7 @@
                 </aside>
             </section>
 
-            <footer class="px-96">
+            <footer>
                 <hr>
                 <p class="text-center text-md py-4 dark:text-white">Copyright @ <time>{{ date("Y") }}</time> Anas. All Rights Reserved ❤️</p>
             </footer>

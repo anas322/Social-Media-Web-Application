@@ -3,13 +3,13 @@
      <span
          class="toggle-window absolute right-4 top-2 text-lg hover:cursor-pointer py-1 px-2 rounded-lg transition duration-700 font-bold bg-gray-500/25 hover:bg-gray-500/75 dark:text-white">X</span>
      <div
-         class="w-10/12 h-4/6 md:h-5/6 lg:w-9/12 xl:w-7/12 bg-white dark:bg-slate-700  absolute rounded-lg left-2/4 top-2/4 -translate-y-2/4 -translate-x-2/4 shadow-md">
+         class="w-10/12 h-[87%] sm:h-4/6 md:h-5/6 lg:w-9/12 xl:w-7/12 bg-white dark:bg-slate-700  absolute rounded-lg left-2/4 top-[45%] sm:top-2/4 -translate-y-2/4 -translate-x-2/4 shadow-md">
          <div class="grid grid-cols-12 grid-rows-6 auto-rows-min grid-flow-col h-full">
-             <div class="col-span-7 row-span-6">
+             <div class="sm:col-span-7 col-span-12 sm:row-span-6 row-span-2">
                  <img src="{{ asset('storage') . '/' . $post->image  }}" class="rounded-xl w-full h-full object-cover">
              </div>
 
-             <div class="col-span-5 p-4 space-y-4 h-full row-span-6  ">
+             <div class="sm:col-span-5 col-span-12 p-4 space-y-4 h-full sm:row-span-6 row-span-4  ">
 
                 <div class='flex items-center justify-start space-x-3' style='margin-top:-4px'>
                     <div>
@@ -23,14 +23,14 @@
                 </div>
                 <hr>
                 <div class="h-full">
-                    <div class=" space-y-5 mb-3 overflow-y-auto h-[62%] md:h-4/6" data-id="{{ $post->id }}">
+                    <div class=" space-y-5 mb-3 overflow-y-auto h-[56%] sm:h-[62%] md:h-4/6" data-id="{{ $post->id }}">
                         <!-- list all the comments  -->
                         @forelse($post->comments as $comment)
                         <div class='flex items-start  space-x-3'>
                             <div class='pt-1 flex-shrink-0'>
                                 <a href="{{ route('prof.index',$comment->user->id) }}">
                                     <img src="{{ $comment->user->profile_photo_path ? asset('storage/' . $comment->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
-                                    class="w-8 md:w-10" style="clip-path:circle()">
+                                    class="w-10" style="clip-path:circle()">
                                 </a>
                             </div>
 
@@ -60,11 +60,11 @@
 
                                 <!-- renader the like button based on wheather he liked the post or not -->
                                 @if($post->likes->contains('user_id',auth()->id()))
-                                <button type="submit" class='submit-widget w-6 md:w-auto'>
+                                <button type="submit" class='submit-widget'>
                                     <x-svg.heart type='unlike' />
                                 </button>
                                 @else
-                                <button type="submit" class='submit-widget w-6 md:w-auto'>
+                                <button type="submit" class='submit-widget'>
                                     <x-svg.heart type='like' />
                                 </button>
                                 @endif
@@ -74,13 +74,13 @@
 
                         <div onclick="previewPost(event,{{ $post->id }})">
                             <img src="{{asset('images/comments.svg')}}"
-                                class="toggle-window block h-8 md:w-auto hover:cursor-pointer transition-all duration-300 hover:scale-125 w-6 "></img>
+                                class="toggle-window block h-8 w-auto hover:cursor-pointer transition-all duration-300 hover:scale-125"></img>
                         </div>
 
                         <div>
                             <img onclick="this.nextElementSibling.classList.toggle('hidden')"
                                 src="{{asset('images/share.svg')}}"
-                                class="block h-8 md:w-auto w-6 hover:cursor-pointer hover:scale-125 transition-all duration-300"></img>
+                                class="block h-8 w-auto hover:cursor-pointer hover:scale-125 transition-all duration-300"></img>
                             <!-- share post snippet  -->
                             <div onclick="this.classList.toggle('hidden')"
                                 class='hidden fixed top-0 right-0 bottom-0 left-0'
@@ -108,11 +108,11 @@
 
                             <!-- renader the bookmark button based on wheather he bookmarked the post or not -->
                             @if($post->bookmarks->contains('user_id',auth()->id()))
-                            <button type="submit" class='submit-widget w-6 md:w-auto'>
+                            <button type="submit" class='submit-widget'>
                                 <x-svg.bookmark type='unsave' />
                             </button>
                             @else
-                            <button type="submit" class='submit-widget w-6 md:w-auto'>
+                            <button type="submit" class='submit-widget'>
                                 <x-svg.bookmark type='save' />
                             </button>
                             @endif
