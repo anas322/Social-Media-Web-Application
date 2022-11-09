@@ -253,14 +253,14 @@
                     //show spining 
                     $("#loading-spining").removeClass('hidden');
 
-                    let name = $(this).val();
+                    let name = ($(this).val()).trim();
                     
                     //remove spining if the field is empty
                     if (!name) {
                          $("#loading-spining").addClass('hidden');
                     }
 
-                    if(name.trim()){
+                    if(name){
                         
                            $.ajax({
                             type: "POST",
