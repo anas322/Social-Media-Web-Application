@@ -98,20 +98,6 @@
                          
                         </div>
 
-                        <div>
-                            <hr>
-                            <form>
-                                <div class='flex items-center justify-between form mt-4'>
-                                    <input type="hidden" name="postId" :value="post.id">
-                                    <input type="text" name='comment_text' class='w-full border-none focus:ring-0 rounded-full bg-gray-50'
-                                        placeholder="Add a comment...😊">
-                                    <input type="submit" class=' submit-comment bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br text-white hover:cursor-pointer font-medium ml-2 ring-1  py-2 px-4 rounded-full transition duration-500'
-                                        value="Post" />
-                                </div>
-                                <span class='error text-red-600 text-sm'></span>
-                            </form>
-                        </div>
-
                     </div>
 
                 </div>
