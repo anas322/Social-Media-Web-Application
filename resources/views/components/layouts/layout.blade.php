@@ -18,7 +18,7 @@
 </script>
     </head>
 
-    <body class='bg-gray-100 dark:bg-slate-800 px- md:px-8 lg:container mx-auto w-full overflow-x-hidden transition duration-500'>
+    <body class='bg-gray-100 dark:bg-slate-800 px-8 lg:container mx-auto w-full overflow-x-hidden transition duration-500'>
         <x-utilities.loading />
         
         <div id='loading-page-toggle' class="hidden">
@@ -86,9 +86,9 @@
 
             <section class="grid grid-cols-12 gap-x-6 my-2 auto-rows-min max-w-screen-2xl mx-auto">
                 <!-- side left -->
-                <aside class="lg:col-span-3 col-span-2 row-span-2">
+                <aside class="lg:col-span-3 col-span-2 row-span-2 fixed md:static bottom-0 left-2/4 -translate-x-2/4 md:translate-x-0 md:block w-full md:w-auto">
 
-                    <div class='flex items-center justify-center lg:justify-start lg:space-x-5 py-4 lg:pl-4 rounded-2xl mb-4 bg-white dark:bg-slate-700 transition duration-500'>
+                    <div class='hidden md:flex items-center justify-center lg:justify-start lg:space-x-5 py-4 lg:pl-4 rounded-2xl mb-4 bg-white dark:bg-slate-700 transition duration-500'>
                         <a href="{{ route('prof.index',auth()->id()) }}" class="shrink-0"><img src="{{$userProfilePic}}"
                                 style='clip-path : circle()' class='block h-16 w-auto'></a>
                         <div class="hidden lg:inline-block">
@@ -100,31 +100,31 @@
                     </div>
 
 
-                    <div class='flex flex-col bg-white dark:bg-slate-700 rounded-2xl overflow-hidden transition duration-500'>
+                    <div class='flex flex-row md:flex-col justify-evenly bg-white md:dark:bg-slate-700 dark:bg-slate-800 border-y-[1px] md:border-0 border-slate-600 md:rounded-2xl overflow-hidden transition duration-500'>
                         <a href="{{ route('post.index') }}">
 
                             <div @class(["bg-gray-200 dark:bg-slate-600 border-l-4 border-blue-600"=> Route::currentRouteName() ==
                                 'post.index','flex items-center
-                                space-x-3 lg:space-x-8 justify-center lg:justify-start py-6 pl-2 lg:pl-10  hover:bg-gray-200 dark:hover:bg-slate-600 hover:border-l-4 hover:border-blue-600
+                                space-x-3 lg:space-x-8  justify-center lg:justify-start py-6 pl-2 lg:pl-10 px-4 rounded-md  hover:bg-gray-200 dark:hover:bg-slate-600 hover:border-l-4 hover:border-blue-600
                                 hover:cursor-pointer transition duration-500']) >
                                 <div>
-                                    <img src="{{asset('images/home-icon.svg')}}" class="block w-9 lg:w-6" />
+                                    <img src="{{asset('images/home-icon.svg')}}" class="block w-7 md:w-9 lg:w-6" />
                                 </div>
                                 <span @class(["text-blue-600"=> Route::currentRouteName() ==
                                     'post.index','capitalize','text-darkText-100','font-semibold','dark:text-white','lg:inline-block','hidden'])>home</span>
                             </div>
                         </a>
 
-                        <!-- <div class='flex items-center space-x-3 lg:space-x-8 py-6 pl-2 lg:pl-10  '>
+                        <!-- <div class='flex items-center space-x-3 lg:space-x-8 py-6 pl-2 lg:pl-10 px-4 rounded-md  '>
                             <div>
-                                <img src="{{asset('images/explore.svg')}}" class="block w-9 lg:w-6" />
+                                <img src="{{asset('images/explore.svg')}}" class="block w-7 md:w-9 lg:w-6" />
                             </div>
                             <strong class='capitalize ,'text-darkText-100',ont-semibold'>explore</strong>
                         </div> -->
 
-                        <div class='flex items-center space-x-3 lg:space-x-8 py-6 pl-2 lg:pl-10  justify-center lg:justify-start'>
+                        <div class='flex items-center space-x-3 lg:space-x-8 py-6 pl-2 lg:pl-10 px-4 rounded-md  justify-center lg:justify-start'>
                             <div class='relative'>
-                                <img src="{{asset('images/notify.svg')}}" class="block w-9 lg:w-6" />
+                                <img src="{{asset('images/notify.svg')}}" class="block w-7 md:w-9 lg:w-6" />
                                 <span class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
                                     <span
                                         class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -134,9 +134,9 @@
                             <span class='capitalize text-darkText-100 font-semibold dark:text-white lg:inline-block hidden'>notifications </span>
                         </div>
 
-                        <div class='flex items-center space-x-3 lg:space-x-8 py-6 pl-2 lg:pl-10  justify-center lg:justify-start'>
+                        <div class='flex items-center space-x-3 lg:space-x-8 py-6 pl-2 lg:pl-10 px-4 rounded-md  justify-center lg:justify-start'>
                             <div class='relative'>
-                                <img src="{{asset('images/messages.svg')}}" class="block w-9 lg:w-6" />
+                                <img src="{{asset('images/messages.svg')}}" class="block w-7 md:w-9 lg:w-6" />
                                 <span class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
                                     <span
                                         class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -149,11 +149,11 @@
                         <a href="{{ route('bookmark.index') }}">
                             <div @class(["bg-gray-200 dark:bg-slate-600 border-l-4 border-blue-600"=> Route::currentRouteName() ==
                                 'bookmark.index','flex items-center
-                                space-x-3 lg:space-x-8 justify-center lg:justify-start py-6 pl-2 lg:pl-10  hover:bg-gray-200 dark:hover:bg-slate-600 hover:border-l-4 hover:border-blue-600
+                                space-x-3 lg:space-x-8  justify-center lg:justify-start py-6 pl-2 lg:pl-10 px-4 rounded-md  hover:bg-gray-200 dark:hover:bg-slate-600 hover:border-l-4 hover:border-blue-600
                                 hover:cursor-pointer transition duration-500 ']) >
 
                                 <div>
-                                    <img src="{{asset('images/bookmarks.svg')}}" class="block w-9 lg:w-6" />
+                                    <img src="{{asset('images/bookmarks.svg')}}" class="block w-7 md:w-9 lg:w-6" />
                                 </div>
                                 <span @class(["text-blue-600"=> Route::currentRouteName() ==
                                     'bookmark.index','capitalize','text-darkText-100','font-semibold' ,'dark:text-white','lg:inline-block','hidden'])>bookmarks</span>
@@ -161,7 +161,7 @@
                             </div>
                         </a>
 
-                        <!-- <div class='flex items-center space-x-3 lg:space-x-8 py-6 pl-2 lg:pl-10  '>
+                        <!-- <div class='flex items-center space-x-3 lg:space-x-8 py-6 pl-2 lg:pl-10 px-4 rounded-md  '>
                             <div>
                                 <img src="{{asset('images/theme.svg')}}" class="block  w-8" />
                             </div>
@@ -170,10 +170,10 @@
                         <a href="{{ route('profile.show') }}">
                             <div @class(["bg-gray-200 dark:bg-slate-600 border-l-4 border-blue-600"=> Route::currentRouteName() ==
                                 'profile.show','flex items-center
-                                space-x-3 lg:space-x-8 justify-center lg:justify-start py-6 pl-2 lg:pl-10  hover:bg-gray-200 dark:hover:bg-slate-600 hover:border-l-4 hover:border-blue-600
+                                space-x-3 lg:space-x-8  justify-center lg:justify-start py-6 pl-2 lg:pl-10 px-4 rounded-md  hover:bg-gray-200 dark:hover:bg-slate-600 hover:border-l-4 hover:border-blue-600
                                 hover:cursor-pointer transition duration-500 ']) >
                                 <div>
-                                    <img src="{{asset('images/settings.svg')}}" class="block w-9 lg:w-6" />
+                                    <img src="{{asset('images/settings.svg')}}" class="block w-7 md:w-9 lg:w-6" />
                                 </div>
                                 <span @class(["text-blue-600"=> Route::currentRouteName() ==
                                     'profile.show','capitalize','text-darkText-100','font-semibold','dark:text-white','lg:inline-block','hidden'])>settings</span>
@@ -181,15 +181,15 @@
                         </a>
                     </div>
 
-                    <div class="my-4  flex justify-center">
+                    <div class="my-4 hidden  lg:flex justify-center">
                         <a href="{{route('post.create')}}"
-                            class="hidden lg:inline-block h-auto text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br rounded-full text-lg w-full py-2 text-center font-medium hover:cursor-pointer  hover:bg-white hover:ring-1 hover:ring-indigo-600 transition">create
+                            class="h-auto text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br rounded-full text-lg w-full py-2 text-center font-medium hover:cursor-pointer  hover:bg-white hover:ring-1 hover:ring-indigo-600 transition">create
                             post</a>
                     </div>
                 </aside>
 
                 <!-- main  -->
-                <main class="lg:col-span-6 lg:row-span-6 col-span-10 row-span-9">
+                <main class="lg:col-span-6 lg:row-span-6 md:col-span-10 col-span-12 row-span-9">
                     {{ $slot }}
                 </main>
 
