@@ -1,7 +1,7 @@
 @props(['post'])
 
 
-    <article class="space-y-4 p-4 bg-white rounded-2xl">
+    <article class="space-y-4 p-4 bg-white dark:bg-slate-700 rounded-2xl transition duration-500">
         <!-- header part  -->
         <div class="flex space-x-4">
             <div>
@@ -12,14 +12,14 @@
             </div>
 
             <div>
-                <p><strong class='text-lg text-darkText-200'>{{$post->user->name}}</strong></p>
-                <small class="text-gray-500 font-semibold">{{$post->created_at}}</small>
+                <p><strong class='text-lg text-darkText-200 dark:text-white'>{{$post->user->name}}</strong></p>
+                <small class="text-gray-500 dark:text-gray-100 font-normal text-xs">{{$post->created_at}}</small>
             </div>
         </div>
 
         <!-- caption  -->
         <div>
-            @if(Str::length($post->caption) <= 150) <p class="text-darkText-100">
+            @if(Str::length($post->caption) <= 150) <p class="text-darkText-100 dark:text-gray-50">
                 {{ $post->caption}}
                 </p>
 
@@ -27,7 +27,7 @@
                 <p class="text-gray-900">
                     {{ Str::substr($post->caption, 0, 150) }} <span
                         onclick="expandCaption(event,`{{ $post->caption }}`)"
-                        class='text-gray-500 hover:cursor-pointer'>...view more
+                        class='text-gray-500 dark:text-gray-50 0hover:cursor-pointer'>...view more
                     </span>
                 </p>
                 @endif
@@ -126,11 +126,11 @@
                 @endforeach
             </div>
             
-            <p class='text-lg text-darkText-100'>liked by @if( $post->likes->first()->user->name ?? null)
-                <strong class="text-darkText-200">{{ $post->likes->first()->user->name }}</strong>@endif
+            <p class='text-lg text-darkText-100 dark:text-white'>liked by @if( $post->likes->first()->user->name ?? null)
+                <strong class="text-darkText-200 dark:text-white">{{ $post->likes->first()->user->name }}</strong>@endif
 
                 @if($post->likes->count() >= 2)
-                and <strong class="text-darkText-200"> {{$post->likes->count() - 1}} others </strong>
+                and <strong class="text-darkText-200 dark:text-white"> {{$post->likes->count() - 1}} others </strong>
             </p>
             @endif
         </div>
@@ -157,7 +157,7 @@
             <form>
                 <div class='flex items-center justify-between pt-2 form'>
                     <input type="hidden" name="postId" value="{{$post->id}}">
-                    <input type="text" name='comment_text' class='w-full border-none focus:ring-0 rounded-full bg-gray-50'
+                    <input type="text" name='comment_text' class='w-full border-none focus:ring-0 rounded-full bg-gray-50 dark:text-white dark:placeholder:text-white dark:bg-gray-500'
                         placeholder="Add a comment...😊">
                     <input type="submit" class=' submit-comment  text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br rounded-full text-lg px-4 py-2 ml-2 font-medium hover:cursor-pointer  hover:bg-white hover:ring-1 hover:ring-indigo-600 transition' value="Post" />
                 </div>

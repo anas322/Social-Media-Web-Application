@@ -3,7 +3,7 @@
      <span
          class="toggle-window absolute right-4 top-2 text-lg hover:cursor-pointer py-1 px-2 rounded-lg transition duration-700 font-bold hover:bg-gray-500/25">X</span>
      <div
-         class="w-7/12 h-5/6 bg-white absolute rounded-lg left-2/4 top-2/4 -translate-y-2/4 -translate-x-2/4 shadow-md">
+         class="w-7/12 h-5/6 bg-white dark:bg-slate-700  absolute rounded-lg left-2/4 top-2/4 -translate-y-2/4 -translate-x-2/4 shadow-md">
          <div class="grid grid-cols-12 grid-rows-6 auto-rows-min h-full">
              <div class="col-span-7 row-span-6">
                  <img src="{{ asset('storage') . '/' . $post->image  }}" class="rounded-xl w-full h-full object-cover">
@@ -19,7 +19,7 @@
                             class="w-12" style="clip-path:circle()">
                         </a>
                     </div>
-                    <p class='text-darkText-200 font-semibold'>{{ $post->user->name }}</p>
+                    <p class='text-darkText-200 dark:text-white font-semibold'>{{ $post->user->name }}</p>
                 </div>
                 <hr>
                 <div class="h-full">
@@ -36,16 +36,16 @@
 
                             <div>
                                 <div class="flex flex-col space-y-1">
-                                    <p class='text-darkText-200 font-semibold'>{{ $comment->user->name }}<span
-                                            class="text-xs pl-4 text-gray-400 font-normal"> {{ $comment->created_at }}
+                                    <p class='text-darkText-200 dark:text-white font-semibold'>{{ $comment->user->name }}<span
+                                            class="text-xs pl-4 text-gray-400  font-normal"> {{ $comment->created_at }}
                                         </span></p>
-                                    <p class="text-md font-serif text-darkText-100">{{$comment->comment_text}}</p>
+                                    <p class="text-md font-serif dark:text-white text-darkText-100">{{$comment->comment_text}}</p>
 
                                 </div>
                             </div>
                         </div>
                         @empty
-                        <span class="text-gray-500 text-center block">No Comments 😪</span>
+                        <span class="text-gray-500 text-center dark:text-white block">No Comments 😪</span>
                         @endforelse
                     </div>
                 
@@ -127,7 +127,7 @@
                         <div class='flex items-center justify-between form mt-4'>
                             <input type="hidden" name="postId" value="{{$post->id}}">
                             <input type="text" name='comment_text'
-                                class='w-full border-none focus:ring-0 rounded-full bg-gray-50 '
+                                class='w-full border-none focus:ring-0 rounded-full dark:text-white bg-gray-50 dark:bg-gray-500 dark:placeholder:text-white '
                                 placeholder="Add a comment...😊">
                             <input type="submit"
                                 class=' submit-comment text-white hover:cursor-pointer font-semibold ml-2 ring-1 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br py-2 px-4 rounded-full transition duration-500'

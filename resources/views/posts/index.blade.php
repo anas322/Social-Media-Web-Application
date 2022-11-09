@@ -1,14 +1,14 @@
 <x-layouts.layout :$userProfilePic>
     <!-- create post -->
-    <div class="flex flex-col space-y-3 mb-4 px-4 py-3 bg-white rounded-lg box-border max-h-96  transition-all duration-1000 ">
+    <div class="flex flex-col space-y-3 mb-4 px-4 py-3 bg-white dark:bg-gray-500 rounded-lg box-border max-h-96  transition-all duration-500 ">
         <form id="create-post" >
             <div class="flex items-center box-border space-x-2">
                 <div>
                     <img src="{{$userProfilePic}}" style="clip-path:circle()" class="w-12">
                 </div>
 
-                <textarea class="w-full focus:ring-0 resize-none align-center rounded-full border-none h-10"
-                    name="caption" placeholder="What's in your mind?" id="caption"></textarea>
+                <textarea class="w-full focus:ring-0 dark:text-white dark:bg-gray-500 dark:placeholder:text-white resize-none align-center rounded-full border-none h-10"
+                    name="caption" placeholder="What's in your mind?"  id="caption"></textarea>
 
                 <div>
                     <label for="file-upload" class="custom-file-upload">
@@ -27,7 +27,7 @@
 
         <div class="relative hidden" id="temporaryImageWrapper">
             <img  id="temporaryImage"  src=""
-            class="rounded-md  object-cover w-full max-h-72 "><span id="deleteTemporaryImage" class="absolute right-4 top-2 text-lg hover:cursor-pointer py-1 px-2 rounded-lg transition duration-700 font-bold text-white bg-gray-500/70 ">X</span></img>
+            class="rounded-md  object-cover w-full max-h-72 "><span id="deleteTemporaryImage" class="absolute right-4 top-2 text-lg hover:cursor-pointer py-1 px-2 rounded-lg transition duration-500 font-bold text-white bg-gray-500/70 ">X</span></img>
         </div>
             
     </div>
