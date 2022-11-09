@@ -14,7 +14,7 @@
                 
                 <div>
                     <p><strong class='text-lg text-darkText-200 dark:text-white'>{{$post->user->name}}</strong></p>
-                    <small class="text-gray-500 dark:text-gray-100 font-normal text-xs">{{$post->created_at}}</small>
+                    <small class="text-gray-500 dark:text-gray-400 font-normal text-[10px] ">{{$post->created_at}}</small>
                 </div>
             </div>
             
