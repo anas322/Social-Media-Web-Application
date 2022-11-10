@@ -11,7 +11,7 @@ class LikeController extends Controller
 {
     
     public function store( ){
-        $post = Post::find(request()->postId);
+        $post = Post::findOrFail(request()->postId);
         
         $post->likes()->create([
             'user_id' => auth()->user()->id
@@ -21,7 +21,7 @@ class LikeController extends Controller
     }
 
      public function delete( ){
-        $post = Post::find(request()->postId);
+        $post = Post::findOrFail(request()->postId);
         
         $post->likes()->where('user_id' , auth()->id())->delete();
 

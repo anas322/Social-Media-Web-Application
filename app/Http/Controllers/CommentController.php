@@ -14,7 +14,7 @@ class CommentController extends Controller
             'comment_text' => "required|max:5000"
         ]);
 
-        $post = Post::find(request()->postId);
+        $post = Post::findOrFail(request()->postId);
 
       $comment =  $post->comments()->create([
             'user_id' => auth()->user()->id,
@@ -30,8 +30,12 @@ class CommentController extends Controller
 
      public function delete(){
         $id = request()->commentId;
-
-        Comment::where('id',$id)->delete();
+        
+        $comment = Comment::findOrFail($id);
+     
+        $this->authorize('deleteComment',$comment);
+        
+        $comment->delete();
 
         return response()->json(['success'=>'submited with delete comment']);
     }

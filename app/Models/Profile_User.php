@@ -32,7 +32,7 @@ class Profile_User extends Pivot
 
     //get the profile user_id
     public function profile($profile_id){
-        $profile = Profile::find($profile_id) ;
+        $profile = Profile::findOrFail($profile_id) ;
         return $profile->user_id;
     }
 
