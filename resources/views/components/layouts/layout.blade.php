@@ -27,12 +27,13 @@
             <header class='grid grid-cols-12 gap-x-6 px-2 py-3 bg-slate-200 sm:bg-white dark:bg-gray-700 rounded-b-lg relative'>
 
                 <div class=' col-span-10 sm:col-span-3 ml-4'>
-
-                    <a href="{{ route('post.index') }}" class="flex items-center space-x-1">
-                        <object data="{{asset('images/logo.svg')}}" class="block h-12 w-auto">
-                        </object><span class='text-2xl text-darkText-200 dark:text-white' style="font-family: 'Sofia', cursive;">memes</span>
-
-                    </a>
+                    <div class="inline-block">
+                        <a href="{{ route('post.index') }}" class="flex items-center space-x-1">
+                            <img src="{{asset('images/logo.svg')}}" class="block h-12 w-auto" />
+                            
+                            <span class='text-2xl text-darkText-200 dark:text-white' style="font-family: 'Sofia', cursive;">memes</span>
+                        </a>
+                    </div>
                 </div>
 
 
