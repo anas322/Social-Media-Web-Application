@@ -190,20 +190,50 @@
                             $('input[name=comment_text]').val("")
                             
                             //add the new field to the comments section
-                            const element = ` <div class="flex items-start justify-start space-x-3">
-                                            <div class="pt-1">
-                                                <img src="${result.imagePath}"
-                                                    class="w-10" style="clip-path:circle()">
-                                            </div>
+                            const element = `<div class="flex items-start justify-start space-x-3 pb-4" id="comment">
+                                                <div class="pt-1 flex-shrink-0">
+                                                    <img src="${result.imagePath}"
+                                                        class="w-10" style="clip-path:circle()">
+                                                </div>
 
-                                            <div class="flex flex-col space-y-1">
-                                                <p class="text-slate-800">${result.comment_user_name}<span
-                                                        class="text-xs pl-4 text-gray-400"> ${result.comment_created_at}
-                                                    </span></p>
-                                                <p class="text-md font-serif">${result.comment_text}</p>
-                                            </div>
+                                            
+                                                <div class="w-full">
+                                                    <div class="flex flex-col space-y-1">
+                                                        <div class="flex justify-between">
+                                                            <div>
+                                                                <p class='text-darkText-200 dark:text-white font-semibold text-sm md:text-base'>${result.comment_user_name}<span
+                                                                    class=" text-[9px] md:text-xs pl-4 text-gray-400  font-normal">${result.comment_created_at}
+                                                                </span></p>
+                                                            </div>
+                                                                
+                                                            <div>
+                                                                    
+                                                                <div class="relative">
+                                                                    <button onclick="this.nextElementSibling.classList.toggle('hidden')"  class="text-gray-600 dark:text-white  focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 text-center inline-flex items-center" type="button"><svg class="w-6 h-6 fill-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg></button>
+
+                                                                    <!-- Dropdown menu -->
+                                                                    <div onmouseleave="this.classList.toggle('hidden')" class="hidden absolute -left-8  bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-800 ">
+                                                                        <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
+                                                                            <li>
+                                                                                <form >
+                                                                                    <input type="hidden" name="commentId" value="${result.id}">
+                                                                                    <input type="submit" class="delete-comment  hover:cursor-pointer text-sm py-2 px-4 dark:hover:bg-gray-600 text-red-700 capitalize hover:underline hover:underline-offset-2" value="Delete"/>
+                                                                                </form>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                                
+                                                        </div>
+                                                        <p class="text-sm md:text-md font-serif dark:text-white text-darkText-100">${result.comment_text}</p>
+
+                                                    </div>
+                                                </div>
                                             </div>`
-
+                                            
+                           
                             $(`div[data-id=${postdata[0].value}]`).append(element)
                             $(this).parents("#comment-section").prepend(element)
                         },
@@ -231,6 +261,32 @@
                         }
                     });
 
+
+                });
+
+                //delete the comment and empty the element itself
+                $(".delete-comment").click(function (e) {
+                    e.preventDefault();
+
+                    const commentId = ($(this).parents('form').serializeArray())[0].value;
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "{{route('comment.delete')}}",
+                        data: {
+                            commentId
+                        },
+                        success: (result) => {
+                            console.log(result.success);  
+
+                            $(this).parents("#comment").remove()
+                        },
+                        error:(xhr, status) =>{
+                            if(status == 'error'){
+                            console.log('something went wrong!');
+                          }
+                        }
+                    });
 
                 });
             });

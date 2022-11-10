@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Comment;
 
 class CommentController extends Controller
 {
@@ -24,13 +25,13 @@ class CommentController extends Controller
 
         $comment_user_name = $comment->user->name;
         $comment_text = $comment->comment_text;
-        return response()->json(['success'=>'submited with create comment','comment_text' => $comment_text,'comment_user_name' => $comment_user_name ,'comment_created_at' => $comment->created_at,'imagePath' => $imagePath]);
+        return response()->json(['success'=>'submited with create comment','comment_text' => $comment_text,'comment_user_name' => $comment_user_name ,'comment_created_at' => $comment->created_at,'imagePath' => $imagePath,'id' => $comment->id]);
     }
 
-     public function delete( ){
-        $post = Post::find(request()->postId);
-        
-        $post->comments()->where('user_id' , auth()->id())->delete();
+     public function delete(){
+        $id = request()->commentId;
+
+        Comment::where('id',$id)->delete();
 
         return response()->json(['success'=>'submited with delete comment']);
     }
