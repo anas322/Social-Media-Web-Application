@@ -24,19 +24,19 @@
         <div id='loading-page-toggle' class="hidden">
         
             <div id="errors-area" class="fixed top-10 left-0 z-50 flex flex-col gap-y-1 max-h-72 overflow-y-auto"></div>
-            <header class='grid grid-cols-12 gap-x-6 px-2 py-3 bg-white dark:bg-slate-700 rounded-b-lg'>
+            <header class='grid grid-cols-12 gap-x-6 px-2 py-3 bg-slate-200 sm:bg-white dark:bg-gray-700 rounded-b-lg relative'>
 
-                <div class='col-span-3 ml-4'>
+                <div class=' col-span-10 sm:col-span-3 ml-4'>
 
                     <a href="{{ route('post.index') }}" class="flex items-center space-x-1">
                         <object data="{{asset('images/logo.svg')}}" class="block h-12 w-auto">
-                        </object><span class='text-2xl font-bold text-darkText-200 dark:text-white' style="font-family: 'Sofia', cursive;">memes</span>
+                        </object><span class='text-2xl text-darkText-200 dark:text-white' style="font-family: 'Sofia', cursive;">memes</span>
 
                     </a>
                 </div>
 
 
-                <div class='col-span-6'>
+                <div class='hidden sm:block col-span-6'>
 
                     <div class=" bg-gray-100 dark:bg-gray-500 rounded-lg flex items-center w-11/12 mx-auto  md:w-full relative">
                         <object data="{{asset('images/search.svg')}}"
@@ -61,11 +61,9 @@
                     
                     </div>
 
-    
-
                 </div>
 
-                <div  class="flex  items-center space-x-2 -ml-8 md:ml-0 md:space-x-4 col-span-3 justify-self-center">
+                <div  class="sm:flex hidden items-center space-x-2 -ml-8 md:ml-0 md:space-x-4 col-span-3 justify-self-center">
                     
                         <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 ">
                             <svg id="theme-toggle-dark-icon" class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
@@ -82,6 +80,64 @@
                     </div>
                 
                 </div>
+                
+                <div class="col-span-2 float-right block sm:hidden">
+                    <button onclick="this.nextElementSibling.classList.toggle('hidden')" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                        <span class="sr-only">Open menu</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                    </button>
+
+                    <div class="hidden sm:hidden space-y-4 absolute left-0 bottom-[-191%] w-full bg-slate-200 sm:bg-white rounded-b-md dark:bg-gray-700 z-10 py-4">
+
+                        <div>
+
+                            <div class=" bg-gray-100 dark:bg-gray-500 rounded-lg flex items-center w-11/12 mx-auto  md:w-full relative">
+                                <object data="{{asset('images/search.svg')}}"
+                                    class="block h-6 w-auto p-3 box-content "></object>
+                                <input type="text" autocomplete="off" id="search-creators" class="text-sm lg:text-normal border-none bg-gray-100 dark:bg-gray-500 dark:placeholder:text-white dark:text-white w-full rounded-full focus:ring-0 transition duration-500"
+                                    placeholder='Search for creators ❤️'>
+
+                                <!-- searched users -->
+                                <div id="searched-users" class="absolute top-10 left-0 right-0 bg-gray-100 dark:bg-gray-500 z-50 rounded-b-lg max-h-60 overflow-y-auto transition duration-500">
+                                    <div class="text-center py-4 hidden " id="loading-spining">
+                                        <div role="status">
+                                            <svg class="inline mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                                                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                                            </svg>
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                    <div id="searched-users-data">
+                                    </div>
+                                </div>
+                            
+                            </div>
+
+                        </div>
+
+                        <div  class="flex items-center justify-around space-x-2">
+                        
+                            <button id="theme-toggle-1" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 ">
+                                <svg id="theme-toggle-dark-icon-1" class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                                <svg id="theme-toggle-light-icon-1" class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                            </button>
+                    
+
+                            <div class="shrink-0">
+                                <div>
+                                    <a href="{{route('prof.index',auth()->user()->id)}}">
+                                        <img src="{{$userProfilePic}}" style="clip-path:circle()" class="w-12">
+                                    </a>
+                                </div>
+                            </div>
+                        
+                        </div>
+
+                    </div>
+
+                </div>
+                    
             </header>
 
             <section class="grid grid-cols-12 gap-x-6 my-2 auto-rows-min max-w-screen-2xl mx-auto">
@@ -313,6 +369,47 @@
                 // toggle icons inside button
                 themeToggleDarkIcon.classList.toggle('hidden');
                 themeToggleLightIcon.classList.toggle('hidden');
+
+                // if set via local storage previously
+                if (localStorage.getItem('color-theme')) {
+                    if (localStorage.getItem('color-theme') === 'light') {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('color-theme', 'dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('color-theme', 'light');
+                    }
+
+                // if NOT set via local storage previously
+                } else {
+                    if (document.documentElement.classList.contains('dark')) {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('color-theme', 'light');
+                    } else {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('color-theme', 'dark');
+                    }
+                }
+                
+            });
+
+            var themeToggleDarkIcon1 = document.getElementById('theme-toggle-dark-icon-1');
+            var themeToggleLightIcon1 = document.getElementById('theme-toggle-light-icon-1');
+
+            // Change the icons inside the button based on previous settings
+            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                themeToggleLightIcon1.classList.remove('hidden');
+            } else {
+                themeToggleDarkIcon1.classList.remove('hidden');
+            }
+
+            var themeToggleBtn1 = document.getElementById('theme-toggle-1');
+
+            themeToggleBtn1.addEventListener('click', function() {
+
+                // toggle icons inside button
+                themeToggleDarkIcon1.classList.toggle('hidden');
+                themeToggleLightIcon1.classList.toggle('hidden');
 
                 // if set via local storage previously
                 if (localStorage.getItem('color-theme')) {
