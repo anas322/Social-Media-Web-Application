@@ -303,18 +303,18 @@
                     }
                 });
 
-                $('.search-creators').keyup( function (e) {
+                $('.search-creators').keyup( function (e) { 
                     //reset users
-                    $('.searched-users-data').html(null)
+                    $(this).siblings('div#searched-users').children('div#searched-users-data').html(null)
 
                     //show spining 
-                    $(".loading-spining").removeClass('hidden');
+                    $(this).siblings('div#searched-users').children('div#loading-spining').removeClass('hidden');
 
                     let name = ($(this).val()).trim();
                     
                     //remove spining if the field is empty
                     if (!name) {
-                         $(".loading-spining").addClass('hidden');
+                         $(this).siblings('div#searched-users').children('div#loading-spining').addClass('hidden');
                     }
 
                     if(name){
@@ -325,11 +325,11 @@
                             data: {name},
                             success:(result)=>{
                                 //remove loading spining
-                                 $(".loading-spining").addClass('hidden');
+                                 $(this).siblings('div#searched-users').children('div#loading-spining').addClass('hidden');
 
                                 // get the user and the insert them as html 
                                 result.users.forEach(user => {
-                                        $('.searched-users-data').append(`
+                                         $(this).siblings('div#searched-users').children('div#searched-users-data').append(`
                                             <a href="{{ url('/profile') }}/${user.id}">
                                             <div class="flex items-center space-x-4 p-3 hover:bg-gray-200 dark:hover:bg-slate-600 rounded-lg">
                                                 <div>
@@ -343,8 +343,8 @@
                              
                             },
                             error:()=>{
-                                 $(".loading-spining").addClass('hidden');
-                                  $('.searched-users').append(`<p class="text-center text-red-600 p-2 font-medium"> ERROR: something went wrong! :(`)
+                                $(this).siblings('div#searched-users').children('div#loading-spining').addClass('hidden');
+                                  $(this).siblings('div#searched-users').append(`<p class="text-center text-red-600 p-2 font-medium"> ERROR: something went wrong! :(`)
                             }
                         });
                     }
