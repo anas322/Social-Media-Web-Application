@@ -19,9 +19,10 @@
     </head>
 
     <body class='bg-gray-100 dark:bg-slate-800 px-8 lg:container mx-auto w-full overflow-x-hidden transition duration-500 pb-[75px] md:pb-0'>
+        <x-utilities.animatebackground />
         <x-utilities.loading />
         
-        <div id='loading-page-toggle' class="hidden">
+        <div id='loading-page-toggle' class="hidden z-10">
         
             <div id="errors-area" class="fixed top-10 left-0 z-50 flex flex-col gap-y-1 max-h-72 overflow-y-auto"></div>
             <header class='grid grid-cols-12 gap-x-6 px-2 py-3 bg-slate-200 sm:bg-white dark:bg-gray-700 rounded-b-lg relative'>
