@@ -42,12 +42,12 @@
                     <div class=" bg-gray-100 dark:bg-gray-500 rounded-lg flex items-center w-11/12 mx-auto  md:w-full relative">
                         <object data="{{asset('images/search.svg')}}"
                             class="block h-6 w-auto p-3 box-content "></object>
-                        <input type="text" autocomplete="off" id="search-creators" class="text-sm lg:text-normal border-none bg-gray-100 dark:bg-gray-500 dark:placeholder:text-white dark:text-white w-full rounded-full focus:ring-0 transition duration-500"
+                        <input type="text" autocomplete="off" id="search-creators" class="search-creators text-sm lg:text-normal border-none bg-gray-100 dark:bg-gray-500 dark:placeholder:text-white dark:text-white w-full rounded-full focus:ring-0 transition duration-500"
                             placeholder='Search for creators ❤️'>
 
                         <!-- searched users -->
-                        <div id="searched-users" class="absolute top-10 left-0 right-0 bg-gray-100 dark:bg-gray-500 z-50 rounded-b-lg max-h-60 overflow-y-auto transition duration-500">
-                            <div class="text-center py-4 hidden " id="loading-spining">
+                        <div id="searched-users" class="searched-users absolute top-10 left-0 right-0 bg-gray-100 dark:bg-gray-500 z-50 rounded-b-lg max-h-60 overflow-y-auto transition duration-500">
+                            <div class="text-center py-4 hidden loading-spining" id="loading-spining">
                                 <div role="status">
                                     <svg class="inline mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
@@ -56,7 +56,7 @@
                                     <span class="sr-only">Loading...</span>
                                 </div>
                             </div>
-                            <div id="searched-users-data">
+                            <div id="searched-users-data" class='searched-users-data'>
                             </div>
                         </div>
                     
@@ -95,12 +95,12 @@
                             <div class=" bg-gray-100 dark:bg-gray-500 rounded-lg flex items-center w-11/12 mx-auto  md:w-full relative">
                                 <object data="{{asset('images/search.svg')}}"
                                     class="block h-6 w-auto p-3 box-content "></object>
-                                <input type="text" autocomplete="off" id="search-creators" class="text-sm lg:text-normal border-none bg-gray-100 dark:bg-gray-500 dark:placeholder:text-white dark:text-white w-full rounded-full focus:ring-0 transition duration-500"
+                                <input type="text" autocomplete="off" id="search-creators" class="search-creators text-sm lg:text-normal border-none bg-gray-100 dark:bg-gray-500 dark:placeholder:text-white dark:text-white w-full rounded-full focus:ring-0 transition duration-500"
                                     placeholder='Search for creators ❤️'>
 
                                 <!-- searched users -->
-                                <div id="searched-users" class="absolute top-10 left-0 right-0 bg-gray-100 dark:bg-gray-500 z-50 rounded-b-lg max-h-60 overflow-y-auto transition duration-500">
-                                    <div class="text-center py-4 hidden " id="loading-spining">
+                                <div id="searched-users" class="searched-users absolute top-10 left-0 right-0 bg-gray-100 dark:bg-gray-500 z-50 rounded-b-lg max-h-60 overflow-y-auto transition duration-500">
+                                    <div class="text-center py-4 hidden loading-spining" id="loading-spining">
                                         <div role="status">
                                             <svg class="inline mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
@@ -109,7 +109,7 @@
                                             <span class="sr-only">Loading...</span>
                                         </div>
                                     </div>
-                                    <div id="searched-users-data">
+                                    <div id="searched-users-data" class='searched-users-data'>
                                     </div>
                                 </div>
                             
@@ -303,18 +303,18 @@
                     }
                 });
 
-                $('#search-creators').keyup( function (e) {
+                $('.search-creators').keyup( function (e) {
                     //reset users
-                    $('#searched-users-data').html(null)
+                    $('.searched-users-data').html(null)
 
                     //show spining 
-                    $("#loading-spining").removeClass('hidden');
+                    $(".loading-spining").removeClass('hidden');
 
                     let name = ($(this).val()).trim();
                     
                     //remove spining if the field is empty
                     if (!name) {
-                         $("#loading-spining").addClass('hidden');
+                         $(".loading-spining").addClass('hidden');
                     }
 
                     if(name){
@@ -325,11 +325,11 @@
                             data: {name},
                             success:(result)=>{
                                 //remove loading spining
-                                 $("#loading-spining").addClass('hidden');
+                                 $(".loading-spining").addClass('hidden');
 
                                 // get the user and the insert them as html 
                                 result.users.forEach(user => {
-                                        $('#searched-users-data').append(`
+                                        $('.searched-users-data').append(`
                                             <a href="{{ url('/profile') }}/${user.id}">
                                             <div class="flex items-center space-x-4 p-3 hover:bg-gray-200 dark:hover:bg-slate-600 rounded-lg">
                                                 <div>
@@ -343,8 +343,8 @@
                              
                             },
                             error:()=>{
-                                 $("#loading-spining").addClass('hidden');
-                                  $('#searched-users').append(`<p class="text-center text-red-600 p-2 font-medium"> ERROR: something went wrong! :(`)
+                                 $(".loading-spining").addClass('hidden');
+                                  $('.searched-users').append(`<p class="text-center text-red-600 p-2 font-medium"> ERROR: something went wrong! :(`)
                             }
                         });
                     }
