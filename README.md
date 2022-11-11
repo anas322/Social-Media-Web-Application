@@ -1,6 +1,6 @@
 ## Project Overview
 
-This is a social media web application project and I choose to use jetstream in this project as a starter kit along wiht inertia.js just for practice purposes.
+This is a social media web application project and I choose to use jetstream in this project as a starter kit along with inertia.js just for practice purposes.
 
 
 
@@ -13,6 +13,7 @@ the web.
 ## Start the project 
 
 follow the instructions below to start this project
+after cloning my project and changing the directory inside the project itself...
 
 
 install dependencies
@@ -36,7 +37,7 @@ start the server
   php artisan serve
 ```
     
-## Features
+## Some Features
 
 - Light/dark mode toggle
 - Full responsive screen (pc, tablet, mobile)
@@ -55,7 +56,7 @@ start the server
 - Auto-sending welcome Mail to newly registered users 
 
 
-## Screenshots
+## Some screenshots of my project
 
 **Desktop dark view**
 
@@ -93,6 +94,10 @@ start the server
 **comments view**
 
 ![Tablet Screenshot](screenshots/comments.png)
+
+**comments view**
+
+![Tablet Screenshot](screenshots/loading.png)
 
 
 
