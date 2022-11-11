@@ -4,7 +4,7 @@
     <article class="space-y-4 p-4 bg-white dark:bg-slate-700 rounded-2xl transition duration-500">
         <!-- header part  -->
         <div class="flex justify-between">
-            <div class="flex space-x-4">
+            <div class="flex space-x-4 items-center">
                 <div>
                     <a href="{{route('prof.index',$post->user)}}">
                         <img src="{{ $post->user->profile_photo_path ? asset('storage/' . $post->user->profile_photo_path) : asset('storage') . '/default/default.png' }}"
@@ -79,7 +79,7 @@
 
                 <div onclick="previewPost(event,{{ $post->id }})">
                     <img src="{{asset('images/comments.svg')}}"
-                        class="toggle-window block h-8 w-auto hover:cursor-pointer transition-all duration-300 hover:scale-125"></img>
+                        class="toggle-window block h-8 w-auto hover:cursor-pointer transition-all duration-300 hover:scale-125" />
                 </div>
 
                 <div>

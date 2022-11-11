@@ -1,5 +1,0 @@
--create post model migration and controller ( user_id  - caption - image )
-
-add a button to add post in the profile 
-
-create a 'create post' view 
