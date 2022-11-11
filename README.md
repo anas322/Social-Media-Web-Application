@@ -95,7 +95,7 @@ start the server
 
 ![Tablet Screenshot](screenshots/comments.png)
 
-**comments view**
+**loading page**
 
 ![Tablet Screenshot](screenshots/loading.png)
 
