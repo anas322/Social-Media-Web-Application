@@ -1,66 +1,111 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Project Overview
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a social media web application project and I choose to use jetstream in this project as a starter kit along wiht inertia.js just for practice purposes.
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# Hi, I'm Anas! 👋
+I'm a full-stack web developer passionate about
+creating interactive applications and experiences on
+the web.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## Start the project 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+follow the instructions below to start this project
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+install dependencies
+```bash
+  npm install
+```
 
-## Laravel Sponsors
+build the project
+```bash
+  npm run build
+```
+### generate a database with whatever name you want but make sure to edit the `.env` file with this name 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+migrate the database 
+```bash
+  php artisan migrate
+```
 
-### Premium Partners
+start the server 
+```bash
+  php artisan serve
+```
+    
+## Features
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+- Light/dark mode toggle
+- Full responsive screen (pc, tablet, mobile)
+- Placeholder loading page before the page is fully loaded
+- Login/Register
+- Settings page to control profile settings
+- Security layer over dangerous operations like deleting and updating posts
+- Ability to add new posts 
+- Used pagination to split the posts into several pages
+- Used Cache to cache heavy operations to avoid bad performance
+- Ability to delete or modify any owned post
+- Follow and Unfollow system Auto-generate a basic profile once the user signed in  
+- Ability to like the posts and share comments or even share the post link without reloading the page 
+- Ability to add posts as BookMarks without reloading the page 
+- Ability to search for users without reloading the page 
+- Auto-sending welcome Mail to newly registered users 
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Screenshots
 
-## Code of Conduct
+**Desktop dark view**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+![desktop Screenshot](screenshots/dark.png)
 
-## Security Vulnerabilities
+**Desktop light view**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+![desktop Screenshot](screenshots/light.png)
 
-## License
+**Tablet view**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+![Tablet Screenshot](screenshots/tablet.png)
+
+**Mobile view**
+
+![mobile Screenshot](screenshots/mobile.png)
+
+
+**Profile of other users**
+
+![profile Screenshot](screenshots/profile-2.png)
+
+**Profile of authenticated user**
+
+![profile Screenshot](screenshots/profile.png)
+
+**Profile settings**
+
+![Tablet Screenshot](screenshots/profile-settings.png)
+
+**Create post view**
+
+![Tablet Screenshot](screenshots/create-post.png)
+
+**comments view**
+
+![Tablet Screenshot](screenshots/comments.png)
+
+
+
+
+## 🛠 Skills
+HTML, CSS, tailwindcss, JavaScript, JQuery, Vue.js, Inertia.js, PHP, Laravel, MYSQL.... 
+
+
+## 🔗 Links
+
+
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/anas-elnahef-10074021b/)
+
+
+
+
