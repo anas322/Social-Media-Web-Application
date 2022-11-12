@@ -51,12 +51,14 @@ Route::middleware('auth')->group(function () {
     
     Route::post('/comment',[CommentController::class,'store'])->name('comment.store');
     Route::post('/uncomment',[CommentController::class,'delete'])->name('comment.delete');
+
+    
+    Route::get('/', function () {
+        return redirect()->route('prof.index', auth()->id());
+    });
 });
 
 
 
-Route::get('/', function () {
-    return redirect()->route('prof.index', auth()->id());
-});
 
 
