@@ -15,7 +15,7 @@
     </div>
 
     <div class="grid grid-cols-12 gap-x-6 my-2 auto-rows-min max-w-screen-2xl mx-auto">
-        <div class="col-span-3 row-span-2">
+        <div class="lg:col-span-3 lg:row-span-2 md:col-span-4 row-span-2 w-full md:inline-block hidden">
             <div class="space-y-5">
                                 
                 <div role="status" class="space-y-2.5 animate-pulse max-w-lg">
@@ -124,7 +124,7 @@
             </div>
         </div>
 
-        <div class="col-span-6 row-span-6">
+        <div class="lg:col-span-6 lg:row-span-6 md:col-span-8 col-span-12 row-span-9">
             <div class="space-y-5 ">
 
                 <div role="status" class="p-4 min-w-full rounded border border-gray-200 shadow animate-pulse md:p-6 dark:border-gray-700">
@@ -167,7 +167,7 @@
             </div>
         </div>
 
-        <div class="col-span-3 row-span-2 rounded-2xl">
+        <div class="lg:col-span-3 row-span-2 col-span-4 md:inline-block hidden">
               <div class="space-y-5">
                                 
                 <div role="status" class="space-y-2.5 animate-pulse max-w-lg">
